@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="base_layout" template="/WEB-INF/view/template/layout.jsp" preparer="menuPreparer">
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside.jsp" />
+		<put-attribute name="content_title" value="/WEB-INF/view/template/content_title.jsp" />
+	</definition>
+	
+	<definition name="loginForm" extends="base_layout">
+		<put-attribute name="title" value="로그인폼" />
+		<put-attribute name="body" value="/WEB-INF/view/login/loginForm.jsp" />
+	</definition>
+	
+	<definition name="loginSuccess" extends="base_layout">
+		<put-attribute name="title" value="로그인 성공" />
+		<put-attribute name="body" value="/WEB-INF/view/login/loginSuccess.jsp" />
+	</definition>
+
+	<definition name="registMemberForm" extends="base_layout">
+		<put-attribute name="title" value="회원 가입" />
+		<put-attribute name="body" value="/WEB-INF/view/login/registMemberForm.jsp" />
+	</definition>
+
+	<definition name="registMember" extends="base_layout">
+		<put-attribute name="title" value="회원 가입 완료" />
+		<put-attribute name="body" value="/WEB-INF/view/login/registMember.jsp" />
+	</definition>
+	
+</tiles-definitions>
