@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	
+	<insert id="addMember" parameterType="mj.Store.service.memberDataBean">
+		insert into Store(st_id, passwd, st_name, st_tel, st_location, st_image, sign_img ) values (#{st_id},#{passwd},#{st_name},#{st_tel},#{st_location},#{st_image},#{sign_img})
+	</insert>	
+	
+ <!-- <select id="getMember" resultType="spring.service.memberDataBean" parameterType="int" >
+	select * from Store where st_id = #{st_id}
+	</select> -->
+
+	<select id="getMember" resultType="mj.Store.service.memberDataBean" parameterType="String" >
+	select st_id, passwd, st_name, regexp_replace(st_tel,'([[:digit:]]{4})([[:digit:]]{4})','\1 - \2') st_tel, st_location, st_image, sign_img from Store where st_id = #{st_id}
+	</select> 
+	
+	<select id="getMember2" resultType="mj.Store.service.memberDataBean" parameterType="String" >
+	select st_id, passwd, st_name, st_tel, st_location, st_image, sign_img from Store where st_id = #{st_id}
+	</select> 
+	
+	
+	<update id="updateMember" parameterType="mj.Store.service.memberDataBean">
+	update Store set st_name = #{st_name, jdbcType=VARCHAR}, st_tel = #{st_tel, jdbcType=VARCHAR}, st_location = #{st_location, jdbcType=VARCHAR} , st_image = #{st_image, jdbcType=VARCHAR} , sign_img = #{sign_img, jdbcType=VARCHAR} where st_id = #{st_id, jdbcType=VARCHAR}
+	</update>
+	
+	
+</mapper>
+
