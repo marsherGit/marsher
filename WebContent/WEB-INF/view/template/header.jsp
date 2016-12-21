@@ -56,24 +56,18 @@
 				<div class="navbar-collapse collapse">
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav main_nav">
-						<%-- <li><a href="<c:url value="/" />">생 산</a></li>
-						<li><a href="<c:url value="/" />">재 고</a></li>
-						<li><a href="<c:url value="/" />">유 통</a></li>
-						<li><a href="<c:url value="/" />">재 고</a></li>
-						<li><a href="<c:url value="/" />">매 장</a></li> --%>
-						<li class="active">
-							<a href="<c:url value="/" />">생 산
-								<ul class="nav navbar_nav sub_nav">
-									<li class="active"><a href="<c:url value="/" />">생산의뢰서등록</a></li>
-									<li><a href="<c:url value="/" />">생산의뢰서조회</a></li>
-									<li><a href="<c:url value="/" />">공장정보</a></li>
-									<li><a href="<c:url value="/" />">공장등록</a></li>
-								</ul>
-							</a>
+						<li>
+							<a href="#">생 산</a>
+							<ul class="sub_nav">
+								<li><a href="<c:url value="/" />">생산의뢰서등록</a></li>
+								<li><a href="<c:url value="/" />">생산의뢰서조회</a></li>
+								<li><a href="<c:url value="/" />">공장정보</a></li>
+								<li><a href="<c:url value="/" />">공장등록</a></li>
+							</ul>
 						</li>
 						<li>
-							<a href="<c:url value="/" />">재 고</a>
-							<ul class="nav navbar_nav sub_nav">
+							<a href="#">재 고</a>
+							<ul class="sub_nav">
 								<li><a href="<c:url value="/" />">창고입고</a></li>
 								<li><a href="<c:url value="/" />">창고출고</a></li>
 								<li><a href="<c:url value="/" />">재고조회</a></li>
@@ -82,8 +76,8 @@
 							</ul>
 						</li>
 						<li>
-							<a href="<c:url value="/" />">유 통</a>
-							<ul class="nav navbar_nav sub_nav">
+							<a href="#">유 통</a>
+							<ul class="sub_nav">
 								<li><a href="<c:url value="/" />">배송정보</a></li>
 								<li><a href="<c:url value="/" />">배송현황</a></li>
 								<li><a href="<c:url value="/" />">발주서등록</a></li>
@@ -91,8 +85,8 @@
 							</ul>
 						</li>
 						<li>
-							<a href="<c:url value="/" />">재 고</a>
-							<ul class="nav navbar_nav sub_nav">
+							<a href="#">재 고</a>
+							<ul class="sub_nav">
 								<li><a href="<c:url value="/" />">탄산</a></li>
 								<li><a href="<c:url value="/" />">주류</a></li>
 								<li><a href="<c:url value="/" />">쥬스</a></li>
@@ -101,8 +95,8 @@
 							</ul>
 						</li>
 						<li>
-							<a href="<c:url value="/" />">매 장</a>
-							<ul class="nav navbar_nav sub_nav">
+							<a href="#">매 장</a>
+							<ul class="sub_nav">
 								<li><a href="<c:url value="/" />">매장찾기</a></li>
 								<li><a href="<c:url value="/" />">재고조회</a></li>
 								<li><a href="<c:url value="/" />">재고조정</a></li>
@@ -114,58 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<%-- 
-		<div class="sub_nav_container">
-			<div class="container">
-					<!-- 서브메뉴 -->
-					<ul class="sub_nav_list">
-						<li>
-							<ul class="nav navbar_nav sub_nav">
-								<li class="active"><a href="<c:url value="/" />">생산의뢰서등록</a></li>
-								<li><a href="<c:url value="/" />">생산의뢰서조회</a></li>
-								<li><a href="<c:url value="/" />">공장정보</a></li>
-								<li><a href="<c:url value="/" />">공장등록</a></li>
-							</ul>
-						</li>
-						<li>
-							<ul class="nav navbar_nav sub_nav">
-								<li><a href="<c:url value="/" />">창고입고</a></li>
-								<li><a href="<c:url value="/" />">창고출고</a></li>
-								<li><a href="<c:url value="/" />">재고조회</a></li>
-								<li><a href="<c:url value="/" />">재고조정</a></li>
-								<li><a href="<c:url value="/" />">발주서조회</a></li>
-							</ul>
-						</li>
-						<li>
-							<ul class="nav navbar_nav sub_nav">
-								<li><a href="<c:url value="/" />">배송정보</a></li>
-								<li><a href="<c:url value="/" />">배송현황</a></li>
-								<li><a href="<c:url value="/" />">발주서등록</a></li>
-								<li><a href="<c:url value="/" />">미입고현황</a></li>
-							</ul>
-						</li>
-						<li>
-							<ul class="nav navbar_nav sub_nav">
-								<li><a href="<c:url value="/" />">탄산</a></li>
-								<li><a href="<c:url value="/" />">주류</a></li>
-								<li><a href="<c:url value="/" />">쥬스</a></li>
-								<li><a href="<c:url value="/" />">우유</a></li>
-								<li><a href="<c:url value="/" />">제품등록</a></li>
-							</ul>
-						</li>
-						<li>
-							<ul class="nav navbar_nav sub_nav">
-								<li><a href="<c:url value="/" />">매장찾기</a></li>
-								<li><a href="<c:url value="/" />">재고조회</a></li>
-								<li><a href="<c:url value="/" />">재고조정</a></li>
-								<li><a href="<c:url value="/" />">매장등록</a></li>
-							</ul>
-						</li>
-					</ul>
-					<!-- // 서브메뉴 -->
-				</div>
-		</div>
-		 --%>
+		<div class="sub_back"></div>
 		<!--// 메뉴바 -->
 
 		<!-- Modal -->

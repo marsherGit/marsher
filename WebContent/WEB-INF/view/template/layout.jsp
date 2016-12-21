@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>로그인</title>
+	<title><tiles:getAsString name="title" /></title>
 
   <!-- Bootstrap Core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,9 +35,14 @@
 <tiles:insertAttribute name="header" />
 
 <div class="body_container container">
-<tiles:insertAttribute name="aside" />
+	<tiles:insertAttribute name="aside" />
 	<div class="container content_body">
-		<tiles:insertAttribute name="content_title" />
+		<!-- content_title -->
+		<header class="content-header-wrapper">
+			<h2 class="page_title"><tiles:insertAttribute name="body_title" /></h2>
+			<h3 class="desc"><tiles:insertAttribute name="body_title_desc" /></h3>
+		</header>
+		<!--// content_title -->
 		<tiles:insertAttribute name="body" />
 	</div>
 </div>
