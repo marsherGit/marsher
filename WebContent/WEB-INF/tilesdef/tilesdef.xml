@@ -6,7 +6,7 @@
 
 <tiles-definitions>
 
-	<definition name="base_layout" template="/WEB-INF/view/template/layout.jsp" preparer="menuPreparer">
+	<definition name="base_layout" template="/WEB-INF/view/template/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
 		<put-attribute name="aside" value="/WEB-INF/view/template/aside.jsp" />
@@ -28,9 +28,26 @@
 		<put-attribute name="body" value="/WEB-INF/view/login/registMemberForm.jsp" />
 	</definition>
 
-	<definition name="registMember" extends="base_layout">
-		<put-attribute name="title" value="회원 가입 완료" />
-		<put-attribute name="body" value="/WEB-INF/view/login/registMember.jsp" />
+	<definition name="memberRegister" extends="base_layout">
+		<put-attribute name="title" value="매장등록" />
+		<put-attribute name="body_title" value="매 장 등 록" />
+		<put-attribute name="body_title_desc" value="(새로운 매장을 등록할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/member/memberRegister.jsp" />
+	</definition>
+	
+	
+	<definition name="memberInfo" extends="base_layout">
+		<put-attribute name="title" value="매장정보" />
+		<put-attribute name="body_title" value="매 장 찾 기" />
+		<put-attribute name="body_title_desc" value="(매장 소개 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/member/memberInfo.jsp" />
+	</definition>
+	
+	<definition name="memberUpdate" extends="base_layout">
+		<put-attribute name="title" value="매장수정페이지" />
+		<put-attribute name="body_title" value="매 장 정 보 수 정" />
+		<put-attribute name="body_title_desc" value="(우리 매장의 정보를 수정할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/member/memberUpdate.jsp" />
 	</definition>
 	
 </tiles-definitions>
