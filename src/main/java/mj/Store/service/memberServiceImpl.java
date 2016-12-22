@@ -1,11 +1,14 @@
 package mj.Store.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+
 
 
 
@@ -38,6 +41,16 @@ public class memberServiceImpl implements memberService {
 	}
 	
 
+	@Override
+	public List<memberDataBean> showList(){
+		List<memberDataBean> result = new ArrayList<memberDataBean>();
+		result = dao.showList();
+		
+		
+		return result;
+			
+	}
+	
  
 	public int insert(memberDataBean article) {
 		int check =0;
@@ -100,6 +113,42 @@ public class memberServiceImpl implements memberService {
 	
 		
 	}
+	
+	//관리자 매장 정보 수정 form 
+	@Override
+	public List<memberDataBean> showList(String st_id){
+		List<memberDataBean> result = new ArrayList<memberDataBean>();
+		result = dao.showList(st_id);
+		
+		
+		return result;
+			
+	}
+	
+	//관리자 매장 정보 수정 pro
+	public int updateMember2(memberDataBean member){
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("st_id",member.getSt_id());
+		map.put("st_name",member.getSt_name());
+		map.put("st_tel",member.getSt_tel());
+		map.put("st_location",member.getSt_location());
+		map.put("st_image", member.getSt_image());
+		map.put("sign_img", member.getSign_img());
+		
+		
+		dao.updateMember2(map);
+		
+		System.out.println("매장정보업데이트");
+		
+		return 1;
+	
+		
+	}
+	
+	
+	
 }
 	
 	

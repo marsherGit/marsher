@@ -30,11 +30,11 @@
 					<div class="navbar-collapse collapse">
 						<!-- 사용자메뉴 -->
 						<ul class="nav navbar-nav navbar-right">
-							<%-- <c:if test="${ memId ne 'admin' }"> --%>
-							<li><a href="<c:url value="/" />">마이페이지</a></li>
-							<%-- </c:if> --%>
+							<c:if test="${ memId ne 'admin' }">
+								<li><a href="<c:url value="/login/mypage" />">마이페이지</a></li>
+							</c:if>
 							<c:if test="${ memId eq 'admin' }">
-								<li><a href="<c:url value="/" />">관리자페이지</a></li>
+								<li><a href="<c:url value="/login/adminpage" />">관리자페이지</a></li>
 							</c:if>
 							<li><a href="<c:url value="/" />">쪽지</a></li>
 							<li><a href="<c:url value="/" />">공지사항</a></li>
@@ -78,14 +78,14 @@
 						<li>
 							<a href="#">유 통</a>
 							<ul class="sub_nav">
-								<li><a href="<c:url value="/" />">배송정보</a></li>
-								<li><a href="<c:url value="/" />">배송현황</a></li>
-								<li><a href="<c:url value="/" />">발주서등록</a></li>
-								<li><a href="<c:url value="/" />">미입고현황</a></li>
+								<li><a href="<c:url value="/delivery/deliveryInfo" />">배송정보</a></li>
+								<li><a href="<c:url value="/delivery/deliveryState" />">배송현황</a></li>
+								<li><a href="<c:url value="/delivery/deliveryOrder" />">발주서등록</a></li>
+								<li><a href="<c:url value="/delivery/deliveryUnsolved" />">미입고현황</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">재 고</a>
+							<a href="#">제 품</a>
 							<ul class="sub_nav">
 								<li><a href="<c:url value="/" />">탄산</a></li>
 								<li><a href="<c:url value="/" />">주류</a></li>
@@ -97,10 +97,10 @@
 						<li>
 							<a href="#">매 장</a>
 							<ul class="sub_nav">
-								<li><a href="<c:url value="/" />">매장찾기</a></li>
+								<li><a href="<c:url value="/member/info.do?st_id=manager1" />">매장찾기</a></li>
 								<li><a href="<c:url value="/" />">재고조회</a></li>
 								<li><a href="<c:url value="/" />">재고조정</a></li>
-								<li><a href="<c:url value="/" />">매장등록</a></li>
+								<li><a href="<c:url value="/member/register.do" />">매장등록</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -122,7 +122,7 @@
 						<h4 class="modal-title">로그아웃</h4>
 					</div>
 					<div class="modal-body text-center">
-						<form id="logout_form" action="<c:url value="/logon/logout.do" />" name="logout_form" method="post">
+						<form id="logout_form" action="<c:url value="/login/logout" />" name="logout_form" method="post">
 							<div class="text-center">
 								${ memId } 님<br />
 								로그아웃 하시겠습니까?<br /><br /><br />
