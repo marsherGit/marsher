@@ -30,6 +30,9 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <!-- jQuery -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+	
 </head>
 <body>
 <tiles:insertAttribute name="header" />
@@ -50,9 +53,6 @@
 <hr class="featurette-divider" />
 
 <tiles:insertAttribute name="footer" />
-
-<!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
