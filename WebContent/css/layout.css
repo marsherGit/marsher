@@ -85,6 +85,7 @@ a:focus{
 	width:100px;
 	text-align:center;
 }
+.main_nav>li.on>a,
 .main_nav>li.active>a,
 .main_nav>li>a:active,
 .main_nav>li>a:hover {
@@ -112,6 +113,7 @@ a:focus{
 	line-height:40px;
 	color:#366886;
 }
+.sub_nav>li.on>a,
 .sub_nav>li.active>a,
 .sub_nav>li>a:active,
 .sub_nav>li>a:hover {
@@ -215,6 +217,7 @@ a:focus{
 	font-weight:bold;
 	font-size:1.1em;
 }
+.aside-wrapper .list-group>.list-group-item.on,
 .aside-wrapper .list-group>.list-group-item.active,
 .aside-wrapper .list-group>.list-group-item:focus,
 .aside-wrapper .list-group>.list-group-item:hover {

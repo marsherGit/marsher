@@ -1,3 +1,13 @@
+/db.properties
+/log4j.properties
+/messages/
+/mj/
 /spring/
+<<<<<<< HEAD
 /mj/
 /sql/
+=======
+/sql/
+/delivery/
+/login/
+>>>>>>> branch 'master' of https://github.com/marsherGit/marsher.git

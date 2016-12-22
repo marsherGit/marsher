@@ -2,10 +2,16 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${ memId == null }">
+	<script>
+		alert("잘못 된 접근입니다.");
+		location.href="<c:url value="/" />";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
-	<title><tiles:getAsString name="title" /></title>
+	<title>로그인</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="<c:url value="/vendor/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
@@ -33,30 +39,21 @@
 
 	<!-- jQuery -->
 	<script src="<c:url value="/vendor/jquery/jquery.min.js" />"></script>
-
-  <!-- jQuery -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
 	
 </head>
 <body>
 <tiles:insertAttribute name="header" />
 
 <div class="body_container container">
-	<tiles:insertAttribute name="aside" />
-	<div class="container content_body">
-		<!-- content_title -->
-		<header class="content-header-wrapper">
-			<h2 class="page_title"><tiles:insertAttribute name="body_title" /></h2>
-			<h3 class="desc"><tiles:insertAttribute name="body_title_desc" /></h3>
-		</header>
-		<!--// content_title -->
-		<tiles:insertAttribute name="body" />
-	</div>
+<div class="container content_body">
+	<tiles:insertAttribute name="body" />
+</div>
 </div>
 
 <hr class="featurette-divider" />
 
 <tiles:insertAttribute name="footer" />
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/vendor/bootstrap/js/bootstrap.min.js" />"></script>
