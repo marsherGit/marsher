@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="delivery">
+	<sql id="deliveryColumns">d.delivery_num,d.delivery_name,d.delivery_tel,d.delivery_img,f.fac_id,f.fac_name,f.fac_product,f.delivery_day</sql>
+	
+	<select id="allMem" resultType="HashMap">
+		select <include refid="deliveryColumns" /> from delivery d inner join factory f on d.delivery_num=f.delivery_num order by f.fac_id
+	</select>
+	
+	<select id="selectMem" parameterType="int" resultType="delivery.controller.DeliveryCommand">
+		select * from delivery where delivery_num=#{delivery_num}
+	</select>
+	
+	<insert id="insert" parameterType="delivery.controller.DeliveryCommand">
+		insert into delivery values(Delivery_delivery_num.NEXTVAL,#{delivery_name},#{delivery_tel},#{delivery_img})
+	</insert>
+	
+	<update id="update" parameterType="delivery.controller.DeliveryCommand">
+		update delivery
+		<set>
+			<if test="delivery_name != null">delivery_name=#{delivery_name},</if>
+			<if test="delivery_tel != null">delivery_name=#{delivery_name},</if>
+			<if test="delivery_img != null">delivery_name=#{delivery_name}</if>
+		</set>
+		where delivery_num=#{delivery_num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from delivery where delivery_num=#{delivery_num}
+	</delete>
+</mapper>
