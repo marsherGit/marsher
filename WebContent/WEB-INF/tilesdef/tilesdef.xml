@@ -62,4 +62,32 @@
 		<put-attribute name="body" value="/WEB-INF/view/member/memberUpdate.jsp" />
 	</definition>
 	
+	<!-- 발주서  -->
+	<definition name="orderContent" extends="base_layout">
+		<put-attribute name="title" value="발주서 조회" />
+		<put-attribute name="body_title" value="발 주 서" />
+		<put-attribute name="body_title_desc" value="(발주서 조회 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/order/orderContent.jsp" />
+	</definition>
+	
+	<definition name="orderDeleteForm" extends="base_layout">
+		<put-attribute name="title" value="발주서 삭제" />
+		<put-attribute name="body" value="/WEB-INF/view/order/orderDeleteForm.jsp" />
+	</definition>
+	
+	<definition name="orderList" extends="base_layout">
+		<put-attribute name="title" value="발주서 목록" />
+		<put-attribute name="body" value="/WEB-INF/view/order/orderList.jsp" />
+	</definition>
+	
+	<definition name="orderModifyForm" extends="base_layout">
+		<put-attribute name="title" value="발주서 수정" />
+		<put-attribute name="body" value="/WEB-INF/view/order/orderModifyForm.jsp" />
+	</definition>
+	
+	<definition name="orderWriteForm" extends="base_layout">
+		<put-attribute name="title" value="발주서 작성" />
+		<put-attribute name="body" value="/WEB-INF/view/order/orderWriteForm.jsp" />
+	</definition>
+	
 </tiles-definitions>

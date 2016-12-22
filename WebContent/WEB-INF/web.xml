@@ -43,6 +43,15 @@
    
   </servlet-mapping>
   
+  <servlet>
+		<servlet-name>dispatcherOrder</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcherOrder</servlet-name>
+		<url-pattern>/order/*</url-pattern>
+	</servlet-mapping>
+  
   
   
 </web-app>
