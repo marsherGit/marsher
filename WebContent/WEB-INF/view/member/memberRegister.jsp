@@ -6,8 +6,16 @@
 
 <title>Insert title here</title>
 </head>
+<script>
+$(document).ready(function(){
+	
+	var main_nav = $(".main_nav>li").eq(4);
+	main_nav.addClass("on");
+	main_nav.find(".sub_nav>li").eq(3).addClass("on");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(3).addClass("on");
+})
 
-
+</script>
 <script>
 		
 			

@@ -83,5 +83,11 @@
 	<bean id="loginDao" class="login.controller.LoginDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+			
+	<bean id="LoginService" class="login.controller.LoginServiceImpl"/>
+	
+	
+	
+	
 
 </beans>

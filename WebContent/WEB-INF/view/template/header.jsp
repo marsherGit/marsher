@@ -2,6 +2,11 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+
+String passwd = (String) session.getAttribute("passwd");
+
+ %>
 
 	<!-- 헤더 -->
 	<header class="navbar-wrapper">
@@ -31,10 +36,10 @@
 						<!-- 사용자메뉴 -->
 						<ul class="nav navbar-nav navbar-right">
 							<c:if test="${ memId ne 'admin' }">
-								<li><a href="<c:url value="/login/mypage" />">마이페이지</a></li>
+								<li><a href="<c:url value='/login/mypage.do?st_id=${memId}'/>" onClick="return checkPass()">마이페이지</a></li>
 							</c:if>
 							<c:if test="${ memId eq 'admin' }">
-								<li><a href="<c:url value="/login/adminpage" />">관리자페이지</a></li>
+								<li><a href="<c:url value="/login/adminpage" />" onClick="return checkPass()">관리자페이지</a></li>
 							</c:if>
 							<li><a href="<c:url value="/" />">쪽지</a></li>
 							<li><a href="<c:url value="/" />">공지사항</a></li>
@@ -161,3 +166,19 @@
 		<!-- //Modal -->
 	</header>
 	<!-- //헤더 -->
+
+<script>
+	
+function checkPass() { 
+			  var org_pass = ${passwd};
+		      var pass = prompt("비밀번호를 입력하세요."); 
+		      if( pass != null && org_pass == pass ) {		    	  
+		    	 return true;
+		      }
+		      alert("비밀번호가 틀렸습니다."); 
+		      return false;
+
+   } 
+	
+	
+</script>

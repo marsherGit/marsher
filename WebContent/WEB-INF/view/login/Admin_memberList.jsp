@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
+
 <body>
 
 	<form method="post" name="AdminUpdateList">
@@ -28,7 +29,7 @@
 	  <th width="100" height="20" style="text-align:center">${list.st_name}</th>
 	  <th width="100" height="20" style="text-align:center">${list.st_tel}</th>
 	  <th width="200" height="20" style="text-align:center">${list.st_location}</th>
-	  <th width="80" height="20" style="text-align:center"><input type = "button" class="btn btn-info btn-xs" value = "수정" onclick="location.href='/Marsher/member/AdminUpdateForm.do?st_id=${list.st_id}';" /></th>
+	  <th width="80" height="20" style="text-align:center"><input type = "button" class="btn btn-info btn-xs" value = "수정" onclick="location.href='/Marsher/login/AdminUpdateForm.do?st_id=${list.st_id}';" /></th>
 	  </tr>  
 	  
 	  </c:forEach>

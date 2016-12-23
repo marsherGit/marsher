@@ -3,11 +3,10 @@
 
 
 <c:if test="${check==1}">
-성공
-<meta http-equiv="Refresh" content="0;/Marsher/member/AdminUpdateForm.do?st_id=${st_id}" >
+<meta http-equiv="Refresh" content="0;/Marsher/login/mypage.do?st_id=${st_id}" >
 </c:if>
 <c:if test="${check!=1}">
 실패
 <br>
-<meta http-equiv="Refresh" content="0;/Marsher/member/updateList.do" >
+<a href="javascript:history.go(-1)">[글수정 폼으로 돌아가기]</a>
 </c:if>
