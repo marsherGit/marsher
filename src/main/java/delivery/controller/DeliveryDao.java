@@ -1,16 +1,20 @@
 package delivery.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class DeliveryDao extends SqlSessionDaoSupport {
-	SqlSession session = getSqlSession();
 	
-	public HashMap<String,Object> allMem() {
-		HashMap<String,Object> map = new HashMap<String,Object>();
+	/* deliveryInfo.jsp */
+	public ArrayList<DeliveryInfo> allMem() {
 		
-		return map;
-	}
+		List<DeliveryInfo> deliveryList = new ArrayList<DeliveryInfo>();
+		deliveryList = getSqlSession().selectList("delivery.allMem");
+		
+		return  (ArrayList<DeliveryInfo>) deliveryList;
+		
+	} //end allMem()
+
 }

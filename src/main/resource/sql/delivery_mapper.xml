@@ -3,7 +3,7 @@
 <mapper namespace="delivery">
 	<sql id="deliveryColumns">d.delivery_num,d.delivery_name,d.delivery_tel,d.delivery_img,f.fac_id,f.fac_name,f.fac_product,f.delivery_day</sql>
 	
-	<select id="allMem" resultType="HashMap">
+	<select id="allMem" resultType="delivery.controller.DeliveryInfo">
 		select <include refid="deliveryColumns" /> from delivery d inner join factory f on d.delivery_num=f.delivery_num order by f.fac_id
 	</select>
 	
