@@ -54,6 +54,7 @@
 	 				
 				</table>
 			</div>
+			
 	  	</div>
 	  	</c:forEach>
 	
