@@ -2,11 +2,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-
-String passwd = (String) session.getAttribute("passwd");
-
- %>
 
 	<!-- 헤더 -->
 	<header class="navbar-wrapper">
@@ -92,11 +87,11 @@ String passwd = (String) session.getAttribute("passwd");
 						<li>
 							<a href="#">제 품</a>
 							<ul class="sub_nav">
-								<li><a href="<c:url value="/" />">탄산</a></li>
-								<li><a href="<c:url value="/" />">주류</a></li>
-								<li><a href="<c:url value="/" />">쥬스</a></li>
-								<li><a href="<c:url value="/" />">우유</a></li>
-								<li><a href="<c:url value="/" />">제품등록</a></li>
+								<li><a href="<c:url value="/product/productSoda" />">탄산</a></li>
+								<li><a href="<c:url value="/product/productDrink" />">주류</a></li>
+								<li><a href="<c:url value="/product/productJuice" />">쥬스</a></li>
+								<li><a href="<c:url value="/product/productMilk" />">우유</a></li>
+								<li><a href="<c:url value="/product/authorityCheck" />">제품등록</a></li>
 							</ul>
 						</li>
 						<li>
@@ -169,16 +164,24 @@ String passwd = (String) session.getAttribute("passwd");
 
 <script>
 	
+
 function checkPass() { 
 			  var org_pass = ${passwd};
 		      var pass = prompt("비밀번호를 입력하세요."); 
-		      if( pass != null && org_pass == pass ) {		    	  
-		    	 return true;
-		      }
+		      if( pass != null) {
+		    	  if(org_pass == pass) {		    	  
+		    	 
+		      }else {
 		      alert("비밀번호가 틀렸습니다."); 
 		      return false;
+		      }      
+		     }
+		      else {
+		   		return false;
+		      } 
 
    } 
+	
 	
 	
 </script>

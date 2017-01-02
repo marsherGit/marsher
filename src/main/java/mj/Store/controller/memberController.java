@@ -32,14 +32,14 @@ public class memberController {
 		this.service = service;
 	}
 	
-//¸ÅÀå µî·Ï Æû
+//member Register Form
 	@RequestMapping(value = "/member/register.do")
 	public String add(@ModelAttribute("member") memberDataBean member) throws Throwable {
 		System.out.println(member);
-		return "memberRegister";// ÇØ´ç ºä
+		return "memberRegister";// ï¿½Ø´ï¿½ ï¿½ï¿½
 	}
 
-//¸ÅÀå µî·Ï Pro
+//member Register Pro
 	@RequestMapping(value = "/member/registerPro.do")
 	public String addPro(memberDataBean member, HttpServletRequest request) throws Throwable {
 		service.insert(member);
@@ -48,7 +48,7 @@ public class memberController {
 	}
 	
 	
-//¸ÅÀå Ã£±â form
+//information form
 	@RequestMapping(value ="member/info.do", method = RequestMethod.GET)
 	public String showList(Model model) {
 		List<memberDataBean> showList = new ArrayList<memberDataBean>();

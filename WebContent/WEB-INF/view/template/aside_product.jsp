@@ -5,11 +5,11 @@
 	<!-- aside -->
 	<aside class="aside-wrapper">
 		<div class="list-group">
-			<a class="list-group-item" href="<c:url value="/" />">탄산</a>
-			<a class="list-group-item" href="<c:url value="/" />">주류</a>
-			<a class="list-group-item" href="<c:url value="/" />">쥬스</a>
-			<a class="list-group-item" href="<c:url value="/" />">우유</a>
-			<a class="list-group-item" href="<c:url value="/" />">제품등록</a>
+			<a class="list-group-item" href="<c:url value="/product/productSoda" />">탄산</a>
+			<a class="list-group-item" href="<c:url value="/product/productDrink" />">주류</a>
+			<a class="list-group-item" href="<c:url value="/product/productJuice" />">쥬스</a>
+			<a class="list-group-item" href="<c:url value="/product/productMilk" />">우유</a>
+			<a class="list-group-item" href="<c:url value="/product/authorityCheck" />">제품등록</a>
 		</div>
 	</aside>
 	<!--// aside -->

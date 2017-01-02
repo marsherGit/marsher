@@ -141,4 +141,53 @@
 		<put-attribute name="body" value="/WEB-INF/view/order/orderWriteForm.jsp" />
 	</definition>
 	
+		<!-- product -->
+	<definition name="authorityCheck" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 제품등록	" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="제 품 등 록" />
+		<put-attribute name="body_title_desc" value="(새로운 제품을 등록할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/authorityCheck.jsp" />
+	</definition>
+	
+	<definition name="proRegister" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 제품등록	" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="제 품 등 록" />
+		<put-attribute name="body_title_desc" value="(새로운 제품을 등록할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/proRegister.jsp" />
+	</definition>
+	
+	<definition name="productSoda" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 탄산음료" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="탄 산 음 료" />
+		<put-attribute name="body_title_desc" value="(탄산음료 제품 소개 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/productSoda.jsp" />
+	</definition>
+	
+	<definition name="productDrink" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 주류음료" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="주 류 음 료" />
+		<put-attribute name="body_title_desc" value="(주류음료 제품 소개 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/productDrink.jsp" />
+	</definition>
+	
+	<definition name="productJuice" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 쥬스음료" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="쥬 스 음 료" />
+		<put-attribute name="body_title_desc" value="(쥬스음료 제품 소개 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/productJuice.jsp" />
+	</definition>
+	
+	<definition name="productMilk" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 우유음료" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="우 유 음 료" />
+		<put-attribute name="body_title_desc" value="(우유음료 제품 소개 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/productMilk.jsp" />
+	</definition>
+	
 </tiles-definitions>

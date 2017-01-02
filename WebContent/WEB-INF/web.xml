@@ -51,6 +51,7 @@
 	<servlet-mapping>
 		<servlet-name>dispatcherMJ</servlet-name>
 		<url-pattern>/member/*</url-pattern>
+		<url-pattern>/product/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
