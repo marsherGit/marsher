@@ -3,8 +3,12 @@
 <mapper namespace="loginMem">
 
 	<!-- login -->
-	<select id="checkMem" parameterType="String" resultType="String">
+	<select id="checkPasswd" parameterType="String" resultType="String">
 		select passwd from store where st_id=#{st_Id}
+	</select>
+	
+	<select id="checkLogintype" parameterType="String" resultType="String">
+		select logintype from store where st_id=#{st_Id}
 	</select>
 	
 	<!-- store -->
