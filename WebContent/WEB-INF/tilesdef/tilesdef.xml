@@ -54,6 +54,54 @@
 		<put-attribute name="body" value="/WEB-INF/view/login/Admin_memberUpdate.jsp" />
 	</definition>
 	
+	<definition name="admin_deliveryList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 배송기사목록" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="배 송 기 사 목 록" />
+		<put-attribute name="body_title_desc" value="(정기 배송 담당 기사님의 정보를 확인 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/login/admin_deliveryList.jsp" />
+	</definition>
+	
+	<definition name="admin_deliveryInput" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 배송기사등록" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="배 송 기 사 등 록" />
+		<put-attribute name="body_title_desc" value="(정기 배송 담당 기사님의 정보를 등록 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/login/admin_deliveryInput.jsp" />
+	</definition>
+	
+	<definition name="admin_deliveryUpdate" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 배송기사정보수정" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="배 송 기 사 정 보 수 정" />
+		<put-attribute name="body_title_desc" value="(정기 배송 담당 기사님의 정보를 수정 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/login/admin_deliveryUpdate.jsp" />
+	</definition>
+	
+	<definition name="admin_factoryList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 공장목록" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="공 장 목 록" />
+		<put-attribute name="body_title_desc" value="(제품생산공장의 정보를 확인 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/login/admin_factoryList.jsp" />
+	</definition>
+	
+	<definition name="admin_factoryInput" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 공장등록" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="공 장 등 록" />
+		<put-attribute name="body_title_desc" value="(제품생산공장의 정보를 등록 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/login/admin_factoryInput.jsp" />
+	</definition>
+	
+	<definition name="admin_factoryUpdate" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 공장정보수정" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="공 장 정 보 수 정" />
+		<put-attribute name="body_title_desc" value="(제품생산공장의 정보를 수정 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/login/admin_factoryUpdate.jsp" />
+	</definition>
+	
 	<!-- myPage -->
 	<definition name="mypage" extends="base_layout">
 		<put-attribute name="title" value="Marsher :: 마이페이지" />
@@ -111,6 +159,23 @@
 		<put-attribute name="body_title" value="미 입 고 현 황" />
 		<put-attribute name="body_title_desc" value="(요청한 제품 중 배송예정인 발주서의 목록입니다.)" />
 		<put-attribute name="body" value="/WEB-INF/view/delivery/deliveryUnsolved.jsp" />
+	</definition>
+	
+	<!-- factory -->
+	<definition name="factoryInfo" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 공장정보	" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_factory.jsp" />
+		<put-attribute name="body_title" value="공 장 정 보" />
+		<put-attribute name="body_title_desc" value="(공장의 상세 정보를 확인 할 수 있습니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/factory/factoryInfo.jsp" />
+	</definition>
+	
+	<definition name="factoryInput" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 공장등록	" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_factory.jsp" />
+		<put-attribute name="body_title" value="공 장 등 록" />
+		<put-attribute name="body_title_desc" value="(새로운 공장을 등록 할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/factory/factoryInput.jsp" />
 	</definition>
 	
 	<!-- 발주서  -->

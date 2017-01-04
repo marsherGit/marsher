@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 
-	<context:component-scan base-package="login.controller" />
+	<context:component-scan base-package="factory.controller" />
 	<context:annotation-config />
 	
 	<bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
@@ -31,7 +31,7 @@
 	</bean>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/view/login/" />
+		<property name="prefix" value="/WEB-INF/view/factory/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
@@ -80,14 +80,8 @@
     </bean>
   </mvc:interceptors>
 	
-	<bean id="loginDao" class="login.controller.LoginDao">
+	<bean id="factoryDao" class="factory.controller.FactoryDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-			
-	<!-- <bean id="LoginService" class="login.controller.LoginServiceImpl"/> -->
-	
-	
-	
-	
 
 </beans>

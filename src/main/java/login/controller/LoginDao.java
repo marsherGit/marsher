@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import delivery.controller.DeliveryCommand;
+import delivery.controller.DeliveryInfo;
+import factory.controller.FactoryCommand;
 import mj.Store.service.memberDataBean;
 
 public class LoginDao extends SqlSessionDaoSupport {
@@ -13,7 +16,7 @@ public class LoginDao extends SqlSessionDaoSupport {
 		return (String) getSqlSession().selectOne("loginMem.checkMem", st_id);
 	}
 
-	// ¸ÅÀåÁ¤º¸ ºÒ·¯¿À±â (¸Å´ÏÀú/°ü¸®ÀÚ)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½Å´ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	public memberDataBean getMember2(String st_id) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("st_id", st_id);
@@ -21,16 +24,80 @@ public class LoginDao extends SqlSessionDaoSupport {
 		return getMember2;
 	}
 
-	// ¸ÅÀå Á¤º¸ ¼öÁ¤ (¸Å´ÏÀú/°ü¸®ÀÚ)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Å´ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	public int updateMember(Map<String, Object> map) {
 		getSqlSession().update("loginMem.updateMember", map);
 		return 1;
 	}
 
-	// °ü¸®ÀÚ ¸ÅÀå List (adminpage)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ List (adminpage)
 	public List<memberDataBean> showList() {
 		return getSqlSession().selectList("loginMem.showList");
 	}
-
+	
+	// deliveryList
+	public List<DeliveryInfo> getDeliveryList() {
+		List<DeliveryInfo> deliveryList = getSqlSession().selectList("delivery.allDelivery");
+		return deliveryList;
+	}
+	
+	// deliveryUpdate
+	public int updateDelivery(DeliveryCommand command) {
+		int check = -1;
+		check = getSqlSession().update("delivery.update", command);
+		return check;
+	}
+	
+	// getDeliveryMember
+	public DeliveryCommand getDelivery(int delivery_num) {
+		DeliveryCommand deliveryCommand = getSqlSession().selectOne("delivery.selectMem", delivery_num);
+		return deliveryCommand;
+	}
+	
+	// inputDelivery
+	public int inputDelivery(DeliveryCommand command) {
+		int check = -1;
+		check = getSqlSession().insert("delivery.insert", command);
+		return check;
+	}
+	
+	// totalFactory
+	public int totalFactory() {
+		int total = getSqlSession().selectOne("factory.totalFactory");
+		return total;
+	}
+	
+	// deliveryDelete
+	public int deleteDelivery(int delivery_num) {
+		int check = -1;
+		check = getSqlSession().insert("delivery.delete", delivery_num);
+		return 0;
+	}
+	
+	// factoryList
+	public List<FactoryCommand> getFactoryList() {
+		List<FactoryCommand> factoryCommand = getSqlSession().selectList("factory.allFactory");
+		return factoryCommand;
+	}
+	
+	// factoryUpdate
+	public int updateFactory(FactoryCommand command) {
+		int check = -1;
+		check = getSqlSession().update("factory.updateFactory", command);
+		return check;
+	}
+	
+	// getFactoryMember
+	public FactoryCommand getFactory(int fac_id) {
+		FactoryCommand factoryCommand = getSqlSession().selectOne("factory.selectFactory", fac_id);
+		return factoryCommand;
+	}
+	
+	// deleteFactory
+	public int deleteFactory(int fac_id) {
+		int check = -1;
+		check = getSqlSession().insert("factory.deleteFactory", fac_id);
+		return 0;
+	}
 
 }

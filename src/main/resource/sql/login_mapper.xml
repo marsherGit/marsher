@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="loginMem">
+
+	<!-- login -->
 	<select id="checkMem" parameterType="String" resultType="String">
 		select passwd from store where st_id=#{st_Id}
 	</select>
 	
+	<!-- store -->
 	<select id="getMember" resultType="mj.Store.service.memberDataBean" parameterType="String" >
 	select st_id, passwd, st_name, regexp_replace(st_tel,'([[:digit:]]{4})([[:digit:]]{4})','\1 - \2') st_tel, st_location, st_image, sign_img from Store where st_id = #{st_id}
 	</select> 
@@ -19,6 +22,15 @@
 	
 	<select id="showList" resultType="mj.Store.service.memberDataBean">
 		select st_id, passwd, st_name, regexp_replace(st_tel,'([[:digit:]]{4})([[:digit:]]{4})','\1 - \2') st_tel, st_location, st_image, sign_img from Store where st_id not in 'admin'
+	</select>
+	
+	<!-- delivery -->
+	<select id="getDeliveryList" resultType="delivery.controller.DeliveryCommand">
+		select * from delivery
+	</select>
+	
+	<select id="getDeliveryItem" parameterType="int" resultType="String">
+		select fac_product from factory where fac_id=#{fac_id}
 	</select>
 	
 </mapper>

@@ -3,14 +3,20 @@ package login.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import delivery.controller.DeliveryCommand;
+import delivery.controller.DeliveryInfo;
+import factory.controller.FactoryCommand;
 import mj.Store.service.memberDataBean;
 
 
@@ -26,6 +32,16 @@ public class LoginController {
 
 	@Autowired
 	LoginDao loginDao;
+	
+	@ModelAttribute("factorys")
+	public List<Integer> factory(){
+		List<Integer> list = new ArrayList<Integer>();
+		int total = service.totalFactory();
+		for(int i=1; i<total+1; i++) {
+			list.add(i);
+		}
+		return list;
+	}
 	
 	@RequestMapping("/login/login")
 	public String form() {
@@ -65,7 +81,7 @@ public class LoginController {
 	}
 	
 	
-	// ¸ÅÀåÁ¤º¸ ¼öÁ¤ form ÆäÀÌÁö (¼¼¼Ç)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ form ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
 	@RequestMapping(value = "/login/mypage", method = RequestMethod.GET)
 	public String update(String st_id, HttpSession session, Model model) throws Throwable {
 
@@ -73,16 +89,16 @@ public class LoginController {
 
 		memberDataBean memberInfo = null;
 		memberInfo = service.getMember2(memId);
-		System.out.println("¼öÁ¤ÆäÀÌÁö:::" + memId);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:::" + memId);
 
-		// ÇØ´ç ºä¿¡¼­ »ç¿ëÇÒ ¼Ó¼º
+		// ï¿½Ø´ï¿½ ï¿½ä¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½
 		model.addAttribute("st_id", memId);
 		model.addAttribute("member", memberInfo);
 
-		return "mypage";// ÇØ´çºä
+		return "mypage";// ï¿½Ø´ï¿½ï¿½
 	}
 
-	// ¸ÅÀå ¸Å´ÏÀú ¸ÅÀå Á¤º¸ ¼öÁ¤ Pro
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Pro
 	@RequestMapping(value = "/login/mypagePro.do")
 	public String updatePro(memberDataBean member, String st_id, Model model) throws Throwable {
 
@@ -94,7 +110,7 @@ public class LoginController {
 		return "mypagePro";
 	}
 	
-	// °ü¸®ÀÚ Á¤º¸ ¼öÁ¤ form ÆäÀÌÁö (¼¼¼Ç)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ form ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
 	@RequestMapping(value = "/login/adminpage", method = RequestMethod.GET)
 	public String update2(String st_id, HttpSession session, Model model) throws Throwable {
 
@@ -102,16 +118,16 @@ public class LoginController {
 
 		memberDataBean memberInfo = null;
 		memberInfo = service.getMember2(memId);
-		System.out.println("¼öÁ¤ÆäÀÌÁö:::" + memId);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:::" + memId);
 
-		// ÇØ´ç ºä¿¡¼­ »ç¿ëÇÒ ¼Ó¼º
+		// ï¿½Ø´ï¿½ ï¿½ä¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½
 		model.addAttribute("st_id", memId);
 		model.addAttribute("member", memberInfo);
 
-		return "adminpage";// ÇØ´çºä
+		return "adminpage";// ï¿½Ø´ï¿½ï¿½
 	}
 	
-	// °ü¸®ÀÚ Á¤º¸ ¼öÁ¤ Pro
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Pro
 		@RequestMapping(value = "/login/AdminpagePro.do")
 		public String updatePro2(memberDataBean member, String st_id, Model model) throws Throwable {
 
@@ -124,7 +140,7 @@ public class LoginController {
 		}
 	
 	
-	// °ü¸®ÀÚ ¸ÅÀåÁ¤º¸ ¼öÁ¤ List ÆäÀÌÁö
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ List ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/login/AdminUpdateList.do", method = RequestMethod.GET)
 	public String showList3(Model model) {
 		List<memberDataBean> showList = new ArrayList<memberDataBean>();
@@ -134,27 +150,27 @@ public class LoginController {
 
 		System.out.println(showList);
 
-		return "Admin_memberList";// ÇØ´çºä
+		return "Admin_memberList";// ï¿½Ø´ï¿½ï¿½
 
 	}
 
-	// °ü¸®ÀÚ ¸ÅÀåÁ¤º¸ ¼öÁ¤ form ÆäÀÌÁö(ÀÓ½Ã)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ form ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ó½ï¿½)
 	@RequestMapping(value = "/login/AdminUpdateForm.do", method = RequestMethod.GET)
 	public String AdminUpdate(String st_id, Model model) {
 
 		memberDataBean memberInfo = null;
 		memberInfo = service.getMember2(st_id);
-		System.out.println("¼öÁ¤ÆäÀÌÁö:::" + st_id);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:::" + st_id);
 
-		// ÇØ´ç ºä¿¡¼­ »ç¿ëÇÒ ¼Ó¼º
+		// ï¿½Ø´ï¿½ ï¿½ä¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½
 		model.addAttribute("st_id", new String(st_id));
 		model.addAttribute("member", memberInfo);
 
-		return "Admin_memberUpdate";// ÇØ´çºä
+		return "Admin_memberUpdate";// ï¿½Ø´ï¿½ï¿½
 
 	}
 
-	// °ü¸®ÀÚ ¸ÅÀåÁ¤º¸ ¼öÁ¤ Pro
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Pro
 	@RequestMapping(value = "/login/AdminUpdatePro.do")
 	public String AdminUpdatePro(memberDataBean member, String st_id, Model model) throws Throwable {
 
@@ -164,6 +180,86 @@ public class LoginController {
 		model.addAttribute("check", check);
 
 		return "Admin_memberUpdatePro";
+	}
+	
+	// deliveryList
+	@RequestMapping("/login/admin_deliveryList")
+	public ModelAndView deliveryList() {
+		List<DeliveryInfo> delivery_list = service.getDeliveryList();
+		ModelAndView mav = new ModelAndView("admin_deliveryList","delivery_list",delivery_list);
+		
+		return mav;
+	}
+	
+	// deliveryUpdateForm
+	@RequestMapping(value = "/login/admin_deliveryUpdateForm")
+	public ModelAndView deliveryUpdateForm(@ModelAttribute("command") DeliveryCommand command, int delivery_num) {
+		ModelAndView mav = new ModelAndView("admin_deliveryUpdate");
+		command = service.getDelivery(delivery_num);
+		mav.addObject("command", command);
+		
+		return mav;
+	}
+	// deliveryUpdate
+	@RequestMapping(value = "/login/admin_deliveryUpdate")
+	public String deliveryUpdate(@ModelAttribute("command") DeliveryCommand command) {
+		int check = service.updateDelivery(command);
+		
+		return "redirect:/login/admin_deliveryList";
+	}
+	
+	// deliveryInputForm
+	@RequestMapping("/login/admin_deliveryInputForm")
+	public String deliveryInputForm(@ModelAttribute("command") DeliveryCommand command) {
+		return "admin_deliveryInput";
+	}
+	
+	// deliveryInput
+	@RequestMapping("/login/admin_deliveryInput")
+	public String deliveryInput(@ModelAttribute("command") DeliveryCommand command, HttpServletRequest request) {
+		int check = service.inputDelivery(command);
+		return "redirect:/login/admin_deliveryList";
+	}
+	
+	// deliveryDelete
+	@RequestMapping("/login/admin_deliveryDelete")
+	public String deliveryDelete(int delivery_num) {
+		int check = service.deleteDelivery(delivery_num);
+		return "redirect:/login/admin_deliveryList";
+	}
+	
+	// factoryList
+	@RequestMapping("/login/admin_factoryList")
+	public ModelAndView factoryList() {
+		List<FactoryCommand> factory_list = service.getFactoryList();
+		ModelAndView mav = new ModelAndView("admin_factoryList","factory_list",factory_list);
+		
+		return mav;
+	}
+	
+	// factoryUpdateForm
+	@RequestMapping(value = "/login/admin_factoryUpdateForm")
+	public ModelAndView factoryUpdateForm(@ModelAttribute("command") FactoryCommand command, int fac_id) {
+		ModelAndView mav = new ModelAndView("admin_factoryUpdate");
+		command = service.getFactory(fac_id);
+		mav.addObject("command", command);
+		
+		return mav;
+	}
+	
+	// factoryUpdate
+	@RequestMapping(value = "/login/admin_factoryUpdate")
+	public String factoryUpdate(@ModelAttribute("command") FactoryCommand command) {
+		int check = service.updateFactory(command);
+		
+		return "redirect:/login/admin_factoryList";
+	}
+	
+	// factoryDelete
+	@RequestMapping("/login/admin_factoryDelete")
+	public String factoryDelete(int fac_id) {
+		int check = service.deleteFactory(fac_id);
+		return "redirect:/login/admin_factoryList";
 	}
 
 }

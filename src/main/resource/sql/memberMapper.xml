@@ -24,5 +24,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select st_id, passwd, st_name, regexp_replace(st_tel,'([[:digit:]]{4})([[:digit:]]{4})','\1 - \2') st_tel, st_location, st_image, sign_img from Store where st_id not in 'admin'
 	</select>
 	
-</mapper>
+</mapper> 
 

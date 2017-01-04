@@ -61,8 +61,8 @@
 							<ul class="sub_nav">
 								<li><a href="<c:url value="/" />">생산의뢰서등록</a></li>
 								<li><a href="<c:url value="/" />">생산의뢰서조회</a></li>
-								<li><a href="<c:url value="/" />">공장정보</a></li>
-								<li><a href="<c:url value="/" />">공장등록</a></li>
+								<li><a href="<c:url value="/factory/factoryInfo" />">공장정보</a></li>
+								<li><a href="<c:url value="/factory/factoryInputForm" />">공장등록</a></li>
 							</ul>
 						</li>
 						<li>

@@ -7,8 +7,8 @@
 		<div class="list-group">
 			<a class="list-group-item" href="<c:url value="/login/adminpage" />">관리자정보수정</a>
 			<a class="list-group-item" href="<c:url value="/login/AdminUpdateList.do" />">매장정보수정</a>
-			<a class="list-group-item" href="<c:url value="/" />">공장정보수정</a>
-			<a class="list-group-item" href="<c:url value="/" />">배송정보수정</a>
+			<a class="list-group-item" href="<c:url value="/login/admin_factoryList" />">공장정보수정</a>
+			<a class="list-group-item" href="<c:url value="/login/admin_deliveryList" />">배송정보수정</a>
 			<a class="list-group-item" href="<c:url value="/" />">받은쪽지</a>
 			<a class="list-group-item" href="<c:url value="/" />">보낸쪽지</a>
 		</div>
