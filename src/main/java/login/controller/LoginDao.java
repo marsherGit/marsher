@@ -39,6 +39,13 @@ public class LoginDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("loginMem.showList");
 	}
 	
+	//Admin_memberDelte
+	public int deleteMember(String st_id) {
+		int check = getSqlSession().delete("loginMem.deleteMember", st_id);
+		return check;
+	}
+	
+	
 	// deliveryList
 	public List<DeliveryInfo> getDeliveryList() {
 		List<DeliveryInfo> deliveryList = getSqlSession().selectList("delivery.allDelivery");

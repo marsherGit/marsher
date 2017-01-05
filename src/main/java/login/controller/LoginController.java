@@ -101,7 +101,7 @@ public class LoginController {
 	}
 	
 	
-	// �������� ���� form ������ (����)
+	// 
 	@RequestMapping(value = "/login/mypage", method = RequestMethod.GET)
 	public String update(String st_id, HttpSession session, Model model) throws Throwable {
 
@@ -201,6 +201,19 @@ public class LoginController {
 
 		return "Admin_memberUpdatePro";
 	}
+	
+	//Admin_memberDelte
+	@RequestMapping(value = "/login/AdminDeletePro.do")
+	public String AdminDeletePro(String st_id) throws Throwable {
+		
+		int check = service.deleteMember(st_id);
+		
+		return "Admin_memberDelete";
+	
+	}
+	
+	
+	
 	
 	// deliveryList
 	@RequestMapping("/login/admin_deliveryList")

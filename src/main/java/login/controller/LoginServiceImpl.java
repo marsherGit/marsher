@@ -77,6 +77,16 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 	
+	//Admin_memberDelte
+	@Override
+	public int deleteMember(String st_id){
+		int check = dao.deleteMember(st_id);
+			
+		return check;
+			
+	}
+	
+	
 	/* delivery */
 	@Override
 	public List<DeliveryInfo> getDeliveryList() {

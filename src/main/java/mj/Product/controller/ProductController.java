@@ -194,4 +194,44 @@ public class ProductController {
 
 	}
 
+	// sodaProduct delete
+	@RequestMapping(value = "/product/sodaDeletePro.do")
+	public String sodaDeletePro(String pro_num) throws Throwable {
+
+		int check = service.deleteProduct(pro_num);
+
+		return "redirect:/product/productSoda";
+
+	}
+
+	// sodaProduct delete
+	@RequestMapping(value = "/product/drinkDeletePro.do")
+	public String drinkDeletePro(String pro_num) throws Throwable {
+
+		int check = service.deleteProduct(pro_num);
+
+		return "redirect:/product/productDrink";
+
+	}
+
+	// sodaProduct delete
+	@RequestMapping(value = "/product/juiceDeletePro.do")
+	public String juiceDeletePro(String pro_num) throws Throwable {
+
+		int check = service.deleteProduct(pro_num);
+
+		return "redirect:/product/productJuice";
+
+	}
+
+	// sodaProduct delete
+	@RequestMapping(value = "/product/milkDeletePro.do")
+	public String milkDeletePro(String pro_num) throws Throwable {
+
+		int check = service.deleteProduct(pro_num);
+
+		return "redirect:/product/productMilk";
+
+	}
+
 }

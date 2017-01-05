@@ -74,8 +74,14 @@ public class ProductDAO extends SqlSessionDaoSupport {
 	}
 	
 	public int milkListCount() {
-		int count = getSqlSession().selectOne("product.milkListCount", Integer.class); 
+		int count = getSqlSession().selectOne("product.milkListCount", Integer.class);
 		return count;
+	}
+
+	// Admin_memberDelte
+	public int deleteProduct(String pro_num) {
+		int check = getSqlSession().delete("product.deleteProduct", pro_num);
+		return check;
 	}
 
 }

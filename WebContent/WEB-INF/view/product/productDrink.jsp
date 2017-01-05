@@ -10,7 +10,14 @@
 <title>Insert title here</title>
 </head>
 
-<script>
+<script type="text/javascript">
+function deleteCheck(){
+	if(!confirm("제품을 삭제하시겠습니까?" )) {
+		return false;
+	} else {
+		return true;
+	}
+}
 	$(document).ready(function() {
 
 		var main_nav = $(".main_nav>li").eq(3);
@@ -135,6 +142,11 @@
 													<td>${drinkList.pro_calorie}kcal</td>
 												</tr>
 											</table>
+											<div class="row text-right">
+											<c:if test="${ memId eq 'admin' }"> 	
+											<a href="<c:url value="/product/drinkDeletePro.do?pro_num=${drinkList.pro_num}"/>" class="btn btn-danger btn-sm" onclick="return deleteCheck();">제품삭제</a>								
+											</c:if>
+											</div>
 										</div>
 
 									</div>
