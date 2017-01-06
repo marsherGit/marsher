@@ -64,32 +64,31 @@ function deleteCheck(){
 		</form>
 	</div>
 
-	<c:if test="${count > 8}">
-		<c:set var="pageCount"
-			value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
-		<c:set var="pageBlock" value="${5}" />
-		<fmt:parseNumber var="result" value="${currentPage / 5}"
-			integerOnly="true" />
-		<c:set var="startPage" value="${result * 5 + 1}" />
-		<c:set var="endPage" value="${startPage + pageBlock-1}" />
-		<c:if test="${endPage > pageCount}">
-			<c:set var="endPage" value="${pageCount}" />
-		</c:if>
-
-		<center>
-			<c:if test="${startPage > 5}">
-				<a href="productJuice.do?pageNum=${startPage - 5 }">이전</a>
+<!-- pagenation -->
+	<c:if test="${ count > 8 }">
+	<c:set var="pageCount" value="${ count / pageSize + ( count % pageSize == 0 ? 0 : 1) }"/>
+  <c:set var="pageBlock" value="${ 5 }"/>
+  <fmt:parseNumber var="result" value="${ (currentPage % pageBlock == 0 ? currentPage-1 : currentPage) / pageBlock }" integerOnly="true" />
+  <c:set var="startPage" value="${ result * pageBlock + 1 }" />
+  <c:set var="endPage" value="${ startPage + pageBlock - 1 }"/>
+  <c:if test="${ endPage > pageCount }">
+       <c:set var="endPage" value="${ pageCount }"/>
+  </c:if>
+	<div class="row pagingArea text-center">
+		<ul class="pagination pagination-sm">
+			<c:if test="${ startPage > pageBlock }">
+				<li class="prev"><a href="<c:url value="/product/productJuice.do?pageNum=${ startPage - pageBlock }" />">&lt;&lt;</a></li>
 			</c:if>
-
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="productJuice.do?pageNum=${i}">[${i}]</a>
-			</c:forEach>
-
-			<c:if test="${endPage < pageCount}">
-				<a href="productJuice.do?pageNum=${startPage + 5}">다음</a>
-			</c:if>
+			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+		  	<li><a href="<c:url value="/product/productJuice.do?pageNum=${ i }" />" class="page${ i }">${ i }</a></li>
+		  </c:forEach>
+		  <c:if test="${ endPage < pageCount }">
+		  	<li class="next"><a href="<c:url value="/product/productJuice.do?pageNum=${ startPage + pageBlock }" />">&gt;&gt;</a></li>
+		  </c:if>
+		</ul>
+	</div>
 	</c:if>
-
+	
 	</center>
 
 	<c:forEach var="juiceList" items="${juiceList}">

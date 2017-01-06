@@ -4,10 +4,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 
-<html>
-<head>
-<title>Insert title here</title>
-</head>
+
+<style>
+	#st_image {width:300px; margin-top:0.5em;}
+	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	#updateForm .list-group {list-style:none;}
+	#updateForm .list-group>li {margin:1em 0;}
+	.btns {padding:10%;}
+	.btns>input {width:6em;}
+	.guide {font-size:0.8em;}
+</style>
+
 <script>
 
 function checkIt(){
@@ -18,6 +25,11 @@ function checkIt(){
 	else
 		return true;
 }
+$(document).ready(function(){
+	/* 서브메뉴 활성화 */
+	$(".user_nav>li:eq(0)>a").addClass("active");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(0).addClass("on");
+})
 
 </script>
 <script>
@@ -53,57 +65,6 @@ function checkIt(){
 	
 
 		</script>
-<!-- <script>
-$(document).ready(function(){
-	   var fileTarget = $('.filebox .upload-hidden');
-
-	    fileTarget.on('change', function(){
-	        if(window.FileReader){
-	            // 파일명 추출
-	            var filename = $(this)[0].files[0].name;
-	        } 
-
-	        else {
-	            // Old IE 파일명 추출
-	            var filename = $(this).val().split('/').pop().split('\\').pop();
-	        };
-
-	        $(this).siblings('.upload-name').val(filename);
-	    });
-
-	    //preview image 
-	    var imgTarget = $('.preview-image .upload-hidden');
-
-	    imgTarget.on('change', function(){
-	        var parent = $(this).parent();
-	        parent.children('.upload-display').remove();
-
-	        if(window.FileReader){
-	            //image 파일만
-	            if (!$(this)[0].files[0].type.match(/image\//)) return;
-	            
-	            var reader = new FileReader();
-	            reader.onload = function(e){
-	                var src = e.target.result;
-	                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
-	            }
-	            reader.readAsDataURL($(this)[0].files[0]);
-	        }
-
-	        else {
-	            $(this)[0].select();
-	            $(this)[0].blur();
-	            var imgSrc = document.selection.createRange().text;
-	            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
-
-	            var img = $(this).siblings('.upload-display').find('img');
-	            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
-	        }
-	    });
-	});
-</script> -->
-
-
 
 <script language="javascript">
 
@@ -180,54 +141,53 @@ function previewImage(targetObj, View_area) {
 </script>
 
 
+<div class="container text-left row" style='position:relative; width: 900px;'>
+<form method="post" id="updateForm" name="updateForm" action="mypagePro.do?st_id=${st_id}" onsubmit="return checkIt()">
 
-<body>
-
-
-		<form method="post" name="updateForm" action="mypagePro.do?st_id=${st_id}" onsubmit="return checkIt()">
-<div> 
- <div class="container text-left" style='position:relative; width: 900px; ' >    
-  <div class="row">
-    <div class="col-sm-4" id='View_area' style='position:relative; width: 350px; height: 300px; color: black; border: 0px solid black; dispaly: inline; '>
-      <label for="st_image">이미지 업로드</label> 
-      <img style='cursor:hand' src="/Marsher/images/${member.st_image}" align="absMiddle" border="0" width="300" height="250" onclick="fncProductFile()" id="UploadedImg">
-					<input type="file" id="st_image" name="st_image" value="${member.st_image}" onchange="previewImage(this,'View_area'),checkfile()">
-						
-    </div>
-    <div style='width: 500px;' class="col-sm-4"> 
-      <table class="table table-bordered">
-        <tr>
-        <td>매장명</td>
-        <td><input type="text" id="st_name" name="st_name" colsapn="3" style = "width:150px; height:18px" value="${member.st_name}"></td>
-        </tr>
-        <tr>
-        <td>연락처</td>
-        <td><input type = "text" style = "width:100px; height:18px" name="st_tel" value="${member.st_tel}"></td>
-      </tr>
-      <tr>
-      	<td>주소</td>
-        <td colspan = "5"><input type = "text" style = "width:300px; height:18px; align:left;" name="st_location" value="${member.st_location}"></td>
-      </tr>    
-      
-      <tr>
-      <td>사인 등록</td>
-	  <td><input type="file" id="sign_img" name="sign_img" class="upload-hidden" onchange="checkfile2()" value="${member.sign_img}">기존 파일 : <a href="http://localhost:8088/Marsher/images/${member.sign_img}">${member.sign_img}</a></td>   
-      </tr>
-      </table> 
-     
-                                     <input type = "submit" value = "수정하기">
-                                     <input type = "button" value = "취소">
-    </div>
-   
-    </div>
-  
-</div><br>
- </div>
- 
-
+<div class="col-sm-6" id='View_area' class="form-group">
+			<label for="st_image">사진이미지 업로드</label> <img id="UploadedImg"
+				src="<c:url value="/images/${member.st_image}" />" border="0"
+				width="300" height="250" onclick="fncProductFile()"> <input
+				type="file" id="st_image" name="st_image" value="${member.st_image}"
+				onchange="previewImage(this,'View_area'),checkfile()"
+				class="form-control">
+		</div>
+		<div class="col-sm-6">
+			<ul class="list-group row">
+				<li class="form-group row"><label for="st_name"
+					class="control-label col-sm-3">매장명</label>
+				<div class="col-sm-9">
+						<input id="st_name" name="st_name" value="${member.st_name}"
+							class="form-control" />
+					</div></li>
+				<li class="form-group row"><label for="st_tel"
+					class="control-label col-sm-3">연락처</label>
+				<div class="col-sm-9">
+						<input id="st_tel" name="st_tel" value="${member.st_tel}"
+							class="form-control" />
+					</div></li>
+				<li class="form-group row"><label for="st_location"
+					class="control-label col-sm-3">주소</label>
+				<div class="col-sm-9">
+						<input id="st_location" name="st_location"
+							value="${member.st_location}" class="form-control" />
+					</div></li>
+				<li class="form-group row"><label for="sign_img"
+					class="control-label col-sm-3">사인 등록</label>
+				<div class="col-sm-9">
+						<input type="file" id="sign_img" name="sign_img"
+							value="${member.sign_img}" onchange="checkfile2()"
+							class="form-control" />기존 파일 : <a
+							href="<c:url value="/images/${member.st_image}" />">${member.sign_img}</a>
+					</div></li>
+			</ul>
+			<div class="row text-center btns">
+				<input type="submit" value="수정하기" class="btn btn-warning"> <input
+					type="button" value="취소" class="btn btn-default"
+					onclick="javascript:history.back()">
+			</div>
+		</div>
 
   </form>
+</div>
 
-
-</body>
-</html>

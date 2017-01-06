@@ -25,6 +25,11 @@ function checkIt(){
 	else
 		return true;
 }
+$(document).ready(function(){
+	/* 서브메뉴 활성화 */
+	$(".user_nav>li:eq(0)>a").addClass("active");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(0).addClass("on");
+})
 
 </script>
 <script>
@@ -167,7 +172,7 @@ function previewImage(targetObj, View_area) {
 						<input type="file" id="sign_img" name="sign_img"
 							value="${member.sign_img}" onchange="checkfile2()"
 							class="form-control" />기존 파일 : <a
-							href="http://localhost:8088/Marsher/images/${member.sign_img}">${member.sign_img}</a>
+							href="<c:url value="/images/${member.st_image}" />">${member.sign_img}</a>
 					</div></li>
 			</ul>
 			<div class="row text-center btns">

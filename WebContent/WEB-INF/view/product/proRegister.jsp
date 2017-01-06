@@ -4,8 +4,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 
-<title>Insert title here</title>
-</head>
+<style>
+	#pro_image  {width:300px; margin-top:0.5em;}
+	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	.list-group {list-style:none;}
+	.list-group>li {margin:1em 0;}
+	.btns {padding:10%;}
+	.btns>input {width:6em;}
+</style>
 
 <script>
 	$(document).ready(function() {
@@ -157,94 +163,61 @@
 </script>
 
 
-<body>
 
+<div class="container text-left row" style='position:relative; width: 900px;'>
 	<form method="post" name="productForm" action="proRegisterPro.do"
-		onsubmit="return checkIt()">
+		onsubmit="return checkIt()" class="form-horizontal">
 		<input type="hidden" id="pro_num" name="pro_num"/>
-		<div>
-			<div class="container text-left"
-				style='position: relative; width: 900px;'>
-				<div class="row">
-					<div class="col-sm-4" id='View_area'
-						style='position: relative; width: 350px; height: 300px; color: black; border: 0px solid black; dispaly: inline;'>
-						<label for="pro_image">이미지 업로드</label> <img style='cursor: hand'
-							src="/Marsher/images/test.png" align="absMiddle" border="0"
-							width="300" height="250" onclick="fncProductFile()"
-							id="UploadedImg"> <input type="file" id="pro_image"
-							name="pro_image"
-							onchange="previewImage(this,'View_area'),checkfile()">
-
-					</div>
-					<div style='width: 500px;' class="col-sm-4">
-						<table class="table table-bordered">
-							<tr>
-								<td>품목명</td>
-								<td><select name="pro_bcategory" id="pro_bcategory" style="width: 300px; height: 18px">
-									<option selected="" hidden="" value="">::: 품목명 :::</option>
-									<option value="A">탄산</option>
-									<option value="B">주류</option>
-									<option value="C">쥬스</option>
-									<option value="D">우유</option>								
-								</select></td>
-							</tr>
-							<tr>
-								<td>제품명</td>
-								<td><input type="text" id="pro_name" name="pro_name"
-									style="width: 300px; height: 18px" maxlength="20"></td>
-							</tr>
-							<tr>
-								<td>칼로리</td>
-								<td><input type="text" id="pro_calorie" name="pro_calorie"
-									style="width: 300px; height: 18px" maxlength="20">Kcal</td>
-							</tr>
-							<tr>
-								<td>용량</td>
-								<td><input type="text" id="pro_volume" name="pro_volume"
-									colsapn="3" style="width: 300px; height: 18px" maxlength="20">ml</td>
-							</tr>
-							<tr>
-								<td>패키지타입</td>
-								<td><select name="pro_container" id="pro_container" style="width: 300px; height: 18px">
-									<option selected="" hidden="" value="">::: 패키지타입 :::</option>
+		
+		<div class="col-sm-6" id='View_area' class="form-group">
+	  <label for="pro_image">사진이미지 업로드</label>
+	  <img id="UploadedImg" src="<c:url value="/images/no-img.png" />" border="0" width="300" height="250" onclick="fncProductFile()">
+	  <input type="file" id="pro_image" name="pro_image" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
+	</div>
+	<div class="col-sm-6">
+		<ul class="list-group row">
+			<li class="form-group"><label for="pro_bcategory" class="control-label col-sm-3">품목명</label>
+				<div class="col-sm-9">
+						<select id="pro_bcategory" name="pro_bcategory"
+							class="form-control" />
+						<option selected="" hidden="" value="">::: 품목명 :::</option>
+						<option value="A">탄산</option>
+						<option value="B">주류</option>
+						<option value="C">쥬스</option>
+						<option value="D">우유</option>
+						</select>
+				</div>
+			</li>
+			
+			<li class="form-group"><label for="pro_name" class="control-label col-sm-3">제품명</label><div class="col-sm-9"><input id="pro_name" name="pro_name" class="form-control" /></div></li>
+			<li class="form-group"><label for="pro_calorie" class="control-label col-sm-3">칼로리</label><div class="col-sm-9"><input id="pro_calorie" name="pro_calorie" class="form-control" /></div></li>
+			<li class="form-group"><label for="pro_volume" class="control-label col-sm-3">용량</label><div class="col-sm-9"><input id="pro_volume" name="pro_volume" class="form-control" /></div></li>
+			
+			<li class="form-group">
+				<label for="pro_container" class="control-label col-sm-3">패키지타입</label>
+				<div class="col-sm-9">
+					<select id="pro_container" name="pro_container" class="form-control">
+					<option selected="" hidden="" value="">::: 패키지타입 :::</option>
 									<option value="알류미늄캔">알류미늄캔</option>
 									<option value="페트병">페트병</option>
 									<option value="유리병">유리병</option>
-									<option value="종이팩">종이팩</option>											
-								</select></td>
-							</tr>
-							<tr>
-								<td>제품원가</td>
-								<td colspan="5"><input type="text"
-									style="width: 300px; height: 18px; align: left;"
-									name="pro_cPrice" id="pro_cPrice" maxlength="20">원</td>
-							</tr>
-							<tr>
-								<td>판매단가</td>
-								<td colspan="5"><input type="text"
-									style="width: 300px; height: 18px; align: left;"
-									name="pro_uPrice" id="pro_uPrice" maxlength="20">원</td>
-							</tr>
-								<td>적정재고</td>
-								<td colspan="5"><input type="text"
-									style="width: 300px; height: 18px; align: left;"
-									name="pro_properStock" maxlength="20">EA</td>
-							</tr>
-						</table>
-
-						<input type="submit" value="등록하기">
-					</div>
-
+									<option value="종이팩">종이팩</option>		
+					</select>
 				</div>
-
-			</div>
-			<br>
+			</li>
+			
+			<li class="form-group"><label for="pro_cPrice" class="control-label col-sm-3">제품원가</label><div class="col-sm-9"><input id="pro_cPrice" name="pro_cPrice" class="form-control" /></div></li>
+			<li class="form-group"><label for="pro_uPrice" class="control-label col-sm-3">판매단가</label><div class="col-sm-9"><input id="pro_uPrice" name="pro_uPrice" class="form-control" /></div></li>
+			<li class="form-group"><label for="pro_properStock" class="control-label col-sm-3">적정재고</label><div class="col-sm-9"><input id="pro_properStock" name="pro_properStock" class="form-control" /></div></li>
+			
+			
+		</ul>
+		<div class="row text-center btns">
+			<input type="submit" value="등록하기" class="btn btn-info">
+			<input type="button" value="취소" class="btn btn-default" onclick="javascript:history.back()">
 		</div>
-
-
-
+	</div>
 
 	</form>
-
-</body>
-</html>
+	</div>
+	

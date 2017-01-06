@@ -508,13 +508,10 @@ function removeAllChildNods(el) {
 });
 </script>
 <script>
-	$(document).ready(function() {
-
-		var main_nav = $(".main_nav>li").eq(4);
-		main_nav.addClass("on");
-		main_nav.find(".sub_nav>li").eq(3).addClass("on");
-		$(".aside-wrapper>.list-group>.list-group-item").eq(3).addClass("on");
-		$(".navbar-right>li>a").removeClass("active");
-	})
+$(document).ready(function(){
+	/* 서브메뉴 활성화 */
+	$(".user_nav>li:eq(0)>a").addClass("active");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(1).addClass("on");
+})
 </script>
 
