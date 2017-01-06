@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<Object> getOrders(int startRow, int endRow) {
 		List<Object> list = null;
 		System.out.println(startRow + "    " + endRow);
-		try { // city´Â mepperÆÄÀÏÀÇ id°ª¿¡ ÇØ´çÇÑ´Ù.
+		try { // cityï¿½ï¿½ mepperï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ñ´ï¿½.
 			list = dao.getOrders(startRow, endRow);
 		} catch (Exception e) {
 
@@ -30,10 +30,10 @@ public class OrderServiceImpl implements OrderService {
 		return list;
 	}
 
-	public Order getOrder(int o_num) {
-		Order list = null;
+	public OrderDataBean getOrder(int o_num) {
+		OrderDataBean list = null;
 		System.out.println(o_num);
-		try { // city´Â mepperÆÄÀÏÀÇ id°ª¿¡ ÇØ´çÇÑ´Ù.
+		try { // cityï¿½ï¿½ mepperï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ñ´ï¿½.
 			list = dao.getOrder(o_num);
 		} catch (Exception e) {
 
@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
 		return list;
 	}
 
-	public int insertOrder(Order order) {
+	public int insertOrder(OrderDataBean order) {
 		int check = 0;
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
 			map.put("o_sender", order.getO_sender());
 			map.put("senderSign", order.getSenderSign());
 			map.put("receiverSign", order.getReceiverSign());
-			check = dao.Insert("order.insert", map); // city´Â ³»°¡ ¼±ÅÃÇÑ µµ½Ã¸í
+			check = dao.Insert("order.insert", map); // cityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

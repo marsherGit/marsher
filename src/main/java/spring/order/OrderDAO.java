@@ -17,10 +17,10 @@ public class OrderDAO extends SqlSessionDaoSupport {
 		return getOrders;
 	}
 	
-	public Order getOrder(int o_num){
+	public OrderDataBean getOrder(int o_num){
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("o_num",o_num);
-		Order getOrder = getSqlSession().selectOne("order.getOrder",map);
+		OrderDataBean getOrder = getSqlSession().selectOne("order.getOrder",map);
 		return getOrder;
 		
 	}

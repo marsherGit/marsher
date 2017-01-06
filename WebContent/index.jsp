@@ -14,6 +14,4 @@
 		<% response.sendRedirect("login/login"); %>
 	</c:if>
 </body>
-
-
 </html>

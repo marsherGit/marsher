@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="delivery">
+	
+	<!-- delivery -->
 	<sql id="deliveryColumns">d.delivery_num,d.delivery_name,d.delivery_tel,d.delivery_img,d.delivery_day,f.fac_id,f.fac_name,f.fac_product</sql>
 	
 	<select id="allMem" resultType="delivery.controller.DeliveryInfo">
@@ -34,5 +36,67 @@
 	<delete id="delete" parameterType="int">
 		delete from delivery where delivery_num=#{delivery_num}
 	</delete>
+	
+	
+	<!-- deliveryState -->
+	<sql id="deliveryStateColumns">o_num, o_title, pro_num, o_count, o_deadline, o_regdate, o_sendDate, deliverystate, o_receiver, o_sender, senderSign, receiverSign</sql>
+	
+	<select id="getArticleCount" resultType="int">
+	 select count(*) from ordering
+	</select>
+	
+	<select id="getArticles" resultType="spring.order.OrderDataBean" parameterType="Map" >	
+    select <include refid="deliveryStateColumns" />, r
+    from (select <include refid="deliveryStateColumns" />, rownum r
+    from (select * from ordering order by o_num desc) order by o_num desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+	</select>
+	
+	<select id="searchgetArticleCount" resultType="int" parameterType="Map">
+	 select count(*) from ordering 
+	 <where> 
+			<if test="productSelect != 0">
+				pro_num=#{productSelect}
+			</if>	
+			<if test="storeSelect != 0">
+				and o_sender=#{storeSelect}
+			</if>
+			<if test="daySelect != 0">
+				and o_regdate > sysdate-#{daySelect}
+			</if> 
+			<if test="searchText != null">
+				and o_title like % || #{searchText} || %
+			</if>
+		</where>
+	 	
+	</select>
+	
+	<select id="searchgetArticles" resultType="spring.order.OrderDataBean" parameterType="Map" >
+		select <include refid="deliveryStateColumns" />, r
+    from (select <include refid="deliveryStateColumns" />, rownum r
+    from (select * from ordering order by o_num desc)  
+		<where> 
+			<if test="productSelect != 0">
+				pro_num=#{productSelect}
+			</if>	
+			<if test="storeSelect != 0">
+				and o_sender=#{storeSelect}
+			</if>
+			<if test="daySelect != 0">
+				and o_regdate > sysdate-#{daySelect}
+			</if> 
+			<if test="searchText != null">
+				and o_title like % || #{searchText} || %
+			</if>
+		</where>
+		order by o_num desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+	</select>
+	
+	<select id="allProduct" resultType="mj.Product.controller.ProductDataBean">
+		select * from product
+	</select>
+	
+	<select id="allStore" resultType="mj.Store.service.memberDataBean">
+		select * from store where st_id not in 'admin'
+	</select>
 	
 </mapper>

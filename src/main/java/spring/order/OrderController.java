@@ -19,13 +19,13 @@ public class OrderController {
 	@RequestMapping(value = "/orderContent.do", method = RequestMethod.GET)
 	public String requestPro(@RequestParam(value="o_num", defaultValue="1") int o_num, Model model) {
 
-		Order orderContent = null;
+		OrderDataBean orderContent = null;
 		orderContent = service.getOrder(o_num);
 
 		model.addAttribute("o_num", new Integer(o_num));
 		model.addAttribute("order", orderContent);
 
-		return "orderContent";// ÇØ´ç ºä
+		return "orderContent";// ï¿½Ø´ï¿½ ï¿½ï¿½
 	}
 
 

@@ -2,7 +2,7 @@ package spring.order;
 
 import java.util.Date;
 
-public class Order {
+public class OrderDataBean {
 	private int o_num;
 	private String o_title;
 	private String pro_num;
@@ -10,6 +10,7 @@ public class Order {
 	private Date o_deadline;
 	private Date o_regdate;
 	private Date o_sendDate;
+	private String deliverystate;
 	private String o_receiver;
 	private String o_sender;
 	private String senderSign;
@@ -79,6 +80,12 @@ public class Order {
 	}
 	public void setReceiverSign(String receiverSign) {
 		this.receiverSign = receiverSign;
+	}
+	public String getDeliverystate() {
+		return deliverystate;
+	}
+	public void setDeliverystate(String deliverystate) {
+		this.deliverystate = deliverystate;
 	}
 	
 	
