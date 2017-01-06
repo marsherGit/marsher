@@ -13,6 +13,7 @@ public interface ProductService {
 	public int drinkListCount();
 	public int juiceListCount();
 	public int milkListCount();
+	public int deleteProduct(String pro_num);	
 	
 	
 

@@ -21,10 +21,7 @@
 	
 	<!-- Bootstrap Core JavaScript -->
 	<script src="<c:url value="/vendor/bootstrap/js/bootstrap.min.js" />"></script>
-	
-	<!-- Custom Theme JavaScript -->
-	<script src="<c:url value="/js/index.js" />"></script>
-	
+		
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -32,6 +29,45 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   
+  <script>
+  	function checkIt() {
+  		if (!$("#st_id").val()) {
+				alert("아이디를 입력해 주세요");
+				$("#st_id").focus();
+				return false;
+			}
+			
+			if (!$("#passwd").val()) {
+				alert("비밀번호를 입력해 주세요");
+				$("#passwd").focus();
+				return false;
+			}
+			
+			return true;
+  	}
+  	function checktype() {
+  		var check = '${check}';
+  		console.log("check="+check); //test
+  		switch (check) {
+	  	  case '-1' : 
+	  		  alert('존재하지 않는 아이디입니다.');
+	  	    break;
+	  	  case '0' : 
+	  			alert('비밀번호를 잘 못 입력하셨습니다.');
+	  	    break;
+	  	  case '1' : 
+	  			alert('로그인타입이 올바르지 않습니다.');
+	  	  	break;
+	  	} //end switch
+  	}
+  	
+  	$(document).ready(function(){
+  		var st_id = $("#st_id").val();
+  		if(st_id != ""){
+				checktype();
+  		}
+		})
+  </script>
 </head>
 <body>
 	<c:if test="${ memId ne null }">
@@ -55,7 +91,13 @@
 			<div class="row">
 				<div class="input_area col-sm-8">
 					<div class="form-group">
-						<input class="form-control" type="text" id="st_id" name="st_id" placeholder="ID" />
+						<c:set var="id" value="${ st_id }" />
+						<c:if test="${ id ne null }">
+							<input class="form-control" type="text" id="st_id" name="st_id" value="${ id }" placeholder="ID" />
+						</c:if>
+						<c:if test="${ id eq null }">
+							<input class="form-control" type="text" id="st_id" name="st_id" placeholder="ID" />
+						</c:if>
 					</div>
 					<div class="form-group">
 						<input class="form-control" type="password" id="passwd" name="passwd" placeholder="Password" />

@@ -9,10 +9,14 @@ import mj.Store.service.memberDataBean;
 
 public interface LoginService {
 	
+	public String getLogintype(String st_id);							// login - type check
+	public String getPasswd(String st_id);								// login - passwd check
+	
 	public memberDataBean getMember2(String st_id);				    	// storeUpdateForm
 	public int updateMember(memberDataBean member, String st_id);   	// storeUpdatePro
-	
 	public List<memberDataBean> showList();								// storeList
+	public int  deleteMember(String st_id);								// storeDeletePro
+	
 	
 	public List<DeliveryInfo> getDeliveryList();						// deliveryList
 	

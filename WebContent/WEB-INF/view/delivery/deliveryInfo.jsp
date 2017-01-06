@@ -36,7 +36,7 @@
 			<div class="panel-heading">${ item.fac_name }</div>
 		  <div class="panel-body">
 		  	<div class="img_area col-sm-6">
-					<div class="delivery_img"><img src="/images/<c:url value="${ item.delivery_img }" />" alt="${ item.delivery_name } 기사님" /></div>
+					<div class="delivery_img"><img src="<c:url value="/images/${ item.delivery_img }" />" alt="${ item.delivery_name } 기사님" /></div>
 					<div class="delivery_name text-center">${ item.delivery_name } 기사님</div>
 				</div>
 				<div class="info_area col-sm-6">

@@ -7,33 +7,63 @@
 <head>
 <title>Insert title here</title>
 </head>
+<style>
+	.delivery_list {padding:0 3em;}
+	.delivery_table {margin-top:1em;}
+</style>
+
+<script type="text/javascript">
+	function deleteCheck(){
+		if(!confirm("매장을 삭제하시겠습니까?" )) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	$(document).ready(function(){
+		/* 서브메뉴 활성화 */
+		$(".user_nav>li:eq(0)>a").addClass("active");
+		$(".aside-wrapper>.list-group>.list-group-item").eq(1).addClass("on");
+	})
+</script>
 
 <body>
 
 	<form method="post" name="AdminUpdateList">
 
-	  <table class="table table-bordered" border="1" width="450">
-	  <tr>
-	  <th width="70" height="20" style="text-align:center"><h4><B>매장ID</B></h4></th>
-	  <th width="100" height="20" style="text-align:center"><h4><B>매장명</B></h4></th>
-	  <th width="100" height="20" style="text-align:center"><h4><B>연락처</B></h4></th>
-	  <th width="200" height="20" style="text-align:center"><h4><B>주소</B></h4></th>
-	  <th width="80" height="20" style="text-align:center"><h4><B>상세정보</B></h4></th>
-	  </tr>
-	 
-	  <c:forEach var="list" items="${showList}">
-	  <tr>
-	  <th width="70" height="20" style="text-align:center">${list.st_id}</th>
-	  <th width="100" height="20" style="text-align:center">${list.st_name}</th>
-	  <th width="100" height="20" style="text-align:center">${list.st_tel}</th>
-	  <th width="200" height="20" style="text-align:center">${list.st_location}</th>
-	  <th width="80" height="20" style="text-align:center"><input type = "button" class="btn btn-info btn-xs" value = "수정" onclick="location.href='/Marsher/login/AdminUpdateForm.do?st_id=${list.st_id}';" /></th>
-	  </tr>  
-	  
-	  </c:forEach>
-	  </table>
+	 <div class="Admin_memberList">
+	
+	<table class="table table-striped table-bordered text-center Admin_memberList_table row">
+		<thead>
+			<tr>
+				<th class="text-center">매장ID</th>
+				<th class="text-center">매장명</th>
+				<th class="text-center">연락처</th>
+				<th class="text-center">주소</th>
+				<th class="text-center">상세정보</th>
+				<th class="text-center">삭제</th>
+			</tr>
+		</thead>
+		<c:if test="${ showList eq null }">
+			<tr>
+				<td colspan="7">등록 된 매장이 없습니다.</td>
+			<tr>
+		</c:if>
+		<c:if test="${ showList ne null }">
+		<c:forEach var="list" items="${showList}">
+			<tr>
+				<td>${list.st_id}</td>
+				<td>${list.st_name}</td>
+				<td>${list.st_tel}</td>
+				<td>${list.st_location}</td>
+				<td><a href="<c:url value="/login/AdminUpdateForm.do?st_id=${list.st_id}" />" class="btn btn-warning btn-sm">수정</a></td>
+				<td><a href="<c:url value="/login/AdminDeletePro.do?st_id=${list.st_id}" />" class="btn btn-danger btn-sm" onclick="return deleteCheck();">삭제</a></td>
+			</tr>
+		</c:forEach>
+		</c:if>
+	</table>
+</div>
 	</form>
-
 
 </body>
 </html>

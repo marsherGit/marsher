@@ -91,5 +91,12 @@ public class ProductServiceImpl implements ProductService {
 	public int milkListCount(){
 		return dao.milkListCount();
 	}
+	
+	public int deleteProduct(String pro_num){
+		int check = dao.deleteProduct(pro_num);
+			
+		return check;
+			
+	}
 
 }

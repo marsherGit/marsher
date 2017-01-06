@@ -12,8 +12,12 @@ import factory.controller.FactoryCommand;
 import mj.Store.service.memberDataBean;
 
 public class LoginDao extends SqlSessionDaoSupport {
-	public String getArticle(String st_id) {
-		return (String) getSqlSession().selectOne("loginMem.checkMem", st_id);
+	// login
+	public String getPasswd(String st_id) {
+		return (String) getSqlSession().selectOne("loginMem.checkPasswd", st_id);
+	}
+	public String getLogintype(String st_id) {
+		return (String) getSqlSession().selectOne("loginMem.checkLogintype", st_id);
 	}
 
 	// �������� �ҷ����� (�Ŵ���/������)
@@ -34,6 +38,13 @@ public class LoginDao extends SqlSessionDaoSupport {
 	public List<memberDataBean> showList() {
 		return getSqlSession().selectList("loginMem.showList");
 	}
+	
+	//Admin_memberDelte
+	public int deleteMember(String st_id) {
+		int check = getSqlSession().delete("loginMem.deleteMember", st_id);
+		return check;
+	}
+	
 	
 	// deliveryList
 	public List<DeliveryInfo> getDeliveryList() {

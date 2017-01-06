@@ -30,9 +30,6 @@ public class LoginController {
 		this.service = service;
 	}
 
-	@Autowired
-	LoginDao loginDao;
-	
 	@ModelAttribute("factorys")
 	public List<Integer> factory(){
 		List<Integer> list = new ArrayList<Integer>();
@@ -53,15 +50,43 @@ public class LoginController {
 		return "main";
 	}
 	@RequestMapping(value="/login/main", method=RequestMethod.POST)
-	public String submit(String st_id, String passwd, HttpSession session) {
+	public ModelAndView submit(String st_id, String passwd, String logintype, HttpSession session) {
+		/**
+		 * check = -1 	:: 아이디 불일치 
+		 * check =  0  	:: 비밀번호 불일치
+		 * check =  1	:: 타입 불일치 (ex: 매장아이디로 관리자모드 체크할 경우)
+		 * check =  2	:: type,id,passwd 모두 일치
+		 */
+		int check = -1;
 		String dbpasswd = "";
-		dbpasswd = loginDao.getArticle(st_id);
-		if(!passwd.equals(dbpasswd)) {
-			return "loginForm";
+		String dbtype = "";
+		ModelAndView mav = new ModelAndView("loginForm");
+		
+		dbpasswd = service.getPasswd(st_id); //id가 없다면 'null'저장됨.
+		// id 일치
+		if(dbpasswd != null) {
+			// 비번 불일치
+			if(!passwd.equals(dbpasswd)) { 
+				check = 0;
+			} else {
+				check = 1;
+				// type비교
+				dbtype = service.getLogintype(st_id);
+				// id,비번,type 일치
+				if(logintype.equals(dbtype)) {
+					session.setAttribute("passwd", dbpasswd);
+					session.setAttribute("memId", st_id);
+					session.setAttribute("logintype", logintype);
+					check = 2;
+					mav.setViewName("main");
+				}
+			}
 		}
-		session.setAttribute("passwd", dbpasswd);
-		session.setAttribute("memId", st_id);
-		return "main";
+		
+		// id 불일치
+		mav.addObject("check", check);
+		mav.addObject("st_id", st_id);
+		return mav;
 	}
 	
 	@RequestMapping("/login/logout")
@@ -75,13 +100,8 @@ public class LoginController {
 		return "adminpage";
 	}
 	
-
-	public void setLoginDao(LoginDao loginDao) {
-		this.loginDao = loginDao;
-	}
 	
-	
-	// �������� ���� form ������ (����)
+	// 
 	@RequestMapping(value = "/login/mypage", method = RequestMethod.GET)
 	public String update(String st_id, HttpSession session, Model model) throws Throwable {
 
@@ -181,6 +201,19 @@ public class LoginController {
 
 		return "Admin_memberUpdatePro";
 	}
+	
+	//Admin_memberDelte
+	@RequestMapping(value = "/login/AdminDeletePro.do")
+	public String AdminDeletePro(String st_id) throws Throwable {
+		
+		int check = service.deleteMember(st_id);
+		
+		return "Admin_memberDelete";
+	
+	}
+	
+	
+	
 	
 	// deliveryList
 	@RequestMapping("/login/admin_deliveryList")

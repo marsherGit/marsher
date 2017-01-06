@@ -4,10 +4,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<title>Insert title here</title>
-</head>
+
+<style>
+	#st_image {width:300px; margin-top:0.5em;}
+	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	#updateForm .list-group {list-style:none;}
+	#updateForm .list-group>li {margin:1em 0;}
+	.btns {padding:10%;}
+	.btns>input {width:6em;}
+	.guide {font-size:0.8em;}
+</style>
+
 <script>
 
 function checkIt(){
@@ -123,55 +130,51 @@ function previewImage(targetObj, View_area) {
 
 </script>
 
-		    	 
+<div class="container text-left row" style='position:relative; width: 900px;'>
+<form method="post" id="updateForm" name="updateForm" action="AdminpagePro.do?st_id=${st_id}" onsubmit="return checkIt()">
 
-</head>
-
-<body>
-
- 
-<form method="post" name="updateForm" action="AdminpagePro.do?st_id=${st_id}" onsubmit="return checkIt()">
-<div> 
- <div class="container text-left" style='position:relative; width: 900px; ' >    
-  <div class="row">
-    <div class="col-sm-4" id='View_area' style='position:relative; width: 350px; height: 300px; color: black; border: 0px solid black; dispaly: inline; '>
-      <label for="st_image">이미지 업로드</label> 
-      <img style='cursor:hand' src="/Marsher/images/${member.st_image}" align="absMiddle" border="0" width="300" height="250" onclick="fncProductFile()" id="UploadedImg">
-					<input type="file" id="st_image" name="st_image" value="${member.st_image}" onchange="previewImage(this,'View_area'),checkfile()">
-						
-    </div>
-    <div style='width: 500px;' class="col-sm-4"> 
-      <table class="table table-bordered">
-        <tr>
-        <td>매장명</td>
-        <td><input type="text" id="st_name" name="st_name" colsapn="3" style = "width:150px; height:18px" value="${member.st_name}"></td>
-        </tr>
-        <tr>
-        <td>연락처</td>
-        <td><input type = "text" style = "width:100px; height:18px" name="st_tel" value="${member.st_tel}"></td>
-      </tr>
-      <tr>
-      	<td>주소</td>
-        <td colspan = "5"><input type = "text" style = "width:300px; height:18px; align:left;" name="st_location" value="${member.st_location}"></td>
-      </tr>    
-      
-      <tr>
-      <td>사인 등록</td>
-	  <td><input type="file" id="sign_img" name="sign_img" class="upload-hidden" onchange="checkfile2()" value="${member.sign_img}">기존 파일 : <a href="http://localhost:8088/Marsher/images/${member.sign_img}">${member.sign_img}</a></td>   
-      </tr>
-      </table> 
-     
-                                     <input type = "submit" value = "수정하기">
-                                    
-    </div>
-   
-    </div>
-  
-</div><br>
- </div>
- 
-
-
+<div class="col-sm-6" id='View_area' class="form-group">
+			<label for="st_image">사진이미지 업로드</label> <img id="UploadedImg"
+				src="<c:url value="/images/${member.st_image}" />" border="0"
+				width="300" height="250" onclick="fncProductFile()"> <input
+				type="file" id="st_image" name="st_image" value="${member.st_image}"
+				onchange="previewImage(this,'View_area'),checkfile()"
+				class="form-control">
+		</div>
+		<div class="col-sm-6">
+			<ul class="list-group row">
+				<li class="form-group row"><label for="st_name"
+					class="control-label col-sm-3">관리자명</label>
+				<div class="col-sm-9">
+						<input id="st_name" name="st_name" value="${member.st_name}"
+							class="form-control" />
+					</div></li>
+				<li class="form-group row"><label for="st_tel"
+					class="control-label col-sm-3">연락처</label>
+				<div class="col-sm-9">
+						<input id="st_tel" name="st_tel" value="${member.st_tel}"
+							class="form-control" />
+					</div></li>
+				<li class="form-group row"><label for="st_location"
+					class="control-label col-sm-3">주소</label>
+				<div class="col-sm-9">
+						<input id="st_location" name="st_location"
+							value="${member.st_location}" class="form-control" />
+					</div></li>
+				<li class="form-group row"><label for="sign_img"
+					class="control-label col-sm-3">사인 등록</label>
+				<div class="col-sm-9">
+						<input type="file" id="sign_img" name="sign_img"
+							value="${member.sign_img}" onchange="checkfile2()"
+							class="form-control" />기존 파일 : <a
+							href="http://localhost:8088/Marsher/images/${member.sign_img}">${member.sign_img}</a>
+					</div></li>
+			</ul>
+			<div class="row text-center btns">
+				<input type="submit" value="수정하기" class="btn btn-warning"> <input
+					type="button" value="취소" class="btn btn-default"
+					onclick="javascript:history.back()">
+			</div>
+		</div>
   </form>
-</body>
-</html>
+</div>

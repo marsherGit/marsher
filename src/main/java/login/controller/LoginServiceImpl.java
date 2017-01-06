@@ -23,6 +23,16 @@ public class LoginServiceImpl implements LoginService {
 		this.dao = dao;
 	}
 
+	// login
+	public String getLogintype(String st_id) {
+		String logintype = dao.getLogintype(st_id);
+		return logintype;
+	}
+	public String getPasswd(String st_id) {
+		String passwd = dao.getPasswd(st_id);
+		return passwd;
+	}
+	
 	// ���� ���� form (�Ŵ���/������)
 	public memberDataBean getMember2(String st_id) {
 		memberDataBean list = null;
@@ -66,6 +76,16 @@ public class LoginServiceImpl implements LoginService {
 		return result;
 
 	}
+	
+	//Admin_memberDelte
+	@Override
+	public int deleteMember(String st_id){
+		int check = dao.deleteMember(st_id);
+			
+		return check;
+			
+	}
+	
 	
 	/* delivery */
 	@Override

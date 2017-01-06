@@ -67,7 +67,6 @@
 		<servlet-name>deliveryDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>deliveryDispatcher</servlet-name>
 		<url-pattern>/delivery/*</url-pattern>
