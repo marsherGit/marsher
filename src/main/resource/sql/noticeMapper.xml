@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="notice">
+	
+	<select id="noticeList" resultType="mj.Notice.controller.NoticeDataBean">
+		select no_num, no_title, calendar_date, no_date, r 
+		from (select no_num, no_title, calendar_date, no_date, rownum r 
+		from (select no_num, no_title, calendar_date, no_date
+		from Notice order by no_num desc )order by no_num desc ) where r &gt;= #{startRow} and r &lt;= #{endRow} 
+	</select>
+	
+	<select id="noticeListCount" resultType="int">
+			select count(*) from Notice
+	</select>
+	
+	<insert id="noticeWrite" parameterType="mj.Notice.controller.NoticeDataBean">
+		insert into Notice(no_num, no_title, no_content, calendar_date, no_date) values (no_seq.nextval, #{no_title}, #{no_content}, #{calendar_date}, sysdate)
+	</insert>
+	
+	<select id="getNotice" resultType="mj.Notice.controller.NoticeDataBean" parameterType="String" >
+	select * from Notice where no_num = #{no_num}
+	</select> 
+	
+	<select id="getNotice2" resultType="mj.Notice.controller.NoticeDataBean" parameterType="String" >
+	select * from Notice where no_num = #{no_num}
+	</select>
+	
+	<update id="updateNotice" parameterType="mj.Notice.controller.NoticeDataBean">
+	update Notice set no_title = #{no_title}, no_content = #{no_content}, calendar_date = #{calendar_date} where no_num=#{no_num}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="mj.Notice.controller.NoticeDataBean">
+		delete from Notice where no_num=#{no_num, jdbcType=INTEGER}
+	</delete>
+
+</mapper>

@@ -37,7 +37,7 @@
 								<li><a href="<c:url value="/login/adminpage" />" onClick="return checkPass()">관리자페이지</a></li>
 							</c:if>
 							<li><a href="<c:url value="/" />">쪽지</a></li>
-							<li><a href="<c:url value="/" />">공지사항</a></li>
+							<li><a href="<c:url value="/notice/noticeList" />">공지사항</a></li>
 							<!-- Trigger the modal with a button -->
 							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
 							<li><a href="#" data-toggle="modal" data-target="#manual_modal">메뉴얼</a></li>

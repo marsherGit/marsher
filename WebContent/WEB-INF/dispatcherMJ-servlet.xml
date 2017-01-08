@@ -66,6 +66,7 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	
+	
 	<bean id="ProductController" class="mj.Product.controller.ProductController"
 		p:service-ref="ProductService"/>
 		
@@ -73,6 +74,17 @@
 		p:dao-ref="ProductDAO"/>
 		
 	<bean id="ProductDAO" class="mj.Product.controller.ProductDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	
+	<bean id="NoticeController" class="mj.Notice.controller.NoticeController"
+		p:service-ref="NoticeService"/>
+		
+	<bean id="NoticeService" class="mj.Notice.controller.NoticeServiceImpl" 
+		p:dao-ref="NoticeDAO"/>
+		
+	<bean id="NoticeDAO" class="mj.Notice.controller.NoticeDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 		

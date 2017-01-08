@@ -52,6 +52,7 @@
 		<servlet-name>dispatcherMJ</servlet-name>
 		<url-pattern>/member/*</url-pattern>
 		<url-pattern>/product/*</url-pattern>
+		<url-pattern>/notice/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

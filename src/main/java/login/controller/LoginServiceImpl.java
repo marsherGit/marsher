@@ -61,8 +61,6 @@ public class LoginServiceImpl implements LoginService {
 
 		dao.updateMember(map);
 
-		System.out.println("��������������Ʈ");
-
 		return 1;
 
 	}
