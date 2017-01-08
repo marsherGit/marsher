@@ -20,7 +20,7 @@
 <script>
 	//load
 	function loadList(evt) {
-		var url = "/Marsher_prototype/delivery/deliveryState";
+		var url = "/Marsher/delivery/deliveryState";
 		var productSelect = $(".searchForm select[name='productSelect']").val();
 		var storeSelect = $(".searchForm select[name='storeSelect']").val();
 		var daySelect = $(".searchForm select[name='daySelect']").val();
@@ -56,11 +56,12 @@
 		var pageLink = $(".pagination>li>a");
 		pageLink.filter(pageNumClass).parent("li").addClass("active");
 		
-		
 		//search
 		$("#search_btn").click(function(e){
-			e.preventDafault();
-			loadList(e);
+			e.preventDefault();
+			//loadList(e);
+			console.log(1);
+			$("form[name='stateSearchForm']").submit();
 		});
 		
 	
@@ -71,22 +72,22 @@
 	<!-- search -->
 	<div class="row searchArea">
 		<div class="col-sm-3"></div>
-		<form:form class="">
+		<form name="stateSearchForm" method="post">
 			<div class="form-group searchForm col-sm-9">
 				<div class="col-sm-8">
 					<div class="col-sm-4">
 						<select name="productSelect" class="form-control input-sm">
-							<option value="0">- 품목검색 -</option>
+							<option value="">- 품목검색 -</option>
 							<c:forEach var="pro" items="${products}">
-								<option value="${ pro.pro_num }">${ pro.pro_name }</option>
+								<option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-4">
 						<select name="storeSelect" class="form-control input-sm">
-							<option value="0">- 요청매장검색 -</option>
+							<option value="">- 요청매장검색 -</option>
 							<c:forEach var="st" items="${stores}">
-								<option value="${ st.st_id }">${ st.st_name }</option>
+								<option value="${ st.st_name }" <c:if test="${ st.st_name eq storeSelect }">selected</c:if>>${ st.st_name }</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -104,11 +105,11 @@
 						<input type="text" id="search_input" name="searchText" class="form-control input-sm" placeholder="검색어를 입력해 주세요." />
 					</div>
 					<div class="col-sm-2">
-						<a id="#search_btn" href="#" class="btn btn-info btn-sm">검색</a>
+						<a id="search_btn" href="#" class="btn btn-info btn-sm">검색</a>
 					</div>
 				</div>
 			</div>
-		</form:form>
+		</form>
 	</div>
 	
 	<!-- list -->
@@ -154,7 +155,7 @@
   <c:set var="startPage" value="${ result * pageBlock + 1 }" />
   <c:set var="endPage" value="${ startPage + pageBlock - 1 }"/>
   <c:if test="${ endPage > pageCount }">
-       <c:set var="endPage" value="${ pageCount }"/>
+  	<c:set var="endPage" value="${ pageCount }"/>
   </c:if>
 	<div class="row pagingArea text-center">
 		<ul class="pagination pagination-sm">

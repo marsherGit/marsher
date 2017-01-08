@@ -10,6 +10,7 @@ import mj.Product.controller.ProductDataBean;
 import mj.Store.service.memberDataBean;
 import spring.order.OrderDataBean;
 
+
 @Service("deliveryService")
 public class DeliveryServiceImpl implements DeliveryService {
 	@Autowired
@@ -25,10 +26,34 @@ public class DeliveryServiceImpl implements DeliveryService {
 	} //end allMem()
 	
 	/* deliveryState.jsp */
+	public int getArticleCount() {
+		int count = 0;
+		count = dao.getArticleCount();
+		
+		return count;
+	}
+
+	public List<OrderDataBean> getArticles(int startRow, int endRow) {
+		List<OrderDataBean> list = null;
+		list = dao.getArticles(startRow, endRow);
+		
+		return list;
+	}
+	
+	public int getArticleCount(String searchText, String productSelect, String storeSelect, int daySelect) {
+		int count = 0;
+		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
+			count = dao.getArticleCount();
+		else
+			count = dao.getArticleCount(searchText, productSelect, storeSelect, daySelect);
+		
+		return count;
+	}
+	
 	public List<OrderDataBean> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
 		List<OrderDataBean> list = null;
 		
-		if((searchText == null || searchText.equals("")) && productSelect.equals("0") && storeSelect.equals("0") && daySelect == 0)
+		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
 			list = dao.getArticles(startRow, endRow);
 		else
 			list = dao.getArticles(startRow, endRow, searchText, productSelect, storeSelect, daySelect);
@@ -37,20 +62,44 @@ public class DeliveryServiceImpl implements DeliveryService {
 		return list;
 	}
 	
-	public int getArticleCount(String searchText, String productSelect, String storeSelect, int daySelect) {
+	
+	/* deliveryUnsolved.jsp */
+	public int getArticleCountUnsolved() {
 		int count = 0;
-		if((searchText == null || searchText.equals("")) && productSelect.equals("0") && storeSelect.equals("0") && daySelect == 0)
-			count = dao.getArticleCount();
+		count = dao.getArticleCountUnsolved();
+		
+		return count;
+	}
+
+	public List<OrderDataBean> getArticlesUnsolved(int startRow, int endRow) {
+		List<OrderDataBean> list = null;
+		list = dao.getArticlesUnsolved(startRow, endRow);
+		
+		return list;
+	}
+	
+	public int getArticleCountUnsolved(String searchText, String productSelect, String storeSelect, int daySelect) {
+		int count = 0;
+		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
+			count = dao.getArticleCountUnsolved();
 		else
-			count = dao.getArticleCount(searchText, productSelect, storeSelect, daySelect);
+			count = dao.getArticleCountUnsolved(searchText, productSelect, storeSelect, daySelect);
 		
 		return count;
 	}
 	
-	public void stateChange(int o_num){
-//		System.out.println("stateChange()실행");   					//test code
-		dao.stateChange(o_num);
+	public List<OrderDataBean> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
+		List<OrderDataBean> list = null;
+		
+		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
+			list = dao.getArticlesUnsolved(startRow, endRow);
+		else
+			list = dao.getArticlesUnsolved(startRow, endRow, searchText, productSelect, storeSelect, daySelect);
+	
+
+		return list;
 	}
+	
 	
 	public List<ProductDataBean> getProductList() {
 		List<ProductDataBean> list = new ArrayList<ProductDataBean>();

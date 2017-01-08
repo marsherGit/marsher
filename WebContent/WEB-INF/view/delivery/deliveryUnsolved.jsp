@@ -18,12 +18,9 @@
 </style>
 
 <script>
-/*
- * Ajax / 검색 부분 :: 아직 미구현.
-
 	//load
 	function loadList(evt) {
-		var url = "/Marsher_prototype/delivery/deliveryUnsolved";
+		var url = "/Marsher/delivery/deliveryUnsolved";
 		var productSelect = $(".searchForm select[name='productSelect']").val();
 		var storeSelect = $(".searchForm select[name='storeSelect']").val();
 		var daySelect = $(".searchForm select[name='daySelect']").val();
@@ -48,7 +45,7 @@
 		});
 		
 	}
- */
+	
 	$(document).ready(function(){
 		var main_nav = $(".main_nav>li").eq(2);
 		main_nav.addClass("on");
@@ -62,8 +59,10 @@
 		
 		//search
 		$("#search_btn").click(function(e){
-			e.preventDafault();
-			loadList(e);
+			e.preventDefault();
+			//loadList(e);
+			console.log(2);
+			$("form[name='stateSearchForm']").submit();
 		});
 		
 	
@@ -74,22 +73,22 @@
 	<!-- search -->
 	<div class="row searchArea">
 		<div class="col-sm-3"></div>
-		<form:form class="">
+		<form name="stateSearchForm" method="post">
 			<div class="form-group searchForm col-sm-9">
 				<div class="col-sm-8">
 					<div class="col-sm-4">
 						<select name="productSelect" class="form-control input-sm">
-							<option value="0">- 품목검색 -</option>
+							<option value="">- 품목검색 -</option>
 							<c:forEach var="pro" items="${products}">
-								<option value="${ pro.pro_num }">${ pro.pro_name }</option>
+								<option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-4">
 						<select name="storeSelect" class="form-control input-sm">
-							<option value="0">- 요청매장검색 -</option>
+							<option value="">- 요청매장검색 -</option>
 							<c:forEach var="st" items="${stores}">
-								<option value="${ st.st_id }">${ st.st_name }</option>
+								<option value="${ st.st_name }" <c:if test="${ st.st_name eq storeSelect }">selected</c:if>>${ st.st_name }</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -107,11 +106,11 @@
 						<input type="text" id="search_input" name="searchText" class="form-control input-sm" placeholder="검색어를 입력해 주세요." />
 					</div>
 					<div class="col-sm-2">
-						<a id="#search_btn" href="#" class="btn btn-info btn-sm">검색</a>
+						<a id="search_btn" href="#" class="btn btn-info btn-sm">검색</a>
 					</div>
 				</div>
 			</div>
-		</form:form>
+		</form>
 	</div>
 	
 	<!-- list -->
@@ -137,7 +136,7 @@
 					<c:forEach var="item" items="${ articleList }">
 					<tr>
 						<td>${ item.o_num }</td>
-						<td class="text-left"><a href="<c:url value="/delivery/deliveryState?num=${ item.o_num }" />">${ item.o_title }</a></td>
+						<td class="text-left"><a href="<c:url value="/delivery/deliveryUnsolved?num=${ item.o_num }" />">${ item.o_title }</a></td>
 						<td>${ item.o_receiver }</td>
 						<td><fmt:formatDate value="${ item.o_regdate }" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ item.o_deadline }" pattern="yyyy/MM/dd"/></td>
@@ -162,13 +161,13 @@
 	<div class="row pagingArea text-center">
 		<ul class="pagination pagination-sm">
 			<c:if test="${ startPage > pageBlock }">
-				<li class="prev"><a href="<c:url value="/delivery/deliveryState?pageNum=${ startPage - pageBlock }" />">&lt;&lt;</a></li>
+				<li class="prev"><a href="<c:url value="/delivery/deliveryUnsolved?pageNum=${ startPage - pageBlock }" />">&lt;&lt;</a></li>
 			</c:if>
 			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-		  	<li><a href="<c:url value="/delivery/deliveryState?pageNum=${ i }" />" class="page${ i }">${ i }</a></li>
+		  	<li><a href="<c:url value="/delivery/deliveryUnsolved?pageNum=${ i }" />" class="page${ i }">${ i }</a></li>
 		  </c:forEach>
 		  <c:if test="${ endPage < pageCount }">
-		  	<li class="next"><a href="<c:url value="/delivery/deliveryState?pageNum=${ startPage + pageBlock }" />">&gt;&gt;</a></li>
+		  	<li class="next"><a href="<c:url value="/delivery/deliveryUnsolved?pageNum=${ startPage + pageBlock }" />">&gt;&gt;</a></li>
 		  </c:if>
 		</ul>
 	</div>

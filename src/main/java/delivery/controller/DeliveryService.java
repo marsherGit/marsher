@@ -12,12 +12,19 @@ public interface DeliveryService {
 	public ArrayList<DeliveryInfo> allMem();
 	
 	/* deliverStatus */
+	public int getArticleCount(); //get
+	public List<OrderDataBean> getArticles(int startRow, int endRow); 	//get
+	
 	public List<OrderDataBean> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect);
 	public int getArticleCount(String searchText, String productSelect, String storeSelect, int daySelect);
 	
-	public void stateChange(int o_num);		// 배송상태 변경
-
 	public List<ProductDataBean> getProductList();
 	public List<memberDataBean> getStoreList();
+
+	public int getArticleCountUnsolved(); //get
+	public List<OrderDataBean> getArticlesUnsolved(int startRow, int endRow); 	//get
 	
+	public List<OrderDataBean> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect);
+	public int getArticleCountUnsolved(String searchText, String productSelect, String storeSelect, int daySelect);
+
 }
