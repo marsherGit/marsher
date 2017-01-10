@@ -147,11 +147,12 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">메뉴얼 - 페이지 소개</h4>
+						<h4 class="modal-title">메뉴얼 - 페이지 안내</h4>
 					</div>
 					<div class="modal-body text-center">
-						<div class="text-center">
-							메뉴얼 설명
+						<div class="container">
+							<div class="">main페이지 : </div>
+							<div class="">[header메뉴-상단]</div>
 						</div>
 					</div>
 				</div>
