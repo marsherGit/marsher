@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="message">
+	<!-- 받은쪽지 리스트 -->
+	<select id="getReceiveMsgList" resultType="spring.message.ReceiveMsg">
+		select re_num, re_title, re_sender, re_regdate, re_checkDate from receiveMsg
+	</select>
+	
+	<!-- 받은쪽지 카운트 -->
+	<select id="getReceiveMsgCount" resultType="int">
+		select count(*) from receiveMsg
+	</select>
+	
+	<!-- 보낸쪽지 리스트 -->
+	<select id="getSendMsgList" resultType="spring.message.SendMsg">
+		select se_num, se_title, se_receiver, se_regdate, se_checkDate from sendMsg
+	</select>
+	
+	<!-- 보낸쪽지 카운트 -->
+	<select id="getSendMsgCount" resultType="int">
+		select count(*) from sendMsg
+	</select>
+	
+	<!-- 쪽지 insert -->
+	<insert id="insert" parameterType="spring.message.SendMsg">
+		insert into sendMsg values(sendMsg_se_num.NEXTVAL,#{se_title},#{se_content},#{se_receiver},#{se_sender},SYSDATE,#{se_checkDate},#{st_id})
+	</insert>
+	
+	<!-- 받은쪽지 content -->
+	<select id="getReceiveMsg" resultType="spring.message.ReceiveMsg" parameterType="int">
+		select re_num, re_sender, re_receiver, re_regdate, re_checkDate, re_title, re_content 
+		from receiveMsg where re_num = #{re_num}
+	</select>
+	
+	<!-- 보낸쪽지 content -->
+	<select id="getSendMsg" resultType="spring.message.SendMsg" parameterType="int">
+		select se_num, se_sender, se_receiver, se_regdate, se_checkDate, se_title, se_content 
+		from sendMsg where se_num = #{se_num}
+	</select>
+	
+	<!-- 받은쪽지 delete -->
+	<delete id="deleteReceive" parameterType="spring.message.ReceiveMsg">
+		delete from receiveMsg where re_num=#{re_num}
+	</delete>
+	
+	<!-- 보낸쪽지 delete -->
+	<delete id="deleteSend" parameterType="spring.message.SendMsg">
+		delete from sendMsg where se_num=#{se_num}
+	</delete>
+	
+	
+</mapper>
