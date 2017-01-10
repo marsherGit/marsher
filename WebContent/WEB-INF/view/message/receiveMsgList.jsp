@@ -6,7 +6,7 @@
 <%@ page isELIgnored="false" %>
 
 <style>
-	.delivery_list {padding:0 3em;}
+	.receiveMsg_list {padding:0 3em;}
 	.delivery_table {margin-top:1em;}
 </style>
 <script>
@@ -18,31 +18,31 @@
 </script>
 <div class="receiveMsg_list">
 	<div class="row text-right">
-		<span><a href="<c:url value="/message/~~~~~~~" />" class="btn btn-sm btn-info">쪽지쓰기</a></span>
+		<span><a href="<c:url value="/message/writeMsgForm" />" class="btn btn-sm btn-info">쪽지쓰기</a></span>
 	</div>
 	<table class="table table-striped table-bordered text-center delivery_table row">
 		<thead>
 			<tr>
 				<th class="text-center">#</th>
-				<th class="text-center">제목</th>
-				<th class="text-center">보낸이</th>
-				<th class="text-center">보낸날짜</th>
+				<th class="text-center">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+				<th class="text-center" width="130">보낸이</th>
+				<th class="text-center" width="130">보낸날짜</th>
 				<th class="text-center">수신확인</th>
 			</tr>
 		</thead>
-		<c:if test="${ subin___listneme eq null }">
+		<c:if test="${ receiveMsgList eq null }">
 			<tr>
 				<td colspan="7">받은 쪽지가 없습니다.</td>
 			<tr>
 		</c:if>
-		<c:if test="${ subin___listneme ne null }">
-		<c:forEach var="msg" items="${ subin___listneme }">
+		<c:if test="${ receiveMsgList ne null }">
+		<c:forEach var="msg" items="${ receiveMsgList }">
 			<tr>
 				<td>${ msg.re_num }</td>
-				<td><a href="<c:url value="/message/~~~~~~~~~~주소 설정?re_num=${msg.re_num}"/>" value="${msg.re_title}"></a></td>
+				<td align="left"><a href="<c:url value="/message/receiveMsgContent?re_num=${msg.re_num}"/>">${msg.re_title}</a></td>
 				<td>${ msg.re_sender }</td>
-				<td>${ msg.re_regdate }</td>
-				<td>${ msg.re_checkDate }</td>
+				<td><fmt:formatDate value="${ msg.re_regdate }" pattern="yyyy/MM/dd"/></td>
+				<td><fmt:formatDate value="${ msg.re_checkDate }" pattern="yyyy/MM/dd"/></td> <!-- 클릭시checkdate 등록 -->
 			</tr>
 		</c:forEach>
 		</c:if>
@@ -63,14 +63,14 @@
    </c:if>
          
    <c:if test="${startPage > 10}">
-        <a href="~~~~~~~~~.do?pageNum=${startPage - 10 }">[이전]</a>
+        <a href="receiveMsgList.do?pageNum=${startPage - 10 }">[이전]</a>
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="~~~~~~~~~~~.do?pageNum=${i}">[${i}]</a>
+       <a href="receiveMsgList.do?pageNum=${i}">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="~~~~~~~~.do?pageNum=${startPage + 10}">[다음]</a>
+        <a href="receiveMsgList.do?pageNum=${startPage + 10}">[다음]</a>
    </c:if>
 </c:if>

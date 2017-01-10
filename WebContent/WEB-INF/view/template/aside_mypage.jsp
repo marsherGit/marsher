@@ -6,8 +6,8 @@
 	<aside class="aside-wrapper">
 		<div class="list-group">
 			<a class="list-group-item" href="<c:url value="/login/mypage.do?st_id=${memId}" />">매장정보수정</a>
-			<a class="list-group-item" href="<c:url value="/" />">받은쪽지</a>
-			<a class="list-group-item" href="<c:url value="/" />">보낸쪽지</a>
+			<a class="list-group-item" href="<c:url value="/message/receiveMsgList" />">받은쪽지</a>
+			<a class="list-group-item" href="<c:url value="/message/sendMsgList" />">보낸쪽지</a>
 		</div>
 	</aside>
 	<!--// aside -->

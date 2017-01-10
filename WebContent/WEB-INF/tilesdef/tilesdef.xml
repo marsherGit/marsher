@@ -285,4 +285,46 @@
 		<put-attribute name="body" value="/WEB-INF/view/notice/noticeUpdateForm.jsp" />
 	</definition>
 	
+	<!-- 쪽지 -->
+	
+	<definition name="receiveMsgList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 받은 쪽지" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="받 은 쪽 지" />
+		<put-attribute name="body_title_desc" value="(매장으로 수신된 쪽지를 확인할 수 있습니다)" />
+		<put-attribute name="body" value="/WEB-INF/view/message/receiveMsgList.jsp" />
+	</definition>
+	
+	<definition name="sendMsgList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 보낸 쪽지" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="보 낸 쪽 지" />
+		<put-attribute name="body_title_desc" value="(발신 쪽지를 확인할 수 있습니다)" />
+		<put-attribute name="body" value="/WEB-INF/view/message/sendMsgList.jsp" />
+	</definition>
+	
+	<definition name="writeMsgForm" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 쪽지 쓰기" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="쪽 지 쓰 기" />
+		<put-attribute name="body_title_desc" value="(타 매장 또는 관리자에게 쪽지를 보낼 수 있는 페이지입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/message/writeMsgForm.jsp" />
+	</definition>
+	
+	<definition name="receiveMsgContent" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 받은 쪽지" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="받 은 쪽 지" />
+		<put-attribute name="body_title_desc" value="(매장으로 수신된 쪽지를 확인할 수 있습니다)" />
+		<put-attribute name="body" value="/WEB-INF/view/message/receiveMsgContent.jsp" />
+	</definition>
+	
+	<definition name="sendMsgContent" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 보낸 쪽지" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_adminpage.jsp" />
+		<put-attribute name="body_title" value="보 낸 쪽 지" />
+		<put-attribute name="body_title_desc" value="(발신 쪽지를 확인할 수 있습니다)" />
+		<put-attribute name="body" value="/WEB-INF/view/message/sendMsgContent.jsp" />
+	</definition>
+	
 </tiles-definitions>
