@@ -15,14 +15,12 @@
 .map_wrap {position:relative;width:100%;height:100px;}
 </style>
 
-
-
 <body>
 	<form>
 		<div class="container" style='position: relative; width: 900px;'>
 
 
-			<ul class="nav nav-tabs">
+			<ul class="nav nav-tabs store_list">
 				<c:forEach var="list" items="${showList}">
 					<li><a data-toggle="tab" href="#${list.st_id}">${list.st_name}</a></li>
 				</c:forEach>
@@ -32,7 +30,7 @@
 
 
 
-			<div class="tab-content">
+			<div class="tab-content store_tab">
 
 				<c:forEach var="list" items="${showList}">
 
@@ -153,13 +151,17 @@ geocoder_${list.st_id}.addr2coord('${list.st_location}', function(status, result
 </c:forEach>
 <script>
 $(document).ready(function(){
-	$(".nav-tabs>li:first-child").addClass("active");
-	$(".tab-content>div:first-child").addClass("in active");
+	var st_id = '${st_id}';
+	var index = parseInt(st_id.substring(st_id.length-1)) -1;
+
+	$(".nav-tabs>li").eq(index).addClass("active");
+	$(".tab-content>div").eq(index).addClass("in active");
 	
 	var main_nav = $(".main_nav>li").eq(4);
 	main_nav.addClass("on");
 	main_nav.find(".sub_nav>li").eq(0).addClass("on");
 	$(".aside-wrapper>.list-group>.list-group-item").eq(0).addClass("on");
+	
 })
 
 </script>

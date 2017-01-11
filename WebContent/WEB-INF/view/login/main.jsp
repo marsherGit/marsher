@@ -136,14 +136,6 @@
 		/* map */
 		var list = $("#store_list");
 		var store_area = list.find(".map a");
-		 
-		store_area.hover(function(){
-			var location = $(this).attr("class");
-			list.attr("class","contact");
-			list.addClass("active "+location);
-		},function(){
-			list.attr("class","contact");
-		});
 		
 		store_area.click(function(e){
 			e.preventDefault();

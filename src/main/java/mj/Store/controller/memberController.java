@@ -50,11 +50,12 @@ public class memberController {
 	
 //information form
 	@RequestMapping(value ="member/info.do", method = RequestMethod.GET)
-	public String showList(Model model) {
+	public String showList(Model model, String st_id) {
 		List<memberDataBean> showList = new ArrayList<memberDataBean>();
 		showList=service.showList();
-		
+		if(st_id == null) st_id = "manager1";
 		model.addAttribute("showList", showList);
+		model.addAttribute("st_id", st_id);
 		
 		System.out.println(showList);
 		
