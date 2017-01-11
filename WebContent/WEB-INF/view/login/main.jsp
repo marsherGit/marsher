@@ -27,12 +27,15 @@
 	.calendar_days p.date {margin-bottom:0.3em;}
 	.calendar_days td {min-height:100px !important;}
 	
-	.ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;} 
+	.ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+	.progress {height:10px; overflow:visible; margin:2em 0; background-color:#e1edf5;}
+	.progress-bar {position:relative; border-radius:4px 0 0 4px; background-color:#366886;}
+	.delivery_tag {display:block; position:absolute; top:-2em; right:-1.5em; width:3em; height:2em; font-size:0.8em; background-color:#366886; border-radius:4px;}
 	
 	/* map */
 	.contact{
 		position:relative;
-		height:200px;
+		min-height:210px;
 	}
 	.list a{
 		display:block;
@@ -150,6 +153,9 @@
 		var notice_next = $(".notice_area .next");
 		var notice_active_idx = notice_list.filter(".on").index();
 		var notice_list_max = notice_list.length-1;
+		var timer;
+		var auto = true;
+		var speed = 3000;
 		
 		//prev
 		notice_prev.click(function(e){
@@ -174,6 +180,32 @@
 			notice_list.removeClass("on");
 			notice_list.eq(index).addClass("on");
 		});
+		
+		if(auto) timer = setInterval(auto_roll, speed);
+		
+		$(".notice_area .panel-body").bind({
+			'mouseenter': function(){
+				if(!auto) return false;
+				clearInterval(timer);
+				auto = false;
+			},
+			'mouseleave': function(){
+				timer = setInterval(auto_roll, speed);
+				auto = true;
+			}
+		})
+		 
+		
+		function auto_roll(){
+			var notice_active_idx = notice_list.filter(".on").index();
+			var index = (notice_active_idx + 1 > notice_list_max) ? 0 : notice_active_idx + 1;
+			
+			notice_list.eq(notice_active_idx).css({"top":"0"}).animate({"top":"-1.4em"},{"queue":false});
+			notice_list.eq(index).css({"top":"1.4em"}).animate({"top":"0"},{"queue":false});
+			notice_list.removeClass("on");
+			notice_list.eq(index).addClass("on");
+		}
+		
 	})
 </script>
 <!-- main-container -->
@@ -299,7 +331,26 @@
 						<span class="btn-more"><a href="<c:url value="/delivery/deliveryInfo" />">더보기 ▶</a></span>
 					</div>
 					<div class="panel-body">
-						내용
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+							    <div class="delivery_tag">탄산</div>
+							</div>
+						</div>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+							    <div class="delivery_tag">주류</div>
+							</div>
+						</div>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+							    <div class="delivery_tag">쥬스</div>
+							</div>
+						</div>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+							    <div class="delivery_tag">우유</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
