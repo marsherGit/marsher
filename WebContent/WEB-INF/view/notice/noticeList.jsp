@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	.noticeList {padding:0 3em;}
-	.noticeTable {margin-top:1em;}
+	.noticeList {padding:3em 20%;}
+	.noticeTable {margin:1em auto;}
 </style>
 
 <script>
@@ -14,7 +14,7 @@ $(document).ready(function(){
 })
 </script>
 
-<div class="noticeList">
+<div class="noticeList container">
 	<div class="row text-right">
 	<c:if test="${ memId eq 'admin'  }">
 		<span><a href="<c:url value="/notice/noticeWriteForm" />" class="btn btn-sm btn-info">공지쓰기</a></span>

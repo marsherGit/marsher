@@ -190,7 +190,7 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 		var timer;
 		var auto = true;
 		var speed = 3000;
-		
+		notice_list.first().addClass("on");
 		//prev
 		notice_prev.click(function(e){
 			e.preventDefault();
@@ -473,7 +473,7 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 				<div class="panel-body row">
 					<ul class="notice_list col-sm-10 ellipsis">
 						<c:forEach var="list" items="${calNoticeList}">
-						<li class="on"><a href="<c:url value="/" />">[이벤트]${list.no_content}</a></li>
+						<li><a href="<c:url value="/" />">[이벤트]${list.no_title}</a></li>
 						<%-- <li><a href="<c:url value="/" />">[이벤트]공지사항입니다.1</a></li>
 						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.2</a></li>
 						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.3</a></li>

@@ -6,7 +6,10 @@
 <%@ page isELIgnored="false" %>
 
 
-
+<style>
+	.noticContent {padding:8em 20%;}
+	.content_body { width:100%;}
+</style>
 <script>
 	function deleteCheck(){
 		if(!confirm("공지를 삭제하시겠습니까?")) {
@@ -16,9 +19,9 @@
 		}
 	}
 </script>
-	
-	<div class="container" style="width:650px">
-	<table class="table table-responsive table-bordered notice_content_table" >
+	<div class="noticContent">
+	<div class="container">
+	<table class="table table-responsive table-bordered notice_content_table" style="width:600px" >
 				<tr>
 					<th width="15%" bgcolor="#D9EDF7" style="text-align:center;"><font color="366886">표시날짜</font></th>
 					<td width="35%">${ notice.calendar_date }</td>
@@ -40,5 +43,7 @@
 				<a href="<c:url value="/notice/noticeDeletePro?no_num=${ notice.no_num }" />" class="btn btn-danger" onclick="return deleteCheck();">삭제</a>				
 				</c:if> 
 		  		<input type="button" class="btn btn-default" value="목록보기" OnClick="window.location='<c:url value="/notice/noticeList?pageNum=${pageNum}" />'">
+		</div>
+		
 		</div>
    
