@@ -35,11 +35,6 @@
 		} else
 			return true;
 	}
-	$(document).ready(function(){
-		/* 서브메뉴 활성화 */
-		$(".user_nav>li:eq(0)>a").addClass("active");
-		$(".aside-wrapper>.list-group>.list-group-item").eq(5).addClass("on");
-	})
 </script>
 </head>
 
@@ -50,26 +45,26 @@
 		<form name="writeMsgForm" method="post"
 			action="<c:url value="/message/writeMsgPro" />"
 			onsubmit="return checkIt();">
+			
+			<input type="hidden" name="se_sender" value="${memId}">
+			<input type="hidden" name="st_id" value="${memId}">
 			<table
 				class="table table-striped table-bordered text-center delivery_table row">
 
 				<tr>
 					<td width="70" align="center">보낸이</td>
-					<td width="330">
-					<input type="text" size="100" maxlength="30"
-						name="se_sender">
-					<%-- ${ msg.st_id } --%></td>
+					<td width="330" align="left">${memId }</td>
 				</tr>
 				<tr>
 					<td width="70" align="center">받는이</td>
-					<td width="330"><select id="se_receiver" name="se_receiver"
+					<td width="330" ><select id="se_receiver" name="se_receiver"
 						class="form-control">
 							<option disabled="" selected="">수신매장을 선택해주세요</option>
-							<option value="강남 역삼점">강남 역삼점</option>
-							<option value="춘천 약사명점">춘천 약사명점</option>
-							<option value="대전 은행점">대전 은행점</option>
-							<option value="광주 충장로점">광주 충장로점</option>
-							<option value="관리자">관리자</option>
+							<option value="manager1">강남 역삼점</option>
+							<option value="manager2">춘천 약사명점</option>
+							<option value="manager3">대전 은행점</option>
+							<option value="manager4">광주 충장로점</option>
+							<option value="admin">관리자</option>
 					</select></td>
 				</tr>
 				<tr>
