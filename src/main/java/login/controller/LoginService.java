@@ -5,6 +5,7 @@ import java.util.List;
 import delivery.controller.DeliveryCommand;
 import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
+import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
 
 public interface LoginService {
@@ -34,5 +35,9 @@ public interface LoginService {
 	public FactoryCommand getFactory(int fac_id); 						// factoryUpdateForm - command
 	
 	public int deleteFactory(int fac_id);								// factoryDelete
+	
+	
+	public List<NoticeDataBean> calNoticeList();						// main - calendar
+	public NoticeDataBean getNotice3(String calendar_date);				// main - calendarView
 
 }

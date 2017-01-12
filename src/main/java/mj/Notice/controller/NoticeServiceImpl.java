@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mj.Product.controller.ProductDataBean;
 
 
 public class NoticeServiceImpl implements NoticeService {
@@ -99,5 +98,5 @@ public class NoticeServiceImpl implements NoticeService {
 		return check;
 		
 	}
-			
+	
 }

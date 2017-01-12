@@ -9,6 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import delivery.controller.DeliveryCommand;
 import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
+import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
 
 public class LoginDao extends SqlSessionDaoSupport {
@@ -109,6 +110,21 @@ public class LoginDao extends SqlSessionDaoSupport {
 		int check = -1;
 		check = getSqlSession().insert("factory.deleteFactory", fac_id);
 		return 0;
+	}
+	
+	// main - calendar 
+	public List<NoticeDataBean> calNoticeList(){
+		return getSqlSession().selectList("notice.calNoticeList");
+			
+	}
+	
+	// main - calendarView
+	public NoticeDataBean getNotice3(String calendar_date) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("calendar_date", calendar_date);
+		
+		NoticeDataBean getNotice2 = getSqlSession().selectOne("notice.getNotice3", map);
+		return getNotice2;
 	}
 
 }

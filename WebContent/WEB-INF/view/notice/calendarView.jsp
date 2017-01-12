@@ -5,8 +5,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jstl/fmt_rt" %>
 <%@ page isELIgnored="false" %>
 
-
-
 <script>
 	function deleteCheck(){
 		if(!confirm("공지를 삭제하시겠습니까?")) {
@@ -17,7 +15,8 @@
 	}
 </script>
 	
-	<div class="container" style="width:650px">
+	<div class="table-responsive">
+		<div class="container" style="width:650px">
 	<table class="table table-responsive table-bordered notice_content_table" >
 				<tr>
 					<th width="15%" bgcolor="#D9EDF7" style="text-align:center;"><font color="366886">표시날짜</font></th>

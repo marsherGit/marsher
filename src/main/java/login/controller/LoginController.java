@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import delivery.controller.DeliveryCommand;
 import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
+import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
 
 
@@ -46,11 +47,20 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login/main", method=RequestMethod.GET)
-	public String loginback() {
+	public String loginback(Model model) {
+		List<NoticeDataBean> calNoticeList = new ArrayList<NoticeDataBean>();
+		calNoticeList = service.calNoticeList();	
+		
+		model.addAttribute("calNoticeList", calNoticeList);
+		
 		return "main";
 	}
 	@RequestMapping(value="/login/main", method=RequestMethod.POST)
 	public ModelAndView submit(String st_id, String passwd, String logintype, HttpSession session) {
+		List<NoticeDataBean> calNoticeList = new ArrayList<NoticeDataBean>();
+		calNoticeList = service.calNoticeList();		
+		
+		
 		/**
 		 * check = -1 	:: 아이디 불일치 
 		 * check =  0  	:: 비밀번호 불일치
@@ -86,6 +96,7 @@ public class LoginController {
 		// id 불일치
 		mav.addObject("check", check);
 		mav.addObject("st_id", st_id);
+		mav.addObject("calNoticeList", calNoticeList);
 		return mav;
 	}
 	
@@ -276,23 +287,37 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView("admin_factoryUpdate");
 		command = service.getFactory(fac_id);
 		mav.addObject("command", command);
-		
+
 		return mav;
 	}
-	
+
 	// factoryUpdate
 	@RequestMapping(value = "/login/admin_factoryUpdate")
 	public String factoryUpdate(@ModelAttribute("command") FactoryCommand command) {
 		int check = service.updateFactory(command);
-		
+
 		return "redirect:/login/admin_factoryList";
 	}
-	
+
 	// factoryDelete
 	@RequestMapping("/login/admin_factoryDelete")
 	public String factoryDelete(int fac_id) {
 		int check = service.deleteFactory(fac_id);
 		return "redirect:/login/admin_factoryList";
+	}
+
+	// calendarView
+	@RequestMapping(value = "login/calendarView")
+	public String getNotice(String calendar_date, HttpServletRequest request, Model model) throws Throwable {
+
+		NoticeDataBean notice = service.getNotice3(calendar_date);
+
+		System.out.println(notice);
+
+		model.addAttribute("calendar_date", calendar_date);
+		model.addAttribute("notice", notice);
+
+		return "calendarView"; // (in notice folder!)
 	}
 
 }

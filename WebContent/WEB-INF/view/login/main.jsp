@@ -1,6 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.Calendar"%>
+<%@page import="mj.Notice.controller.NoticeDataBean"%>
+<%@page import="java.util.List"%>
 
+<!-- calendar -->
+<%
+Calendar cal=Calendar.getInstance();
+int startDay = 1;
+int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+int week = cal.get(Calendar.DAY_OF_WEEK);
+int year = cal.get(Calendar.YEAR);
+int month = cal.get(Calendar.MONTH)+1;
+int day  = cal.get(Calendar.DAY_OF_MONTH);
+
+String _year = request.getParameter("year");
+String _month = request.getParameter("month");
+String _day  = request.getParameter("day");
+
+if(_year != null)
+    year = Integer.parseInt(_year);
+
+if(_month != null)
+    month = Integer.parseInt(_month);
+
+if (_day != null )
+	day = Integer.parseInt(_day);
+
+cal.set(year, month-1, 1);    //출력할 년도, 월로 설정
+
+year = cal.get(Calendar.YEAR);    //변화된 년, 월
+month = cal.get(Calendar.MONTH) + 1;
+
+List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNoticeList");
+%>
+<!-- calendar -->
 <style>
 	.btns>div {padding:0 0.5em;}
 	.btn_content>.col-xs-6 {padding:0;}
@@ -438,11 +472,13 @@
 				</div>
 				<div class="panel-body row">
 					<ul class="notice_list col-sm-10 ellipsis">
-						<li class="on"><a href="<c:url value="/" />">[이벤트]공지사항입니다.공지사항입니다.공지사항입니다.공지사항입니다.공지사항입니다.공지사항입니다.</a></li>
-						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.1</a></li>
+						<c:forEach var="list" items="${calNoticeList}">
+						<li class="on"><a href="<c:url value="/" />">[이벤트]${list.no_content}</a></li>
+						<%-- <li><a href="<c:url value="/" />">[이벤트]공지사항입니다.1</a></li>
 						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.2</a></li>
 						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.3</a></li>
-						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.4</a></li>
+						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.4</a></li> --%>
+						</c:forEach>
 					</ul>
 					<div class="btns col-sm-2">
 						<a href="#" class="prev"><i class="fa fa-caret-square-o-up"></i></a>
@@ -462,7 +498,112 @@
 				</div>
 				<div class="panel-body">
 					<div class="container calendar_container">
-						달력
+						<table width="100%" border="0">
+							<tr>
+								<td align="center" height="10"><font color="6D98B4">
+										<H4>
+											<b><%=year%>년 <%=month%>월</b>
+										</H4>
+								</font></td>
+							</tr>
+						</table>
+
+						<table width=100% " height="10" border="1" cellpadding="2"
+							cellspacing="1" bordercolor="6D98B4" borderRadius="5px">
+							<tr height="40">
+								<td align="center" bgcolor="#D9EDF7"><font color="red">일</font></td>
+								<td align="center" bgcolor="#D9EDF7">월</td>
+								<td align="center" bgcolor="#D9EDF7">화</td>
+								<td align="center" bgcolor="#D9EDF7">수</td>
+								<td align="center" bgcolor="#D9EDF7">목</td>
+								<td align="center" bgcolor="#D9EDF7">금</td>
+								<td align="center" bgcolor="#D9EDF7"><font color="366886">토</font></td>
+							</tr>
+
+							<%
+								String colorclass = "";
+								Calendar firstDayOfMonth = Calendar.getInstance();
+								firstDayOfMonth.set(Calendar.YEAR, cal.get(Calendar.YEAR));
+								firstDayOfMonth.set(Calendar.MONTH, cal.get(Calendar.MONTH));
+								firstDayOfMonth.set(Calendar.DAY_OF_MONTH, 1);
+
+								int count = 0;
+								for (int i = 2 - firstDayOfMonth.get(Calendar.DAY_OF_WEEK); i <= firstDayOfMonth
+										.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+
+									count++;
+
+									if (year == cal.get(Calendar.YEAR) && month == (cal.get(Calendar.MONTH) + 1)
+											&& i == cal.get(Calendar.DAY_OF_MONTH)) {
+
+										colorclass = " ";
+									} else {
+										if (count == 1) {
+
+											colorclass = "class=red";
+										} else if (count == 7) {
+
+											colorclass = " class=blue ";
+										} else {
+											colorclass = " ";
+										}
+									}
+
+									if (i <= 0) {
+										out.print("&nbsp;");
+									} else {
+							%>
+							<td
+								style='text-align: left; width: 100px; height: 50px; padding: 5px'><%=i%><br>
+								</a> <%
+ 	int resYear = 0;
+ 			int resMonth = 0;
+ 			int resDay = 0;
+ 			String Date = "";
+ 			String title = "";
+
+ 			for (int j = 0; j < list.size(); j++) {
+ 				resDay = Integer.parseInt(list.get(j).getCalendar_date().substring(8, 10)); //2017-01-10
+ 				resMonth = Integer.parseInt(list.get(j).getCalendar_date().substring(5, 7));
+ 				resYear = Integer.parseInt(list.get(j).getCalendar_date().substring(0, 4));
+
+ 				Date = list.get(j).getCalendar_date();
+ 				title = list.get(j).getNo_title();
+
+ 				// 현재 달력에 표시중인 날짜와 같다면 데이터 뿌리기
+ 				if (resDay == i & resMonth == month & resYear == year) {
+ 					out.print(
+ 							"<font color='366886' size='1em'><strong><a onclick=location.href='calendarView?calendar_date="
+ 									+ Date + "' style='cursor: pointer;'>" + title
+ 									+ "</a></strong></font></td>");
+ 					list.remove(j);
+ 				} else {
+ 					out.print("<font color='" + colorclass + "'>&nbsp;</font></td>");
+ 				}
+ 				break;
+ 			}
+
+ 		}
+ %></td>
+							<%
+								if (count == 7) {
+							%>
+							</tr>
+							<tr align='right'>
+								<%
+									count = 0;
+										}
+									}
+									Calendar lastDayOfMonth = Calendar.getInstance();
+									lastDayOfMonth.set(Calendar.YEAR, cal.get(Calendar.YEAR));
+									lastDayOfMonth.set(Calendar.MONTH, cal.get(Calendar.MONTH));
+									lastDayOfMonth.set(Calendar.DAY_OF_MONTH, firstDayOfMonth.getActualMaximum(Calendar.DAY_OF_MONTH));
+									for (int j = lastDayOfMonth.get(Calendar.DAY_OF_WEEK); j < Calendar.SATURDAY; j++) {
+										out.print("<td align=\"center\">&nbsp;</td>");
+									}
+								%>
+							</tr>
+						</table>
 					</div>
 				</div>
 				<div class="panel-footer">

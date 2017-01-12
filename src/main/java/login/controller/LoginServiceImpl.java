@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import delivery.controller.DeliveryCommand;
 import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
+import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
 
 @Service("loginService")
@@ -147,5 +148,27 @@ public class LoginServiceImpl implements LoginService {
 		return check;
 	}
 
+	@Override
+	public List<NoticeDataBean> calNoticeList() {
+		List<NoticeDataBean> result = new ArrayList<NoticeDataBean>();
+		result = dao.calNoticeList();
+
+		return result;
+
+	}
+
+	@Override
+	public NoticeDataBean getNotice3(String calendar_date) {
+		NoticeDataBean list = null;
+
+		try {
+			list = dao.getNotice3(calendar_date);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 
 }

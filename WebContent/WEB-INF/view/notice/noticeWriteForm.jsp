@@ -9,7 +9,28 @@
 	#writeform th { text-align:center; }
 </style>
 
-<form method="post" name="writeform" id="writeform" action="noticeWritePro">
+
+<script>
+	function checkIt() {
+
+		if (document.getElementById('no_title').value == '') {
+			alert("제목을 입력해 주세요");
+			return false;
+		}
+		if (document.getElementById('no_content').value == '') {
+			alert("내용을 입력해 주세요");
+			return false;
+		}
+
+		else if (!confirm("공지를 등록하시겠습니까?")) {
+			return false;
+		} else
+			return true;
+	}
+	
+	</script>
+
+<form method="post" name="writeform" id="writeform" action="noticeWritePro" onsubmit="return checkIt()">
 	
 	<div class="form-group">
 	<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">

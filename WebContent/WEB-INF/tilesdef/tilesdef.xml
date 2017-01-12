@@ -257,33 +257,41 @@
 	
 	
 		<!-- notice -->
-	<definition name="noticeList" extends="base_layout">
+	<definition name="noticeList" extends="main_layout">
 		<put-attribute name="title" value="Marsher :: 공지사항" />
 		<put-attribute name="body_title" value="공 지 사 항" />
 		<put-attribute name="body_title_desc" value="(공지사항 게시판 입니다.)" />
 		<put-attribute name="body" value="/WEB-INF/view/notice/noticeList.jsp" />
 	</definition>
 	
-	<definition name="noticeWriteForm" extends="base_layout">
+	<definition name="noticeWriteForm" extends="main_layout">
 		<put-attribute name="title" value="Marsher :: 공지작성" />
 		<put-attribute name="body_title" value="공 지 작 성" />
 		<put-attribute name="body_title_desc" value="(공지사항을 작성할 수 있는 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/view/notice/noticeWriteForm.jsp" />
 	</definition>
 	
-	<definition name="noticeContent" extends="base_layout">
+	<definition name="noticeContent" extends="main_layout">
 		<put-attribute name="title" value="Marsher :: 공지보기" />
 		<put-attribute name="body_title" value="공 지 보 기" />
 		<put-attribute name="body_title_desc" value="(공지사항를 확인할 수 있는 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/view/notice/noticeContent.jsp" />
 	</definition>
 	
-	<definition name="noticeUpdateForm" extends="base_layout">
+	<definition name="noticeUpdateForm" extends="main_layout">
 		<put-attribute name="title" value="Marsher :: 공지수정" />
 		<put-attribute name="body_title" value="공 지 수 정" />
 		<put-attribute name="body_title_desc" value="(공지사항를 수정할 수 있는 페이지 입니다.)" />
 		<put-attribute name="body" value="/WEB-INF/view/notice/noticeUpdateForm.jsp" />
 	</definition>
+	
+	<definition name="calendarView" extends="main_layout">
+		<put-attribute name="title" value="Marsher :: 공지보기" />
+		<put-attribute name="body_title" value="공 지 보 기" />
+		<put-attribute name="body_title_desc" value="(공지사항를 확인할 수 있는 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/view/notice/calendarView.jsp" />
+	</definition>
+	
 	
 	<!-- 쪽지 -->
 	

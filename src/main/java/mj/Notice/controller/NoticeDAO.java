@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import mj.Store.service.memberDataBean;
-
 
 public class NoticeDAO extends SqlSessionDaoSupport {
 	
@@ -59,6 +57,6 @@ public class NoticeDAO extends SqlSessionDaoSupport {
 			int check = getSqlSession().delete("notice.deleteNotice", no_num);
 			return check;
 		}
-
-	
+		
+		
 }
