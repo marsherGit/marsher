@@ -59,8 +59,18 @@
 						<li>
 							<a href="#">생 산</a>
 							<ul class="sub_nav">
-								<li><a href="<c:url value="/" />">생산의뢰서등록</a></li>
-								<li><a href="<c:url value="/" />">생산의뢰서조회</a></li>
+								<li><c:if test="${ memId ne 'admin' }">
+								<li><a href="<c:url value='/order/saengSanWriteForm?st_id=${memId}'/>" onClick="return checkPass()">생산의뢰서등록</a></li>
+							</c:if>
+							<c:if test="${ memId eq 'admin' }">
+								<li><a href="<c:url value="/order/saengSanWriteForm" />" onClick="return checkPass()">생산의뢰서등록</a></li>
+							</c:if></li>
+								<li><c:if test="${ memId ne 'admin' }">
+								<li><a href="<c:url value='/order/saengSanList?st_id=${memId}'/>" onClick="return checkPass()">생산의뢰서조회</a></li>
+							</c:if>
+							<c:if test="${ memId eq 'admin' }">
+								<li><a href="<c:url value="/login/adminpage" />" onClick="return checkPass()">생산의뢰서조회</a></li>
+							</c:if></li>
 								<li><a href="<c:url value="/factory/factoryInfo" />">공장정보</a></li>
 								<li><a href="<c:url value="/factory/factoryInputForm" />">공장등록</a></li>
 							</ul>
@@ -72,7 +82,7 @@
 								<li><a href="<c:url value="/" />">창고출고</a></li>
 								<li><a href="<c:url value="/" />">재고조회</a></li>
 								<li><a href="<c:url value="/" />">재고조정</a></li>
-								<li><a href="<c:url value="/" />">발주서조회</a></li>
+								<li><a href="<c:url value="/order/orderList" />">발주서조회</a></li>
 							</ul>
 						</li>
 						<li>
@@ -80,7 +90,7 @@
 							<ul class="sub_nav">
 								<li><a href="<c:url value="/delivery/deliveryInfo" />">배송정보</a></li>
 								<li><a href="<c:url value="/delivery/deliveryState" />">배송현황</a></li>
-								<li><a href="<c:url value="/delivery/deliveryOrder" />">발주서등록</a></li>
+								<li><a href="<c:url value="/order/orderWriteForm" />">발주서등록</a></li>
 								<li><a href="<c:url value="/delivery/deliveryUnsolved" />">미입고현황</a></li>
 							</ul>
 						</li>

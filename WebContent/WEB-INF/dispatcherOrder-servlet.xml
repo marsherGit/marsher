@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 
-	<!-- <context:component-scan base-package="spring.order" /> -->
+	<!--  <context:component-scan base-package="spring.order" />  -->
 	<context:annotation-config />
 
 	<bean id="tilesviewResolver"
@@ -25,7 +25,7 @@
 	</bean>
 
 	<context:property-placeholder location="classpath:db.properties" />
-
+	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -56,6 +56,12 @@
 
 	<bean id="orderDAO" class="spring.order.OrderDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		
+		
+
+		
+
+
 
 	</bean>
 

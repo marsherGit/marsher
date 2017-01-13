@@ -1,266 +1,137 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>πﬂ¡÷º≠ ¡∂»∏</title>
-<!-- Bootstrap Core CSS -->
-<link href="../vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link href="../vendor/metisMenu/metisMenu.min.css"
-	rel="stylesheet">
-
-<!-- DataTables CSS -->
-<link href="../vendor/datatables/css/dataTables.bootstrap.css"
-	rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link
-	href="../vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="../css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="../vendor/nanumfont/nanumfont.css" rel="stylesheet"
-	type="text/css">
-
+<title>Î∞úÏ£ºÏÑú Ï°∞Ìöå</title>
 </head>
+<style>
+.pull-right {
+  float: right !important;
+}
+</style>
+<script>
+	$(document).ready(function() {
+		$(".nav-tabs>li:first-child").addClass("active");
+		$(".tab-content>div:first-child").addClass("in active");
+
+		var main_nav = $(".main_nav>li").eq(1);
+		main_nav.addClass("on");
+		main_nav.find(".sub_nav>li").eq(4).addClass("on");
+		$(".aside-wrapper>.list-group>.list-group-item").eq(4).addClass("on");
+	})
+</script>
 <body>
 	<form:form commandName="order">
 
-		<div id="wrapper">
-			<div id="page-wrapper" style="min-height: 562px;">
-				<div class="row">
-					<div class="col-lg-12">
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<div id="dataTables-example_wrapper"
-								class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-								<div class="row">
-									<div class="col-sm-6">
-
-										<div>
-											<button type="button" class="btn btn-default">PDF √‚∑¬</button>
-											<button type="button" class="btn btn-default">∏Ò∑œ∫∏±‚</button>
-										</div>
+<div class="col-sm-6">
+		<div>
+			<button type="button" class="btn btn-outline btn-primary">PDF Ï∂úÎ†•</button>
+			<a href="<c:url value="/order/orderList" />" class="btn btn-default">Î™©Î°ùÎ≥¥Í∏∞</a>
+		</div>
+		<br>
 
 
+		<div class="o_sender" id="o_sender">
+			<label>ÏàòÏã†: </label> <label>${ordering.o_sender}</label>
+		</div>
+		<div class="o_receiver" id="o_receiver">
+			<label>Î∞úÏã†: </label> <label>${ordering.o_receiver}</label>
+		</div>
+		<div class="o_title" id="o_title">
+			<label>Ï†úÎ™©: </label> <label>${ordering.o_title}</label>
+		</div>
+</div>
 
-										<div class="o_sender" id="o_sender">
-											<label>ºˆΩ≈: </label> <label>¡¶ 1 √¢∞Ì</label>
-										</div>
-										<div class="o_receiver" id="o_receiver">
-											<label>πﬂΩ≈: </label> <label>Marsher-∞≠≥≤¡°</label>
-										</div>
-										<div class="o_title" id="o_title">
-											<label>¡¶∏Ò: </label> <label>MSƒ›∂Û ø‹ 2∞≥ πﬂ¡÷º≠</label>
-										</div>
+		<div class="col-sm-6">
+			<table id="dataTables-example_filter"
+				class="alignRight table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center">Îã¥ÎãπÏûê</th>
+						<th class="text-center">Í¥ÄÎ¶¨Ïûê</th>
+						<th class="text-center">ÏÇ¨ Ïû•</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><img src="../images/${ordering.senderSign}" width="40"
+							height="40" /></td>
+						<td><button type="button" class="btn btn-primary btn-xs">check</button></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
 
+			<div class="o_num" id="o_num">
+				<label>Î∞úÏ£ºÎ≤àÌò∏: </label> <label>${ordering.o_ref}</label>
+			</div>
 
-									</div>
-									<div class="col-sm-6">
-										<table id="dataTables-example_filter"
-											class="table table-bordered">
-											<thead>
-												<tr>
-													<th>¥„¥Á¿⁄</th>
-													<th>∞¸∏Æ¿⁄</th>
-													<th>ªÁ ¿Â</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td><img src="../images/signature.gif" width="40"
-														height="40" /></td>
-													<td><button type="button"
-															class="btn btn-primary btn-xs">check</button></td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
+			<div class="o_deadline" id="o_deadline">
+				<label>ÎÇ©Í∏∞Ïùº: </label> <label><fmt:formatDate value="${ ordering.o_deadline }" pattern="yyyy/MM/dd"/></label>
+			</div>
+		</div>
 
-										<div class="o_num" id="o_num">
-											<label>πﬂ¡÷π¯»£: </label> <label>16121001</label>
-										</div>
+		<div class="row">
+			<div class="col-sm-12">
+			<form:form commandName="proList">
+				<table
+					class="table table-striped table-bordered text-center orderContent row">
+					<thead>
+						<tr>
+							<th class="text-center" style="width: 50px;">NO</th>
+							<th class="text-center" style="width: 150px;">Ï†úÌíàÎ™Ö</th>
+							<th class="text-center" style="width: 150px;">Ìå®ÌÇ§ÏßÄÌÉÄÏûÖ</th>
+							<th class="text-center" style="width: 100px;">Ïö©Îüâ</th>
+							<th class="text-center" style="width: 100px;">ÏàòÎüâ(EA)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:choose>
+							<c:when test="${fn:length(proList)>0 }">
+								<!-- Ï†úÌíà Î¶¨Ïä§Ìä∏  -->
+								<c:forEach items="${proList }" var="proList"> 
 
-										<div class="o_deadline" id="o_deadline">
-											<label>≥≥±‚¿œ: </label> <label>2016-12-14</label>
-										</div>
-									</div>
+						            <tr class="proList" role="row">
+										<td align="center">${proList.o_reStep}</td>
+										<td align="center">${proList.pro_name}</td>
+										<td align="center">${proList.pro_container}</td>
+										<td align="center">${proList.pro_volume}</td>
+										<td align="center">${proList.o_count}</td>
+									</tr>
 
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<table width="100%"
-											class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
-											id="dataTables-example" role="grid"
-											aria-describedby="dataTables-example_info"
-											style="width: 100%;">
-											<thead>
-												<tr role="row">
-													<th style="width: 50px;">NO</th>
-													<th style="width: 150px;">¡¶«∞π¯»£</th>
-													<th style="width: 150px;">¡¶«∞∏Ì</th>
-													<th style="width: 150px;">∆–≈∞¡ˆ≈∏¿‘</th>
-													<th style="width: 100px;">øÎ∑Æ</th>
-													<th style="width: 100px;">ºˆ∑Æ(EA)</th>
-												</tr>
-											</thead>
-											<tbody>
+								</c:forEach>
+							</c:when>
+						</c:choose>
 
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
+						<tr class="order" role="row">
+							<td>Ìï©Í≥Ñ</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="o_total"></td>
+						</tr>
 
-												</tr>
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
+						<tr class="order" role="textarea">
+							<td>ÎπÑÍ≥†</td>
+							<td class="o_note" colspan="4">${ordering.o_note}</td>
+						</tr>
 
-												</tr>
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td >1</td>
-													<td class="pro_num">A01a</td>
-													<td class="pro_name">MSƒ›∂Û</td>
-													<td class="pro_container">æÀ∑ÁπÃ¥Ωƒµ</td>
-													<td class="pro_volume">200mL</td>
-													<td class="pro_count">200</td>
-
-												</tr>
-												
-												<tr class="order" role="row">
-													<td>«’∞Ë</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td class="o_total">1000</td>
-												</tr>
-												
-												<tr class="order" role="textarea">
-													<td>∫Ò∞Ì</td>
-													<td class="o_note" colspan="4">¿ßøÕ ∞∞¿Ã πﬂ¡÷«œø¿¥œ ≥≥±‚¿œ ≥ªø° ≥≥«∞«œø© ¡÷Ω√±‚ πŸ∂¯¥œ¥Ÿ.</td>
-												</tr>
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					</tbody>
+				</table>
+				</form:form>
 			</div>
 		</div>
 
 		<!-- /#wrapper -->
 
-		<!-- jQuery -->
-		<script src="../vendor/jquery/jquery.min.js"></script>
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-		<!-- Metis Menu Plugin JavaScript -->
-		<script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-		<!-- DataTables JavaScript -->
-		<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="../vendor/dataTables-responsive/dataTables.responsive.js"></script>
-
-		<!-- Custom Theme JavaScript -->
-		<script src="../js/sb-admin-2.js"></script>
-
-		<script>
-			$(document).ready(function() {
-				$('#dataTables-example').DataTable({
-					responsive : true
-				});
-			});
-		</script>
 
 	</form:form>
 

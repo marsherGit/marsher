@@ -1,7 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="order">
-	<select id="selectLogin" parameterType="String" resultType="spring.controller.LoginCommand">
-		select memberId,password from member where memberid=#{userId}
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order"> <!-- 발주서 -->
+
+	<select id="getOrderCount" resultType="int">
+		select count(*) from
+		ordering
 	</select>
+
+	<select id="getOrderList" resultType="spring.order.OrderDataBean">
+		select o_ref, o_title,
+		o_sender, o_regdate, o_deadline, deliveryState from ordering
+	</select>
+
+	<select id="getOrder" resultType="spring.order.OrderDataBean"
+		parameterType="int">
+		select o_ref, o_title, o_deadline, o_regdate,
+		o_sendDate, o_receiver, o_sender, o_note, senderSign, receiverSign,
+		deliveryState
+		from ordering where o_ref = #{o_ref}
+	</select>
+
+	<select id="getOrderProducts" resultType="spring.order.OrderProducts">
+		select o_reStep, pro_name, pro_container, pro_volume, o_count from
+		orderingPro where o_ref = #{o_ref}
+	</select>
+
+	<select id="getProCount" resultType="int">
+		select count(*) from
+		orderingPro
+	</select>
+
+	<!-- insertOrder -->
+	<insert id="insertOrder" parameterType="spring.order.OrderDataBean">
+		insert into
+		ordering(o_ref, o_title, o_deadline,o_regdate, o_sender, o_receiver,
+		o_note, senderSign)
+		values(Ordering_o_ref.NEXTVAL,#{o_title},#{o_deadline},
+		SYSDATE,#{o_sender},#{o_receiver},#{o_note},#{senderSign})
+	</insert>
+
+	<insert id="insertProList">
+		INSERT INTO orderingPro( o_reStep, pro_name, pro_container, pro_volume, o_count ) 
+		VALUES
+		<foreach item="item" collection="proList" separator=",">
+			( OrderingPro_o_reStep.NEXTVAL,#{item.pro_name}, #{item.pro_container}, #{item.pro_volume},
+			#{item.o_count}) </foreach>
+	</insert>
+
+
+	<!-- delete -->
+	<delete id="deleteOrder" parameterType="spring.order.OrderDataBean">
+		delete from ordering
+		where o_ref=#{o_ref}
+	</delete>
+
+
 </mapper>

@@ -1,173 +1,159 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¹ßÁÖ¼­ ÀÛ¼º</title>
-<!-- Bootstrap Core CSS -->
-<link href="/FinalSubin/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
 
-<!-- MetisMenu CSS -->
-<link href="/FinalSubin/vendor/metisMenu/metisMenu.min.css"
-	rel="stylesheet">
+<title>ë°œì£¼ì„œ ì‘ì„±</title>
+<style>
+.orderWrite_form {
+	padding: 0 3em;
+}
 
-<!-- DataTables CSS -->
-<link href="/FinalSubin/vendor/datatables/css/dataTables.bootstrap.css"
-	rel="stylesheet">
+.delivery_table {
+	margin-top: 1em;
+}
+</style>
 
-<!-- DataTables Responsive CSS -->
-<link
-	href="/FinalSubin/vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="/FinalSubin/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="/FinalSubin/vendor/nanumfont/nanumfont.css" rel="stylesheet"
-	type="text/css">
-
-</head>
-<body>
-	<form:form commandName="order">
-
-		<div id="wrapper">
-			<div id="page-wrapper" style="min-height: 562px;">
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<h1 class="page-header">¹ßÁÖ¼­ µî·Ï</h1>
-					</div>
-					<!-- /.col-lg-12 -->
-				</div>
-				<!-- /.row -->
-				<div class="row">
-					<div class="col-lg-12">
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<div id="dataTables-example_wrapper"
-								class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-								<div class="row">
-									<div class="col-sm-6">
-									<form method="post" enctype="multipart/form-data" action="imgup.jsp">
-										<table id="dataTables-example_filter" class="table table-bordered">
-											<thead>
-												<tr><th style="width: 80px;">´ã´çÀÚ ¼­¸í</th></tr>
-											</thead>
-											<tbody>
-												<tr><td><input type="file" id="senderSign"></td></tr>
-											</tbody>
-										</table>
-										</form>
-									</div>
-
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<table width="100%"
-											class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
-											id="dataTables-example" role="grid"
-											aria-describedby="dataTables-example_info"
-											style="width: 100%;">
-											<thead>
-												<tr role="row">
-													<th style="width: 50px;">NO</th>
-													<th style="width: 150px;">Á¦Ç°¹øÈ£</th>
-													<th style="width: 150px;">Á¦Ç°¸í</th>
-													<th style="width: 150px;">ÆĞÅ°ÁöÅ¸ÀÔ</th>
-													<th style="width: 100px;">¿ë·®</th>
-													<th style="width: 100px;">¼ö·®(EA)</th>
-													<th style="width: 100px;"></th>
-												</tr>
-											</thead>
-											<tbody>
-
-												<tr class="order" role="row">
-													<td id="template">1</td>
-													<td class="pro_num">A01a</td>
-													<td><select class="pro_name"><option>MSÄİ¶ó</option>
-													<option>MS»çÀÌ´Ù</option><option>MS¿À·»Áö</option><option>MS¼ÒÁÖ</option>
-													</select></td>
-													<td><select class="pro_container"><option>MSÄİ¶ó</option>
-													<option>MS»çÀÌ´Ù</option><option>MS¿À·»Áö</option><option>MS¼ÒÁÖ</option></select></td>
-													<td><select class="pro_volume"><option>MSÄİ¶ó</option>
-													<option>MS»çÀÌ´Ù</option><option>MS¿À·»Áö</option><option>MS¼ÒÁÖ</option></select></td>
-													<td><input type="text" class="pro_count" style="width:80px"></td>
-													<td><button id='btn-add-row' type="button" class="btn btn-primary btn-xs">Ãß°¡</button>
-													<button id='btn-delete-row' type="button" class="btn btn-primary btn-xs">»èÁ¦</button></td>
-
-
-												</tr>
-												
-
-												<tr class="order" role="row">
-													<td colspan="2">ÇÕ°è</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td class="o_total">1000</td>
-												</tr>
-												
-												<tr class="order" role="textarea">
-													<td>ºñ°í</td>
-													<td colspan="5"><textarea class="o_note" style="width:800px"></textarea></td>
-												</tr>
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-<!-- /#wrapper -->
-
-		<!-- jQuery -->
-		<script src="/FinalSubin/vendor/jquery/jquery.min.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="/FinalSubin/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-		<!-- Metis Menu Plugin JavaScript -->
-		<script src="/FinalSubin/vendor/metisMenu/metisMenu.min.js"></script>
-
-		<!-- DataTables JavaScript -->
-		<script src="/FinalSubin/vendor/datatables/js/jquery.dataTables.min.js"></script>
-		<script src="/FinalSubin/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/FinalSubin/vendor/dataTables-responsive/dataTables.responsive.js"></script>
-
-		<!-- Custom Theme JavaScript -->
-		<script src="/FinalSubin/js/sb-admin-2.js"></script>
-
-		<script>
-			$(document).ready(function() {
-				$('#dataTables-example').DataTable({
-					responsive : true
-				});
-			});
-		</script>
-		
 <script>
-    $(function() {
+	$(document).ready(function() {
+		/* main,sub menu í™œì„±í™” */
+		var main_nav = $(".main_nav>li").eq(2);
+		main_nav.addClass("on");
+		main_nav.find(".sub_nav>li").eq(2).addClass("on");
+		$(".aside-wrapper>.list-group>.list-group-item").eq(2).addClass("on");
+
+	})
+	
+	$(function() {
         $('#btn-add-row').click(function() {
-            var time = new Date().toLocaleTimeString();
-            $('#"dataTables-example" > tbody:last').append('<tr><td>1</td><td>' + time + '</td></tr>');
-        });
-        $('#btn-delete-row').click(function() {
-            $('#"dataTables-example" > tr ').remove(all);
+            $('#mytable > tbody:last').append('<tr><td></td>'
+            		+'<td><select name="productSelect" class="form-control input-sm"><option value="">ì œí’ˆì„ íƒ</option><c:forEach var="pro" items="${products}"><option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option></c:forEach></select></td>'
+            		+'<td><select class="form-control input-sm" name="pro_container"id="pro_container"><option disabled="" selected="">ìš©ê¸° ì„ íƒ</option><option value="ì•Œë£¨ë¯¸ëŠ„ìº”">ì•Œë£¨ë¯¸ëŠ„ìº”</option><option value="í˜íŠ¸ë³‘">í˜íŠ¸ë³‘</option><option value="ìœ ë¦¬ë³‘">ìœ ë¦¬ë³‘</option><option value="ìš°ìœ íŒ©">ìš°ìœ íŒ©</option></select></td>'
+					+'<td><input type="text" class="form-control input-sm"name="pro_volume" id="pro_volume" style="width: 80px"></td>'
+            		+'<td><input type="text" class="form-control input-sm" name="o_count" id="o_count" style="width: 80px"></td>'
+            		+'<td></td></tr>' );
         });
     });
+	
+	 function delete_row() {
+		    var my_tbody = document.getElementById('my-tbody');
+		    if (my_tbody.rows.length < 1) return;
+		    // my_tbody.deleteRow(0); // ìƒë‹¨ë¶€í„° ì‚­ì œ
+		    my_tbody.deleteRow( my_tbody.rows.length-1 ); // í•˜ë‹¨ë¶€í„° ì‚­ì œ
+		  }
 
 </script>
+
+
+</head>
+
+<body>
+<div class="orderWrite_form">
+		<form name="orderWriteForm" method="post" action="<c:url value="/order/orderWritePro" />">
+
+			<input type="hidden" name="o_sender" value="${memId}">
+			<input type="hidden" name="o_receiver" value="admin">
+					
+				<div class="col-sm-6">
+				<table id="dataTables-example_filter" class="alignRight table table-bordered">
+					<thead>
+						<tr>
+							<th width="130" align="center">ë‹´ë‹¹ì ì„œëª…</th>
+							<th width="100" align="center">ë‚©ê¸°ì¼</th>
+							<th width="100" align="center">ì œëª©</th>
+							
+						</tr>
+						
+					</thead>
+					
+					<tbody>
+						<tr>
+							<td><input type="file" id="senderSign" name="senderSign"></td>
+							<td><input
+								class="form-control dateFrm marginForm" type="date"
+								name="o_deadline" value="ì—°ë„-ì›”-ì¼" id="o_deadline"></td>
+							<td><input type="text" id="o_title" name="o_title"></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+<br>
+	
+				
+				 <table id=mytable class="table table-striped table-bordered text-center delivery_table row">
+					<thead>
+						<tr role="row">
+							<th style="width: 50px;" align="center">NO</th>
+							<th width="130" align="center">ì œí’ˆëª…</th>
+							<th width="130" align="center">íŒ¨í‚¤ì§€íƒ€ì…</th>
+							<th width="130" align="center">ìš©ëŸ‰(mL)</th>
+							<th width="130" align="center">ìˆ˜ëŸ‰(EA)</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="my-tbody">
+
+						<tr class="orderingPro" role="row">
+							<td></td>
+							<td><select name="productSelect" class="form-control input-sm">
+							<option value="">ì œí’ˆì„ íƒ</option>
+							<c:forEach var="pro" items="${products}">
+								<option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
+							</c:forEach>
+						</select></td>
+							<td><select class="form-control input-sm" name="pro_container"
+								id="pro_container">
+									<option disabled="" selected="">ìš©ê¸° ì„ íƒ</option>
+									<option value="ì•Œë£¨ë¯¸ëŠ„ìº”">ì•Œë£¨ë¯¸ëŠ„ìº”</option>
+									<option value="í˜íŠ¸ë³‘">í˜íŠ¸ë³‘</option>
+									<option value="ìœ ë¦¬ë³‘">ìœ ë¦¬ë³‘</option>
+									<option value="ìš°ìœ íŒ©">ìš°ìœ íŒ©</option>
+							</select></td>
+							<td><input type="text" class="form-control input-sm"
+								name="pro_volume" id="pro_volume" style="width: 80px"></td>
+							<td><input type="text" class="form-control input-sm" name="o_count"
+								id="o_count" style="width: 80px"></td>
+							<td><button id='btn-add-row' type="button"
+									class="btn btn-primary btn-xs">ì¶”ê°€</button>
+								<button onclick="delete_row()" type="button"
+									class="btn btn-primary btn-xs">ì‚­ì œ</button></td>
+
+
+						</tr>
+					</tbody>
+
+				</table>
+				
+				<table id="dataTables-example_filter" class="alignRight table table-bordered">
+					<thead>
+						<tr>
+							<th width="130" align="center">ë¹„ê³ </th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						<tr>
+							<td><textarea class="form-control" id="o_note"
+									name="o_note"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+	
 		
-
-	</form:form>
-
+		<br>
+		
+				
+		<div class="row text-center btns">
+				<input type="submit" value="ë“±ë¡í•˜ê¸°" class="btn btn-primary"> <input
+					type="button" value="ì·¨ì†Œí•˜ê¸°" class="btn btn-default"
+					onclick="javascript:history.back()">
+			</div>
+			</form>
+	</div>
 </body>
+
 </html>

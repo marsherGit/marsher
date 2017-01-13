@@ -9,7 +9,7 @@
 			<a class="list-group-item" href="<c:url value="/" />">창고출고</a>
 			<a class="list-group-item" href="<c:url value="/" />">재고조회</a>
 			<a class="list-group-item" href="<c:url value="/" />">재고조정</a>
-			<a class="list-group-item" href="<c:url value="/" />">발주서조회</a>
+			<a class="list-group-item" href="<c:url value="/order/orderList" />">발주서조회</a>			
 		</div>
 	</aside>
 	<!--// aside -->
