@@ -62,9 +62,11 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 	.calendar_days td {min-height:100px !important;}
 	
 	.ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-	.progress {height:10px; overflow:visible; margin:2em 0; background-color:#e1edf5;}
+	
+	.delivery_panel .panel-body {background:url('../images/delivery_bar_bg.png') no-repeat -1px 0;}
+	.progress {height:10px; overflow:visible; margin:2em 0; /* background-color:#e1edf5; */ background:url('../images/bar_bg.png') repeat-y;}
 	.progress-bar {position:relative; border-radius:4px 0 0 4px; background-color:#366886;}
-	.delivery_tag {display:block; position:absolute; top:-2em; right:-1.5em; width:3em; height:2em; font-size:0.8em; background-color:#366886; border-radius:4px;}
+	.delivery_tag {display:block; position:absolute; top:-2.2em; right:-2.5em; width:4em; height:2.5em; font-size:0.8em; background:url('../images/icon_truck.png') no-repeat; background-size:contain; background-position:0 0; overflow:hidden; text-indent:-1em;}
 	
 	/* map */
 	.contact{
@@ -358,7 +360,7 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 		<div class="row info_area">
 			<!-- delivery -->
 			<div class="col-md-7">
-				<div class="panel panel-info panel-marsher">
+				<div class="panel panel-info panel-marsher delivery_panel">
 					<div class="panel-heading">
 						<i class="fa fa-truck"></i>
 						<span>정기배송정보</span>
@@ -474,10 +476,6 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 					<ul class="notice_list col-sm-10 ellipsis">
 						<c:forEach var="list" items="${calNoticeList}">
 						<li><a href="<c:url value="/" />">[이벤트]${list.no_title}</a></li>
-						<%-- <li><a href="<c:url value="/" />">[이벤트]공지사항입니다.1</a></li>
-						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.2</a></li>
-						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.3</a></li>
-						<li><a href="<c:url value="/" />">[이벤트]공지사항입니다.4</a></li> --%>
 						</c:forEach>
 					</ul>
 					<div class="btns col-sm-2">

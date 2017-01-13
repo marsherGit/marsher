@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import mj.Product.controller.ProductDataBean;
 import mj.Store.service.memberDataBean;
-import spring.order.OrderDataBean;
 
 
 @Service("deliveryService")
@@ -33,8 +32,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 		return count;
 	}
 
-	public List<OrderDataBean> getArticles(int startRow, int endRow) {
-		List<OrderDataBean> list = null;
+	public List<StateCommand> getArticles(int startRow, int endRow) {
+		List<StateCommand> list = null;
 		list = dao.getArticles(startRow, endRow);
 		
 		return list;
@@ -50,8 +49,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 		return count;
 	}
 	
-	public List<OrderDataBean> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
-		List<OrderDataBean> list = null;
+	public List<StateCommand> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
+		List<StateCommand> list = null;
 		
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
 			list = dao.getArticles(startRow, endRow);
@@ -71,8 +70,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 		return count;
 	}
 
-	public List<OrderDataBean> getArticlesUnsolved(int startRow, int endRow) {
-		List<OrderDataBean> list = null;
+	public List<StateCommand> getArticlesUnsolved(int startRow, int endRow) {
+		List<StateCommand> list = null;
 		list = dao.getArticlesUnsolved(startRow, endRow);
 		
 		return list;
@@ -88,8 +87,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 		return count;
 	}
 	
-	public List<OrderDataBean> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
-		List<OrderDataBean> list = null;
+	public List<StateCommand> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
+		List<StateCommand> list = null;
 		
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
 			list = dao.getArticlesUnsolved(startRow, endRow);

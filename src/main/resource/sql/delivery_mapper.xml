@@ -39,24 +39,24 @@
 	
 	
 	<!-- deliveryState -->
-	<sql id="deliveryStateColumns">o_num, o_title, pro_num, o_count, o_deadline, o_regdate, o_sendDate, deliverystate, o_receiver, o_sender, senderSign, receiverSign</sql>
+	<sql id="deliveryStateColumns">o_ref, o_title, o_deadline, o_regdate, o_receiver, o_sender, o_note, deliverystate</sql>
 	
 	<select id="getArticleCount" resultType="int">
-	 select count(*) from ordering where deliverystate not in '배송준비중'
+	 select count(*) from ordering where not deliverystate='배송준비중'
 	</select>
 	
-	<select id="getArticles" resultType="spring.order.OrderDataBean" parameterType="Map" >	
+	<select id="getArticles" resultType="delivery.controller.StateCommand" parameterType="Map" >	
     select <include refid="deliveryStateColumns" />, r
     from (select <include refid="deliveryStateColumns" />, rownum r
-    from (select * from ordering where deliverystate not in '배송준비중' order by o_num desc) order by o_num desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+    from (select <include refid="deliveryStateColumns" /> from ordering where not deliverystate='배송준비중' order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<select id="searchgetArticleCount" resultType="int" parameterType="Map">
 	 select count(*) from ordering 
 	 <where> 
-	 		deliverystate not in '배송준비중'
+	 		not deliverystate='배송준비중'
 			<if test="productSelect != ''">
-				and pro_num=#{productSelect}
+				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
 			<if test="storeSelect != ''">
 				and o_sender=#{storeSelect}
@@ -65,19 +65,19 @@
 				and o_regdate > sysdate-#{daySelect}
 			</if> 
 			<if test="searchText != ''">
-				and o_title like % || #{searchText} || %
+				and (o_title like '%'|| #{searchText} ||'%' or o_note like '%'|| #{searchText} ||'%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%'|| #{searchText} ||'%'))
 			</if>
 		</where>
 	</select>
 	
-	<select id="searchgetArticles" resultType="spring.order.OrderDataBean" parameterType="Map" >
+	<select id="searchgetArticles" resultType="delivery.controller.StateCommand" parameterType="Map" >
 		select <include refid="deliveryStateColumns" />, r
     from (select <include refid="deliveryStateColumns" />, rownum r
     from (select * from ordering  
-		<where>
-			deliverystate not in '배송준비중'
+		<where> 
+	 		not deliverystate='배송준비중'
 			<if test="productSelect != ''">
-				and pro_num=#{productSelect}
+				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
 			<if test="storeSelect != ''">
 				and o_sender=#{storeSelect}
@@ -86,10 +86,10 @@
 				and o_regdate > sysdate-#{daySelect}
 			</if> 
 			<if test="searchText != ''">
-				and o_title like % || #{searchText} || %
+				and (o_title like '%' || #{searchText} || '%' or o_note like '%' || #{searchText} || '%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%' || #{searchText} || '%'))
 			</if>
 		</where>
-		 order by o_num desc) order by o_num desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+		 order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<!-- deliveryUnsolved -->
@@ -97,10 +97,10 @@
 	 select count(*) from ordering where deliverystate='배송준비중'
 	</select>
 	
-	<select id="getArticlesUnsolved" resultType="spring.order.OrderDataBean" parameterType="Map" >	
+	<select id="getArticlesUnsolved" resultType="delivery.controller.StateCommand" parameterType="Map" >	
     select <include refid="deliveryStateColumns" />, r
     from (select <include refid="deliveryStateColumns" />, rownum r
-    from (select * from ordering where deliverystate='배송준비중' order by o_num desc) order by o_num desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+    from (select * from ordering where deliverystate='배송준비중' order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<select id="searchgetArticleCountUnsolved" resultType="int" parameterType="Map">
@@ -108,7 +108,7 @@
 	 <where> 
 	 		deliverystate='배송준비중'
 			<if test="productSelect != ''">
-				and pro_num=#{productSelect}
+				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
 			<if test="storeSelect != ''">
 				and o_sender=#{storeSelect}
@@ -117,19 +117,19 @@
 				and o_regdate > sysdate-#{daySelect}
 			</if> 
 			<if test="searchText != ''">
-				and o_title like % || #{searchText} || %
+				and (o_title like '%' || #{searchText} || '%' or o_note like '%' || #{searchText} || '%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%' || #{searchText} || '%'))
 			</if>
 		</where>
 	</select>
 	
-	<select id="searchgetArticlesUnsolved" resultType="spring.order.OrderDataBean" parameterType="Map" >
+	<select id="searchgetArticlesUnsolved" resultType="delivery.controller.StateCommand" parameterType="Map" >
 		select <include refid="deliveryStateColumns" />, r
     from (select <include refid="deliveryStateColumns" />, rownum r
     from (select * from ordering  
 		<where>
 			deliverystate='배송준비중'
 			<if test="productSelect != ''">
-				and pro_num=#{productSelect}
+				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
 			<if test="storeSelect != ''">
 				and o_sender=#{storeSelect}
@@ -138,10 +138,10 @@
 				and o_regdate > sysdate-#{daySelect}
 			</if> 
 			<if test="searchText != ''">
-				and o_title like % || #{searchText} || %
+				and (o_title like '%' || #{searchText} || '%' or o_note like '%' || #{searchText} || '%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%' || #{searchText} || '%'))
 			</if>
 		</where>
-		 order by o_num desc) order by o_num desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+		 order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<select id="allProduct" resultType="mj.Product.controller.ProductDataBean">
@@ -149,7 +149,7 @@
 	</select>
 	
 	<select id="allStore" resultType="mj.Store.service.memberDataBean">
-		select * from store where st_id not in 'admin'
+		select * from store where not st_id='admin'
 	</select>
 	
 	

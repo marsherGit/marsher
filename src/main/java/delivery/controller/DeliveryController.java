@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mj.Product.controller.ProductDataBean;
 import mj.Store.service.memberDataBean;
-import spring.order.OrderDataBean;
 
 @Controller
 public class DeliveryController {
@@ -56,7 +55,7 @@ public class DeliveryController {
 		int count = 0;
 		int number = 0;
 
-		List<OrderDataBean> articleList = null;
+		List<StateCommand> articleList = null;
 
 		count = service.getArticleCount();
 
@@ -91,7 +90,7 @@ public class DeliveryController {
 		int count = 0;
 		int number = 0;
 
-		List<OrderDataBean> articleList = null;
+		List<StateCommand> articleList = null;
 
 		count = service.getArticleCount(searchText, productSelect, storeSelect, daySelect);
 
@@ -136,7 +135,7 @@ public class DeliveryController {
 		int count = 0;
 		int number = 0;
 
-		List<OrderDataBean> articleList = null;
+		List<StateCommand> articleList = null;
 
 		count = service.getArticleCountUnsolved();
 
@@ -170,7 +169,7 @@ public class DeliveryController {
 		int count = 0;
 		int number = 0;
 
-		List<OrderDataBean> articleList = null;
+		List<StateCommand> articleList = null;
 
 		count = service.getArticleCountUnsolved(searchText, productSelect, storeSelect, daySelect);
 

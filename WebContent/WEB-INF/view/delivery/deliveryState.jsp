@@ -20,7 +20,7 @@
 <script>
 	//load
 	function loadList(evt) {
-		var url = "/Marsher/delivery/deliveryState";
+		var url = "/Marsher_prototype/delivery/deliveryState";
 		var productSelect = $(".searchForm select[name='productSelect']").val();
 		var storeSelect = $(".searchForm select[name='storeSelect']").val();
 		var daySelect = $(".searchForm select[name='daySelect']").val();
@@ -56,6 +56,7 @@
 		var pageLink = $(".pagination>li>a");
 		pageLink.filter(pageNumClass).parent("li").addClass("active");
 		
+		
 		//search
 		$("#search_btn").click(function(e){
 			e.preventDefault();
@@ -79,7 +80,7 @@
 						<select name="productSelect" class="form-control input-sm">
 							<option value="">- 품목검색 -</option>
 							<c:forEach var="pro" items="${products}">
-								<option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
+								<option value="${ pro.pro_name }" <c:if test="${ pro.pro_name eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -134,8 +135,8 @@
 				<c:if test="${ count > 0 }">
 					<c:forEach var="item" items="${ articleList }">
 					<tr>
-						<td>${ item.o_num }</td>
-						<td class="text-left"><a href="<c:url value="/delivery/deliveryState?num=${ item.o_num }" />">${ item.o_title }</a></td>
+						<td>${ item.o_ref }</td>
+						<td class="text-left"><a href="<c:url value="/delivery/deliveryState?num=${ item.o_ref }" />">${ item.o_title }</a></td>
 						<td>${ item.o_receiver }</td>
 						<td><fmt:formatDate value="${ item.o_regdate }" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ item.o_deadline }" pattern="yyyy/MM/dd"/></td>

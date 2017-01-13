@@ -9,7 +9,6 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import mj.Product.controller.ProductDataBean;
 import mj.Store.service.memberDataBean;
-import spring.order.OrderDataBean;
 
 public class DeliveryDao extends SqlSessionDaoSupport {
 	
@@ -29,11 +28,11 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		return count;
 	}
 	
-	public List<OrderDataBean> getArticles(int startRow, int endRow) {
+	public List<StateCommand> getArticles(int startRow, int endRow) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-		List<OrderDataBean> getArticles = getSqlSession().selectList("delivery.getArticles", map);
+		List<StateCommand> getArticles = getSqlSession().selectList("delivery.getArticles", map);
 		return getArticles;
 	}
 	
@@ -48,7 +47,7 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		return x;
 	}
 
-	public List<OrderDataBean> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
+	public List<StateCommand> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
@@ -57,7 +56,7 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		map.put("storeSelect", storeSelect);
 		map.put("daySelect", daySelect);
 		
-		List<OrderDataBean> list = getSqlSession().selectList("delivery.searchgetArticles",map);
+		List<StateCommand> list = getSqlSession().selectList("delivery.searchgetArticles",map);
 		
 		return list;
 	}
@@ -68,11 +67,11 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		return count;
 	}
 
-	public List<OrderDataBean> getArticlesUnsolved(int startRow, int endRow) {
+	public List<StateCommand> getArticlesUnsolved(int startRow, int endRow) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-		List<OrderDataBean> getArticles = getSqlSession().selectList("delivery.getArticlesUnsolved", map);
+		List<StateCommand> getArticles = getSqlSession().selectList("delivery.getArticlesUnsolved", map);
 		return getArticles;
 	}
 	
@@ -87,7 +86,7 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		return x;
 	}
 
-	public List<OrderDataBean> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
+	public List<StateCommand> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
@@ -96,7 +95,7 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		map.put("storeSelect", storeSelect);
 		map.put("daySelect", daySelect);
 		
-		List<OrderDataBean> list = getSqlSession().selectList("delivery.searchgetArticlesUnsolved",map);
+		List<StateCommand> list = getSqlSession().selectList("delivery.searchgetArticlesUnsolved",map);
 		
 		return list;
 	}

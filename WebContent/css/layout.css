@@ -163,6 +163,11 @@ a:focus{
 	border-color:#184749;
 }
 
+/** modal :: manual
+			-------------------------------------------------- */
+.manual_modal .modal-body {font-size:0.8em;}
+.manual_modal .page_title {text-align:right; font-weight:bold; color:#5b859f;}
+
 
 /** 떠 있는 메뉴바의 반응형 기능 */
 @media ( min-width : 768px) {
