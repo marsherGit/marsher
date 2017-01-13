@@ -7,7 +7,7 @@
 
 
 <style>
-	.noticContent {padding:8em 20%;}
+	.noticContent {padding:9em 20%;}
 	.content_body { width:100%;}
 </style>
 <script>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="message">
+	<!-- getReceiveMsgList -->
+	<select id="getReceiveMsgList" resultType="spring.message.ReceiveMsg">
+		select re_num, re_title, re_sender, re_regdate, re_checkDate from receiveMsg
+	</select>
+	
+	<!-- getReceiveMsgCount -->
+	<select id="getReceiveMsgCount" resultType="int">
+		select count(*) from receiveMsg
+	</select>
+	
+	<!-- getSendMsgList -->
+	<select id="getSendMsgList" resultType="spring.message.SendMsg">
+		select se_num, se_title, se_receiver, se_regdate, se_checkDate from sendMsg
+	</select>
+	
+	<!-- getSendMsgCount -->
+	<select id="getSendMsgCount" resultType="int">
+		select count(*) from sendMsg
+	</select>
+	
+	<!-- message insert -->
+	<insert id="insertSe" parameterType="spring.message.SendMsg">
+		insert into sendMsg(se_num, se_title, se_content, se_receiver, se_sender, se_regdate) 
+		values(sendMsg_se_num.NEXTVAL,#{se_title},#{se_content},#{se_receiver},#{se_sender},SYSDATE)
+	</insert>
+	
+	<insert id="insertRe" parameterType="spring.message.ReceiveMsg">
+		insert into receiveMsg(re_num, re_title, re_content, re_receiver, re_sender, re_regdate)
+		select se_num, se_title, se_content, se_receiver, se_sender, se_regdate from sendMsg 
+	</insert>
+	
+	
+	<!-- getReceiveMsg content-->
+	<select id="getReceiveMsg" resultType="spring.message.ReceiveMsg" parameterType="int">
+		select re_num, re_sender, re_receiver, re_regdate, re_checkDate, re_title, re_content 
+		from receiveMsg where re_num = #{re_num}
+	</select>
+	
+	<!-- getSendMsg content-->
+	<select id="getSendMsg" resultType="spring.message.SendMsg" parameterType="int">
+		select se_num, se_sender, se_receiver, se_regdate, se_checkDate, se_title, se_content 
+		from sendMsg where se_num = #{se_num}
+	</select>
+	
+	<!-- deleteReceive -->
+	<delete id="deleteReceive" parameterType="spring.message.ReceiveMsg">
+		delete from receiveMsg where re_num=#{re_num}
+	</delete>
+	
+	<!-- 보낸쪽지 delete -->
+	<delete id="deleteSend" parameterType="spring.message.SendMsg">
+		delete from sendMsg where se_num=#{se_num}
+	</delete>
+	
+	
+</mapper>

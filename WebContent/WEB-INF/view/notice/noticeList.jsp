@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	.noticeList {padding:3em 20%;}
+	.noticeList {padding:3em 20%; align:center;}
 	.noticeTable {margin:1em auto;}
 </style>
 
@@ -45,7 +45,6 @@ $(document).ready(function(){
 		</c:forEach>
 		</c:if>
 	</table>
-</div>
 
 <!-- pagenation -->
 	<c:if test="${ count > 0 }">
@@ -71,3 +70,4 @@ $(document).ready(function(){
 		</ul>
 	</div>
 	</c:if>
+</div>

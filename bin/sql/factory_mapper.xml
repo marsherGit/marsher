@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="factory">
+	
+	<select id="totalFactory" resultType="int">
+		select count(*) from factory order by fac_id
+	</select>
+	
+	<select id="allFactory" resultType="factory.controller.FactoryCommand">
+		select * from factory order by fac_id
+	</select>
+	
+	<select id="selectFactory" parameterType="int" resultType="factory.controller.FactoryCommand">
+		select * from factory where fac_id=#{fac_id}
+	</select>
+	
+	<insert id="insertFactory" parameterType="factory.controller.FactoryCommand">
+		insert into factory values(Factory_fac_id.NEXTVAL,#{fac_name},#{fac_location},#{fac_tel},#{fac_product},#{fac_image})
+	</insert>
+	
+	<update id="updateFactory" parameterType="factory.controller.FactoryCommand">
+		update factory
+		<set>
+			<if test="fac_name != null">fac_name=#{fac_name},</if>
+			<if test="fac_location != null">fac_location=#{fac_location},</if>
+			<if test="fac_tel != null">fac_tel=#{fac_tel},</if>
+			<if test="fac_product != null">fac_product=#{fac_product},</if>
+			<if test="fac_image != null">fac_image=#{fac_image}</if>
+		</set>
+		where fac_id=#{fac_id}
+	</update>
+	
+	<delete id="deleteFactory" parameterType="int">
+		delete from factory where fac_id=#{fac_id}
+	</delete>
+	
+</mapper>
