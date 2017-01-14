@@ -63,15 +63,15 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 	
 	.ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 	
-	.delivery_panel .panel-body {background:url('../images/delivery_bar_bg.png') no-repeat -1px 0;}
-	.progress {height:10px; overflow:visible; margin:2em 0; /* background-color:#e1edf5; */ background:url('../images/bar_bg.png') repeat-y;}
+	.delivery_panel .panel-body {background:url('../images/delivery_bar_bg.png') no-repeat 0 0; padding:2.5em 2em;}
+	.progress {height:10px; overflow:visible; margin:2em 0; background:url('../images/bar_bg.png') repeat-y 100% 100%; background-size:contain; background-position-x:-1px;}
 	.progress-bar {position:relative; border-radius:4px 0 0 4px; background-color:#366886;}
 	.delivery_tag {display:block; position:absolute; top:-2.2em; right:-2.5em; width:4em; height:2.5em; font-size:0.8em; background:url('../images/icon_truck.png') no-repeat; background-size:contain; background-position:0 0; overflow:hidden; text-indent:-1em;}
 	
 	/* map */
 	.contact{
 		position:relative;
-		min-height:210px;
+		min-height:250px;
 	}
 	.list a{
 		display:block;
@@ -88,8 +88,8 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 	.contact.active .desc{display:none;}
 	.contact .list{
 		position:absolute;
-		bottom:0;
-		right:0;
+		bottom:0.5em;
+		right:0.5em;
 		margin-left:10px;
 		width:140px;
 		color:#999;
@@ -129,7 +129,7 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 	}
 	.contact .map{
 		position:absolute;
-		top:0.5em;
+		top:2em;
 		left:0.5em;
 		width:140px;
 		height:143px;
@@ -231,7 +231,34 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 			}
 		})
 		 
+		/* delivery-bar */
+    var nowDate = new Date();
+    var nowDay = nowDate.getDay();
+   	var nowHour = nowDate.getHours();
+   	//var nowHour = 19;
+    var nowLocation = ((nowHour-3)-(Math.round(nowHour/3))-1)*10;
+   	if(nowDay==1 || nowDay==3 || nowDay==5) {
+    	var tg = $("#soda .progress-bar, #juice .progress-bar");
+    	if(nowHour > 6 && nowHour <= 21){
+    		tg.css({"width":nowLocation+"%"});
+    		tg.attr("aria-valuenow",nowLocation);
+    	}	else if(nowHour > 21) {
+       	tg.css({"width":"100%","border-radius":"4px"});
+       	tg.attr("aria-valuenow",100);
+       }
+    }
+    if(nowDay==2 || nowDay==4 || nowDay==6) {
+    	var tg = $("#drink .progress-bar, #milk .progress-bar");
+    	if(nowHour > 6 && nowHour <= 21){
+    		tg.css({"width":nowLocation+"%"});
+    		tg.attr("aria-valuenow",nowLocation);
+    	}	else if(nowHour > 21) {
+       	tg.css({"width":"100%","border-radius":"4px"});
+       	tg.attr("aria-valuenow",100);
+       }
+    }
 		
+		/* function */
 		function auto_roll(){
 			var notice_active_idx = notice_list.filter(".on").index();
 			var index = (notice_active_idx + 1 > notice_list_max) ? 0 : notice_active_idx + 1;
@@ -367,23 +394,23 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 						<span class="btn-more"><a href="<c:url value="/delivery/deliveryInfo" />">더보기 ▶</a></span>
 					</div>
 					<div class="panel-body">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						<div id="soda" class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">탄산</div>
 							</div>
-						</div>
+						</div id="drink">
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">주류</div>
 							</div>
 						</div>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+						<div id="juice" class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">쥬스</div>
 							</div>
 						</div>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+						<div id="milk" class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">우유</div>
 							</div>
 						</div>
