@@ -43,7 +43,6 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 	.btn-more {display:inline-block; position:absolute; top:0.7em; right:0.7em; color:#31708f;}
 	.btn-more>a, .btn-more>a:hover, .btn-more>a:active, .btn-more>a:visited, .btn-more>a:active {color:#31708f; font-size:0.9em;}
 	.info_area>div {padding:0 0.5em;}
-	.panel-info .panel-footer {background-color:#fff; border-top:1px solid #bce8f1;}
 	.panel-primary a {color:#337ab7;}
 	.panel-primary a:hover {color:#23527c;}
 	
@@ -398,8 +397,8 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">탄산</div>
 							</div>
-						</div id="drink">
-						<div class="progress">
+						</div>
+						<div id="drink" class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">주류</div>
 							</div>

@@ -27,7 +27,8 @@
 		.factory_content {padding:3em;}
 		.factory_content .tab-pane {}
 		.title {font-size:1.2em; font-weight:bold; background-color:#f8fbfd; margin-bottom:1em; margin-left:15px; padding:0.5em; border-left:0.7em solid #eee;}
-		.img_area .fac_image>img {width:100%;}
+		.img_area .fac_image {width:370px; height:270px;}
+		.img_area .fac_image>img {width:100%; height:100%;}
 		.img_area .fac_name {padding-top:0.5em;}
 		.info_area>ul {margin:0; padding:0; list-style:none; padding-left:2em;}
 		.info_area>ul>li {position:relative; padding:0.2em 0 0.5em 0.5em;}
@@ -57,7 +58,7 @@
 						<div class="fac_image"><img src="<c:url value="/images/no-img.png" />" alt="${ item.fac_name }" /></div>
 					</c:if>
 					<c:if test="${ item.fac_image ne null }">
-						<div class="fac_image"><img src="<c:url value="/images/${ item.fac_image }" />" alt="${ item.fac_name }" /></div>
+						<div class="fac_image"><img src="<c:url value="/saveFile/${ item.fac_image }" />" alt="${ item.fac_name }" /></div>
 					</c:if>
 				</div>
 				<div class="info_area col-sm-6">

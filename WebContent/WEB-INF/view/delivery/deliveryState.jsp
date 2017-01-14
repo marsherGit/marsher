@@ -73,7 +73,7 @@
 	<!-- search -->
 	<div class="row searchArea">
 		<div class="col-sm-3"></div>
-		<form name="stateSearchForm" method="post">
+		<form name="stateSearchForm" action="<c:url value="/delivery/deliveryState" />" method="post">
 			<div class="form-group searchForm col-sm-9">
 				<div class="col-sm-8">
 					<div class="col-sm-4">
@@ -103,7 +103,7 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="col-sm-10">
-						<input type="text" id="search_input" name="searchText" class="form-control input-sm" placeholder="검색어를 입력해 주세요." />
+						<input type="text" id="search_input" name="searchText" class="form-control input-sm" <c:if test="${ searchText ne '' }">value="${ searchText }"</c:if> placeholder="검색어를 입력해 주세요." />
 					</div>
 					<div class="col-sm-2">
 						<a id="search_btn" href="#" class="btn btn-info btn-sm">검색</a>
@@ -161,13 +161,13 @@
 	<div class="row pagingArea text-center">
 		<ul class="pagination pagination-sm">
 			<c:if test="${ startPage > pageBlock }">
-				<li class="prev"><a href="<c:url value="/delivery/deliveryState?pageNum=${ startPage - pageBlock }" />">&lt;&lt;</a></li>
+				<li class="prev"><a href="<c:url value="/delivery/deliveryState?pageNum=${ startPage - pageBlock }&productSelect=${ productSelect }&storeSelect=${ storeSelect }&searchText=${ searchText }&daySelect=${ daySelect }" />">&lt;&lt;</a></li>
 			</c:if>
 			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-		  	<li><a href="<c:url value="/delivery/deliveryState?pageNum=${ i }" />" class="page${ i }">${ i }</a></li>
+		  	<li><a href="<c:url value="/delivery/deliveryState?pageNum=${ i }&productSelect=${ productSelect }&storeSelect=${ storeSelect }&searchText=${ searchText }&daySelect=${ daySelect }" />" class="page${ i }">${ i }</a></li>
 		  </c:forEach>
 		  <c:if test="${ endPage < pageCount }">
-		  	<li class="next"><a href="<c:url value="/delivery/deliveryState?pageNum=${ startPage + pageBlock }" />">&gt;&gt;</a></li>
+		  	<li class="next"><a href="<c:url value="/delivery/deliveryState?pageNum=${ startPage + pageBlock }&productSelect=${ productSelect }&storeSelect=${ storeSelect }&searchText=${ searchText }&daySelect=${ daySelect }" />">&gt;&gt;</a></li>
 		  </c:if>
 		</ul>
 	</div>

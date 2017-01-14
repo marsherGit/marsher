@@ -5,12 +5,14 @@
 <%@ page isELIgnored="false" %>
 
 <style>
-	#delivery_img {width:300px; margin-top:0.5em;}
-	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	#delivery_file {width:300px; margin-top:0.5em;}
+	#View_area {padding-left:5em; padding-top:1em;}
+	#UploadedImg {margin-left:2em;}
 	.list-group {list-style:none; padding-top:50px;}
 	.list-group>li {margin:1em 0;}
 	.btns {padding:10%;}
 	.btns>input {width:6em;}
+	.guide {font-size:0.8em;}
 </style>
 
 <!-- validator -->
@@ -56,7 +58,7 @@
 	
 	/* 이미지 확장자 체크 */
 	function checkfile() {
-		var fname = document.getElementById("delivery_img").value; //파일의 풀 경로
+		var fname = document.getElementById("delivery_file").value; //파일의 풀 경로
 		var fext = fname.substr(fname.length - 3).toLowerCase(); //확장자
 		if (fext != 'jpg' && fext != 'png' && fext != 'jpeg') {
 			alert("이미지는 jpg, png, jpeg만 업로드 가능합니다.");
@@ -188,11 +190,11 @@
 <!-- // 이미지 표시 -->
 
 <div class="container text-left row" style='position:relative; width: 900px;'>
-<form action="<c:url value="/login/admin_deliveryInput" />" onsubmit="return checkIt()" class="form-horizontal" method="post">
+<form action="<c:url value="/login/admin_deliveryInput" />" onsubmit="return checkIt()" class="form-horizontal" enctype="multipart/form-data" method="post">
 	<div class="col-sm-6" id='View_area' class="form-group">
-	  <label for="delivery_img">사진이미지 업로드</label>
-	  <img id="UploadedImg" src="<c:url value="/images/no-img.png" />" border="0" width="300" height="250" onclick="fncProductFile()">
-	  <input type="file" id="delivery_img" name="delivery_img" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
+	  <div><label for="delivery_file">사진이미지 업로드</label></div>
+	  <img id="UploadedImg" src="<c:url value="/images/no-img.png" />" class="img-circle" border="0" width="250" height="250" onclick="fncProductFile()">
+	  <input type="file" id="delivery_file" name="delivery_file" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
 	</div>
 	<div class="col-sm-6">
 		<ul class="list-group row">

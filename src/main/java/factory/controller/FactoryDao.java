@@ -18,6 +18,10 @@ public class FactoryDao extends SqlSessionDaoSupport {
 	}
 	
 	/* factoryInput.jsp */
+	public int maxFactory() {
+		return getSqlSession().selectOne("factory.maxFac_id");
+	}
+	
 	public int inputFactory(FactoryCommand command) {
 		int check = -1;
 		check = getSqlSession().insert("factory.insertFactory", command);
