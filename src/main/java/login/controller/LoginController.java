@@ -256,8 +256,10 @@ public class LoginController {
 	}
 	// deliveryUpdate
 	@RequestMapping(value = "/login/admin_deliveryUpdate")
-	public String deliveryUpdate(@ModelAttribute("command") DeliveryCommand command) {
-		int check = service.updateDelivery(command);
+	public String deliveryUpdate(@ModelAttribute("command") DeliveryCommand command, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String contextRoot = session.getServletContext().getRealPath("/"); //컨텍스트루트 구하기.
+		int check = service.updateDelivery(command, contextRoot);
 		
 		return "redirect:/login/admin_deliveryList";
 	}
@@ -271,14 +273,21 @@ public class LoginController {
 	// deliveryInput
 	@RequestMapping("/login/admin_deliveryInput")
 	public String deliveryInput(@ModelAttribute("command") DeliveryCommand command, HttpServletRequest request) {
-		int check = service.inputDelivery(command);
+		HttpSession session = request.getSession();
+		String contextRoot = session.getServletContext().getRealPath("/"); //컨텍스트루트 구하기.
+		System.out.println("input넘어온 값 : " + command);		//test code
+		int check = service.inputDelivery(command, contextRoot);
+		
 		return "redirect:/login/admin_deliveryList";
 	}
 	
 	// deliveryDelete
 	@RequestMapping("/login/admin_deliveryDelete")
-	public String deliveryDelete(int delivery_num) {
-		int check = service.deleteDelivery(delivery_num);
+	public String deliveryDelete(int delivery_num, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String contextRoot = session.getServletContext().getRealPath("/"); //컨텍스트루트 구하기.
+		int check = service.deleteDelivery(delivery_num, contextRoot);
+		
 		return "redirect:/login/admin_deliveryList";
 	}
 	
@@ -303,16 +312,22 @@ public class LoginController {
 
 	// factoryUpdate
 	@RequestMapping(value = "/login/admin_factoryUpdate")
-	public String factoryUpdate(@ModelAttribute("command") FactoryCommand command) {
-		int check = service.updateFactory(command);
-
+	public String factoryUpdate(@ModelAttribute("command") FactoryCommand command, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String contextRoot = session.getServletContext().getRealPath("/"); //컨텍스트루트 구하기.
+		System.out.println("넘어온 값 : " + command);		//test code
+		int check = service.updateFactory(command,contextRoot);
+		
 		return "redirect:/login/admin_factoryList";
 	}
 
 	// factoryDelete
 	@RequestMapping("/login/admin_factoryDelete")
-	public String factoryDelete(int fac_id) {
-		int check = service.deleteFactory(fac_id);
+	public String factoryDelete(int fac_id, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String contextRoot = session.getServletContext().getRealPath("/"); //컨텍스트루트 구하기.
+		int check = service.deleteFactory(fac_id,contextRoot);
+		
 		return "redirect:/login/admin_factoryList";
 	}
 

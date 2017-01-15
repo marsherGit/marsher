@@ -54,6 +54,11 @@ public class LoginDao extends SqlSessionDaoSupport {
 		return deliveryList;
 	}
 	
+	// delivery_num
+	public int maxDelivery() {
+		return getSqlSession().selectOne("delivery.maxDelivery_num");
+	}
+
 	// deliveryUpdate
 	public int updateDelivery(DeliveryCommand command) {
 		int check = -1;

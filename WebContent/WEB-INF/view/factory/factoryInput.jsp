@@ -5,8 +5,8 @@
 <%@ page isELIgnored="false" %>
 
 <style>
-	#fac_image {width:300px; margin-top:0.5em;}
-	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	#fac_file {width:300px; margin-top:0.5em;}
+	#View_area {padding-left:5em; padding-top:1em;}
 	#factoryInputForm .list-group {list-style:none; padding-top:50px;}
 	#factoryInputForm .list-group>li {margin:1em 0;}
 	.btns {padding:10%;}
@@ -59,7 +59,7 @@
 	
 	/* 이미지 확장자 체크 */
 	function checkfile() {
-		var fname = document.getElementById("fac_image").value; //파일의 풀 경로
+		var fname = document.getElementById("fac_file").value; //파일의 풀 경로
 		var fext = fname.substr(fname.length - 3).toLowerCase(); //확장자
 		if (fext != 'jpg' && fext != 'png' && fext != 'jpeg') {
 			alert("이미지는 jpg, png, jpeg만 업로드 가능합니다.");
@@ -191,11 +191,11 @@
 <!-- // 이미지 표시 -->
 
 <div class="container text-left row" style='position:relative; width: 900px;'>
-<form id="factoryInputForm" action="<c:url value="/factory/factoryInput" />" onsubmit="return checkIt()" class="form-horizontal" method="post">
+<form id="factoryInputForm" action="<c:url value="/factory/factoryInput" />" onsubmit="return checkIt()"  class="form-horizontal" enctype="multipart/form-data" method="post">
 	<div class="col-sm-6" id='View_area' class="form-group">
-	  <label for="fac_image">사진이미지 업로드</label>
+	  <label for="fac_file">사진이미지 업로드</label>
 	  <img id="UploadedImg" src="<c:url value="/images/no-img.png" />" border="0" width="300" height="250" onclick="fncProductFile()">
-	  <input type="file" id="fac_image" name="fac_image" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
+	  <input type="file" id="fac_file" name="fac_file" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
 	</div>
 	<div class="col-sm-6">
 		<ul class="list-group row">

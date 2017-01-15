@@ -24,7 +24,9 @@ a:focus{
 .row {
 	margin:0;
 }
-
+.panel-marsher {border-color:#366886;}
+.panel-marsher .panel-heading {color:#366886; border-color:#366886; background-color:#f8fbfd;}
+.panel-marsher .panel-footer {background-color:#fff; border-top:1px solid #366886;}
 
 /* header :: menu
 			 -------------------------------------------------- */

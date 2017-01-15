@@ -25,20 +25,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 	} //end allMem()
 	
 	/* deliveryState.jsp */
-	public int getArticleCount() {
-		int count = 0;
-		count = dao.getArticleCount();
-		
-		return count;
-	}
-
-	public List<StateCommand> getArticles(int startRow, int endRow) {
-		List<StateCommand> list = null;
-		list = dao.getArticles(startRow, endRow);
-		
-		return list;
-	}
-	
 	public int getArticleCount(String searchText, String productSelect, String storeSelect, int daySelect) {
 		int count = 0;
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
@@ -56,27 +42,12 @@ public class DeliveryServiceImpl implements DeliveryService {
 			list = dao.getArticles(startRow, endRow);
 		else
 			list = dao.getArticles(startRow, endRow, searchText, productSelect, storeSelect, daySelect);
-	
 
 		return list;
 	}
 	
 	
 	/* deliveryUnsolved.jsp */
-	public int getArticleCountUnsolved() {
-		int count = 0;
-		count = dao.getArticleCountUnsolved();
-		
-		return count;
-	}
-
-	public List<StateCommand> getArticlesUnsolved(int startRow, int endRow) {
-		List<StateCommand> list = null;
-		list = dao.getArticlesUnsolved(startRow, endRow);
-		
-		return list;
-	}
-	
 	public int getArticleCountUnsolved(String searchText, String productSelect, String storeSelect, int daySelect) {
 		int count = 0;
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
@@ -94,7 +65,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 			list = dao.getArticlesUnsolved(startRow, endRow);
 		else
 			list = dao.getArticlesUnsolved(startRow, endRow, searchText, productSelect, storeSelect, daySelect);
-	
 
 		return list;
 	}

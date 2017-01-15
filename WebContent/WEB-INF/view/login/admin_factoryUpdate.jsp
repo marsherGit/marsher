@@ -5,12 +5,13 @@
 <%@ page isELIgnored="false" %>
 
 <style>
-	#fac_image {width:300px; margin-top:0.5em;}
-	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	#fac_file {width:300px; margin-top:0.5em;}
+	#View_area {padding-left:5em; padding-top:1em;}
 	.list-group {list-style:none; padding-top:50px;}
 	.list-group>li {margin:1em 0;}
 	.btns {padding:10%;}
 	.btns>input {width:6em;}
+	.guide {font-size:0.8em;}
 </style>
 <script>
 	function checkIt(){
@@ -54,7 +55,7 @@
 	
 	/* 사진 이미지 */
 	function checkfile() {
-		var fname = document.getElementById("fac_image").value; //파일의 풀 경로
+		var fname = document.getElementById("fac_file").value; //파일의 풀 경로
 		var fext = fname.substr(fname.length - 3).toLowerCase(); //확장자
 		if (fext != 'jpg' && fext != 'png' && fext != 'jpeg') {
 			alert("이미지는 jpg, png, jpeg만 업로드 가능합니다.");
@@ -138,23 +139,23 @@
 <!-- // 이미지 표시 -->
 
 <div class="container text-left row" style='position:relative; width: 900px;'>
-<form action="<c:url value="/login/admin_factoryUpdate" />" onsubmit="return checkIt()" class="form-horizontal" method="post">
+<form action="<c:url value="/login/admin_factoryUpdate" />" onsubmit="return checkIt()" class="form-horizontal" enctype="multipart/form-data" method="post">
 	<div class="col-sm-6" id='View_area' class="form-group">
-	  <label for="fac_image">사진이미지 업로드</label>
+	  <label for="fac_file">사진이미지 업로드</label>
 	  <c:if test="${ command.fac_image eq null }">
 	  	<img id="UploadedImg" src="<c:url value="/images/no-img.png" />" border="0" width="300" height="250" onclick="fncProductFile()">
 	  </c:if>
 	  <c:if test="${ command.fac_image ne null }">
-	  	<img id="UploadedImg" src="<c:url value="/images/${command.fac_image}" />" border="0" width="300" height="250" onclick="fncProductFile()">
+	  	<img id="UploadedImg" src="<c:url value="/saveFile/${command.fac_image}" />" border="0" width="300" height="250" onclick="fncProductFile()">
 	  </c:if>
-		<input type="file" id="fac_image" value="${command.fac_image}" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
+		<input type="file" id="fac_file" name="fac_file" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
 	</div>
 	<div class="col-sm-6">
 		<ul class="list-group row">
 			<li class="form-group"><label for="fac_name" class="control-label col-sm-3">공장명</label><div class="col-sm-9"><input id="fac_name" name="fac_name" value="${command.fac_name}" class="form-control" /></div></li>
 			<li class="form-group"><label for="fac_location" class="control-label col-sm-3">주  소</label><div class="col-sm-9"><input id="fac_location" name="fac_location" value="${command.fac_location}" class="form-control" /></div></li>
 			<li class="form-group"><label for="fac_tel" class="control-label col-sm-3">연락처</label><div class="col-sm-9"><input id="fac_tel" name="fac_tel" value="${command.fac_tel}" class="form-control" /></div></li>
-			<li class="form-group"><label for="fac_product" class="control-label col-sm-3">생산제품</label><div class="col-sm-9"><input id="fac_product" name="fac_product" value="${command.fac_product}" class="form-control" /></div></li>
+			<li class="form-group"><label for="fac_product" class="control-label col-sm-3">생산제품</label><div class="col-sm-9"><input id="fac_product" name="fac_product" value="${command.fac_product}" class="form-control" /><span class="text-danger guide">(※ 제품명은 '콤마(,)'로 구분해서 입력 해 주세요.)</span></div></li>
 		</ul>
 		<div class="row text-center btns">
 			<input type="submit" value="수정하기" class="btn btn-warning">
@@ -162,9 +163,5 @@
 		</div>
 	</div>
 	<input type="hidden" id="fac_id" name="fac_id" value="${ command.fac_id }" />
-</form >
+</form>
 </div>
-
-</body>
-
-</html>

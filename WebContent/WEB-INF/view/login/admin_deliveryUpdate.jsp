@@ -5,12 +5,14 @@
 <%@ page isELIgnored="false" %>
 
 <style>
-	#delivery_img {width:300px; margin-top:0.5em;}
-	#view_area {position:relative; width: 350px; height: 300px; color: black; border: 0px solid black;}
+	#delivery_file {width:300px; margin-top:0.5em;}
+	#View_area {padding-left:5em; padding-top:1em;}
+	#UploadedImg {margin-left:2em;}
 	.list-group {list-style:none; padding-top:50px;}
 	.list-group>li {margin:1em 0;}
 	.btns {padding:10%;}
 	.btns>input {width:6em;}
+	.guide {font-size:0.8em;}
 </style>
 <script>
 	function checkIt(){
@@ -52,12 +54,12 @@
 		$(".aside-wrapper>.list-group>.list-group-item").eq(3).addClass("on");
 		var fac_selected = $("#fac_id>option"); //공장 옵션
 		fac_selected.prop("selected",false);
-		fac_selected.eq('${command.delivery_num - 1}').prop("selected", true);
+		fac_selected.eq('${command.fac_id - 1}').prop("selected", true);
 	})
 	
 	/* 사진 이미지 */
 	function checkfile() {
-		var fname = document.getElementById("delivery_img").value; //파일의 풀 경로
+		var fname = document.getElementById("delivery_file").value; //파일의 풀 경로
 		var fext = fname.substr(fname.length - 3).toLowerCase(); //확장자
 		if (fext != 'jpg' && fext != 'png' && fext != 'jpeg') {
 			alert("이미지는 jpg, png, jpeg만 업로드 가능합니다.");
@@ -141,23 +143,23 @@
 <!-- // 이미지 표시 -->
 
 <div class="container text-left row" style='position:relative; width: 900px;'>
-<form action="<c:url value="/login/admin_deliveryUpdate" />" onsubmit="return checkIt()" class="form-horizontal" method="post">
+<form action="<c:url value="/login/admin_deliveryUpdate" />" onsubmit="return checkIt()" class="form-horizontal" enctype="multipart/form-data" method="post">
 	<div class="col-sm-6" id='View_area' class="form-group">
-	  <label for="delivery_img">사진이미지 업로드</label>
+	  <label for="delivery_file">사진이미지 업로드</label>
 	  <c:if test="${ command.delivery_img eq null }">
-	  	<img id="UploadedImg" src="<c:url value="/images/no-img.png" />" border="0" width="300" height="250" onclick="fncProductFile()">
+	  	<img id="UploadedImg" src="<c:url value="/images/no-img.png" />" class="img-circle" border="0" width="250" height="250" onclick="fncProductFile()">
 	  </c:if>
 	  <c:if test="${ command.delivery_img ne null }">
-	  	<img id="UploadedImg" src="<c:url value="/images/${command.delivery_img}" />" border="0" width="300" height="250" onclick="fncProductFile()">
+	  	<img id="UploadedImg" src="<c:url value="/saveFile/${command.delivery_img}" />" class="img-circle" border="0" width="250" height="250" onclick="fncProductFile()">
 	  </c:if>
-		<input type="file" id="delivery_img" value="${command.delivery_img}" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
+		<input type="file" id="delivery_file" name="delivery_file" onchange="previewImage(this,'View_area'),checkfile()" class="form-control">
 	</div>
 	<div class="col-sm-6">
 		<ul class="list-group row">
 			<li class="form-group"><label for="delivery_num" class="control-label col-sm-3">기사번호</label><div class="col-sm-9"><input id="delivery_num" name="delivery_num" value="${command.delivery_num }" class="form-control" disabled /></div></li>
 			<li class="form-group"><label for="delivery_name" class="control-label col-sm-3">이  름</label><div class="col-sm-9"><input id="delivery_name" name="delivery_name" value="${command.delivery_name }" class="form-control" /></div></li>
 			<li class="form-group"><label for="delivery_tel" class="control-label col-sm-3">연락처</label><div class="col-sm-9"><input id="delivery_tel" name="delivery_tel" value="${command.delivery_tel }" class="form-control" /></div></li>
-			<li class="form-group"><label for="delivery_day" class="control-label col-sm-3">배송요일</label><div class="col-sm-9"><input id="delivery_day" name="delivery_day" value="${command.delivery_day }" class="form-control" /></div></li>
+			<li class="form-group"><label for="delivery_day" class="control-label col-sm-3">배송요일</label><div class="col-sm-9"><input id="delivery_day" name="delivery_day" value="${command.delivery_day }" class="form-control" /><span class="text-danger guide">(※ 요일은 '콤마(,)'로 구분해서 입력 해 주세요.)</span></div></li>
 			<li class="form-group">
 				<label for="fac_id" class="control-label col-sm-3">담당공장</label>
 				<div class="col-sm-9">
@@ -174,9 +176,6 @@
 			<input type="button" value="취소" class="btn btn-default" onclick="javascript:history.back()">
 		</div>
 	</div>
-</form >
+	<input type="hidden" id="delivery_num" name="delivery_num" value="${ command.delivery_num }" />
+</form>
 </div>
-
-</body>
-
-</html>

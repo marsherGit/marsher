@@ -9,6 +9,10 @@
 		select <include refid="deliveryColumns" /> from delivery d inner join factory f on d.fac_id=f.fac_id order by f.fac_id
 	</select>
 	
+	<select id="maxDelivery_num" resultType="int">
+		select max(delivery_num) from delivery
+	</select>
+	
 	<select id="allDelivery" resultType="delivery.controller.DeliveryInfo">
 		select <include refid="deliveryColumns" /> from delivery d left outer join factory f on d.fac_id=f.fac_id order by d.delivery_num
 	</select>
@@ -18,7 +22,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="delivery.controller.DeliveryCommand">
-		insert into delivery values(Delivery_delivery_num.NEXTVAL,#{delivery_name},#{delivery_tel},#{delivery_img},#{delivery_day},#{fac_id})
+		insert into delivery values(#{delivery_num},#{delivery_name},#{delivery_tel},#{delivery_img},#{delivery_day},#{fac_id})
 	</insert>
 	
 	<update id="update" parameterType="delivery.controller.DeliveryCommand">

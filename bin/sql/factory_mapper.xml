@@ -6,6 +6,10 @@
 		select count(*) from factory order by fac_id
 	</select>
 	
+	<select id="maxFac_id" resultType="int">
+		select max(fac_id) from factory
+	</select>
+	
 	<select id="allFactory" resultType="factory.controller.FactoryCommand">
 		select * from factory order by fac_id
 	</select>
@@ -15,7 +19,7 @@
 	</select>
 	
 	<insert id="insertFactory" parameterType="factory.controller.FactoryCommand">
-		insert into factory values(Factory_fac_id.NEXTVAL,#{fac_name},#{fac_location},#{fac_tel},#{fac_product},#{fac_image})
+		insert into factory values(#{fac_id},#{fac_name},#{fac_location},#{fac_tel},#{fac_product},#{fac_image})
 	</insert>
 	
 	<update id="updateFactory" parameterType="factory.controller.FactoryCommand">
