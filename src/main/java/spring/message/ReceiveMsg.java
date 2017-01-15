@@ -3,7 +3,7 @@ package spring.message;
 import java.util.Date;
 
 public class ReceiveMsg {
-	private int re_num;
+	private int num;
 	private String re_title;
 	private String re_content;
 	private String re_receiver;
@@ -11,11 +11,11 @@ public class ReceiveMsg {
 	private Date re_regdate;
 	private Date re_checkDate;
 	private String st_id;
-	public int getRe_num() {
-		return re_num;
+	public int getNum() {
+		return num;
 	}
-	public void setRe_num(int re_num) {
-		this.re_num = re_num;
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public String getRe_title() {
 		return re_title;
@@ -59,7 +59,6 @@ public class ReceiveMsg {
 	public void setSt_id(String st_id) {
 		this.st_id = st_id;
 	}
-	
-	
+
 
 }

@@ -19,6 +19,7 @@ import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
 import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
+import spring.message.ReceiveMsg;
 
 
 @Controller
@@ -44,21 +45,26 @@ public class LoginController {
 	@RequestMapping("/login/login")
 	public String form() {
 		return "loginForm";
-	}
+	} 
 	
 	@RequestMapping(value="/login/main", method=RequestMethod.GET)
-	public String loginback(Model model) {
+	public String loginback(Model model, HttpServletRequest request) {
 		List<NoticeDataBean> calNoticeList = new ArrayList<NoticeDataBean>();
-		calNoticeList = service.calNoticeList();	
-		
+		calNoticeList = service.calNoticeList();
+		int count = 0;
+		HttpSession session = request.getSession();
+		String memId = (String)session.getAttribute("memId");
+		count = service.newMsg_count(memId);
 		model.addAttribute("calNoticeList", calNoticeList);
+		model.addAttribute("count", count);
 		
 		return "main";
 	}
 	@RequestMapping(value="/login/main", method=RequestMethod.POST)
 	public ModelAndView submit(String st_id, String passwd, String logintype, HttpSession session) {
 		List<NoticeDataBean> calNoticeList = new ArrayList<NoticeDataBean>();
-		calNoticeList = service.calNoticeList();		
+		calNoticeList = service.calNoticeList();	
+		int count = 0;
 		
 		
 		/**
@@ -87,16 +93,20 @@ public class LoginController {
 					session.setAttribute("passwd", dbpasswd);
 					session.setAttribute("memId", st_id);
 					session.setAttribute("logintype", logintype);
+					count = service.newMsg_count(st_id);
 					check = 2;
 					mav.setViewName("main");
+				
 				}
 			}
 		}
 		
 		// id 불일치
+		
 		mav.addObject("check", check);
 		mav.addObject("st_id", st_id);
-		mav.addObject("calNoticeList", calNoticeList);
+		mav.addObject("calNoticeList", calNoticeList); 
+		mav.addObject("count", count);
 		return mav;
 	}
 	

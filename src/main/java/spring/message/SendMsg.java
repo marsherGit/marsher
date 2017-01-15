@@ -3,7 +3,7 @@ package spring.message;
 import java.util.Date;
 
 public class SendMsg {
-	private int se_num;
+	private int num;
 	private String se_title;
 	private String se_content;
 	private String se_receiver;
@@ -11,11 +11,11 @@ public class SendMsg {
 	private Date se_regdate;
 	private Date se_checkDate;
 	private String st_id;
-	public int getSe_num() {
-		return se_num;
+	public int getNum() {
+		return num;
 	}
-	public void setSe_num(int se_num) {
-		this.se_num = se_num;
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public String getSe_title() {
 		return se_title;
@@ -61,5 +61,4 @@ public class SendMsg {
 	}
 	
 	
-
 }

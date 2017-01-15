@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	.noticeList {padding:3em 20%; align:center;}
+	.noticeList {padding:0 20%; align:center;}
 	.noticeTable {margin:1em auto;}
 </style>
 

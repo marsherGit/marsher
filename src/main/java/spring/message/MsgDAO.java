@@ -1,32 +1,40 @@
 package spring.message;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class MsgDAO extends SqlSessionDaoSupport {
 
-	// ¹ÞÀº ÂÊÁö ¸®½ºÆ®
-	public List<ReceiveMsg> receiveMsg_list() {
-		List<ReceiveMsg> receiveMsg_list = getSqlSession().selectList("message.getReceiveMsgList");
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	public List<Object> receiveMsg_list(int startRow,int endRow) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);		
+		List<Object> receiveMsg_list = getSqlSession().selectList("message.getReceiveMsgList", map);
 		return receiveMsg_list;
 	}
 
-	// ¹ÞÀº ÂÊÁö Ä«¿îÆ®
-	public int receiveMsg_count() {
-		int count = getSqlSession().selectOne("message.getReceiveMsgCount", Integer.class);
-		return count;
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	public int receiveMsg_count(String memId) {
+		int count = getSqlSession().selectOne("message.getReceiveMsgCount", memId);
+		return count; 
 	}
 
-	// º¸³½ ÂÊÁö ¸®½ºÆ®
-	public List<SendMsg> sendMsg_list() {
-		List<SendMsg> sendMsg_list = getSqlSession().selectList("message.getSendMsgList");
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	public List<Object> sendMsg_list(int startRow,int endRow) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);	
+		List<Object> sendMsg_list = getSqlSession().selectList("message.getSendMsgList",map);
 		return sendMsg_list;
 	}
 
-	// º¸³½ ÂÊÁö Ä«¿îÆ®
-	public int sendMsg_count() {
-		int count = getSqlSession().selectOne("message.getSendMsgCount", Integer.class);
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	public int sendMsg_count(String memId) {
+		int count = getSqlSession().selectOne("message.getSendMsgCount", memId);
 		return count;
 	}
 
@@ -45,27 +53,46 @@ public class MsgDAO extends SqlSessionDaoSupport {
 	}
 
 	// receiveMsgContent
-	public ReceiveMsg getReceiveMsg(int re_num) {
-		ReceiveMsg getReceiveMsg = getSqlSession().selectOne("message.getReceiveMsg", re_num);
+	public ReceiveMsg getReceiveMsg(int num) {
+		ReceiveMsg getReceiveMsg = getSqlSession().selectOne("message.getReceiveMsg", num);
 		return getReceiveMsg;
 	}
 
 	// sendMsgContent
-	public SendMsg getSendMsg(int se_num) {
-		SendMsg getSendMsg = getSqlSession().selectOne("message.getSendMsg", se_num);
+	public SendMsg getSendMsg(int num) {
+		SendMsg getSendMsg = getSqlSession().selectOne("message.getSendMsg", num);
 		return getSendMsg;
 	}
 
 	// deleteReceive
-	public int deleteReceive(int re_num) {
-		int check = getSqlSession().delete("message.deleteReceive", re_num);
+	public int deleteReceive(int num) {
+		int check = getSqlSession().delete("message.deleteReceive", num);
 		return check;
 	}
 
 	// deleteSend
-	public int deleteSend(int se_num) {
-		int check = getSqlSession().delete("message.deleteSend", se_num);
+	public int deleteSend(int num) {
+		int check = getSqlSession().delete("message.deleteSend", num);
 		return check;
+	}
+
+	// updateSeCheckDate
+	public int updateSeCheckDate(int num) {
+		int check = -1;
+		check = getSqlSession().update("message.updateSeDate", num);
+		return check;
+	}
+
+	// updateReCheckDate
+	public int updateReCheckDate(int num) {
+		int check = -1;
+		check = getSqlSession().update("message.updateReDate", num);
+		return check;
+	}
+	
+	public int newMsg_count() {
+		int count = getSqlSession().selectOne("message.getNewMsgCount", Integer.class);
+		return count;
 	}
 
 }

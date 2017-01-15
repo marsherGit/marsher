@@ -7,6 +7,7 @@ import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
 import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
+import spring.message.ReceiveMsg;
 
 public interface LoginService {
 	
@@ -39,5 +40,6 @@ public interface LoginService {
 	
 	public List<NoticeDataBean> calNoticeList();						// main - calendar
 	public NoticeDataBean getNotice3(String calendar_date);				// main - calendarView
+	public int newMsg_count(String memId);								// nowMessageCount
 
 }

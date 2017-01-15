@@ -37,13 +37,16 @@
 		</c:if>
 		<c:if test="${ sendMsgList ne null }">
 		<c:forEach var="msg" items="${ sendMsgList }">
+		<c:if test="${ memId == msg.se_sender }">
 			<tr>
-				<td>${ msg.se_num }</td>
-				<td align="left"><a href="<c:url value="/message/sendMsgContent?se_num=${msg.se_num}"/>"> ${msg.se_title}</a></td>
+				<td><c:out value="${number}"/> 
+ 				 <c:set var="number" value="${number - 1}"/></td>
+				<td align="left"><a href="<c:url value="/message/sendMsgContent?num=${msg.num}&pageNum=${ currentPage }"/>"> ${msg.se_title}</a></td>
 				<td>${ msg.se_receiver }</td>
 				<td><fmt:formatDate value="${ msg.se_regdate }" pattern="yyyy/MM/dd"/></td>
 				<td><fmt:formatDate value="${ msg.se_checkDate }" pattern="yyyy/MM/dd"/></td>
 			</tr>
+			</c:if>
 		</c:forEach>
 		</c:if>
 	</table>
@@ -51,26 +54,28 @@
 
 
 
-<!-- 페이징 -->
-<c:if test="${count > 0}">
-   <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
-   <c:set var="pageBlock" value="${10}"/>
-   <fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
-   <c:set var="startPage" value="${result * 10 + 1}" />
-   <c:set var="endPage" value="${startPage + pageBlock-1}"/>
-   <c:if test="${endPage > pageCount}">
-        <c:set var="endPage" value="${pageCount}"/>
-   </c:if>
-         
-   <c:if test="${startPage > 10}">
-        <a href="sendMsgList.do?pageNum=${startPage - 10 }">[이전]</a>
-   </c:if>
-
-   <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="sendMsgList.do?pageNum=${i}">[${i}]</a>
-   </c:forEach>
-
-   <c:if test="${endPage < pageCount}">
-        <a href="sendMsgList.do?pageNum=${startPage + 10}">[다음]</a>
-   </c:if>
-</c:if>
+<!-- pagenation -->
+	<c:if test="${ count > 0 }">
+	<c:set var="pageCount" value="${ count / pageSize + ( count % pageSize == 0 ? 0 : 1) }"/>
+  <c:set var="pageBlock" value="${ 10 }"/>
+  <fmt:parseNumber var="result" value="${ (currentPage % pageBlock == 0 ? currentPage-1 : currentPage) / pageBlock }" integerOnly="true" />
+  <c:set var="startPage" value="${ result * pageBlock + 1 }" />
+  <c:set var="endPage" value="${ startPage + pageBlock - 1 }"/>
+  <c:if test="${ endPage > pageCount }">
+       <c:set var="endPage" value="${ pageCount }"/>
+  </c:if>
+	<div class="row pagingArea text-center">
+		<ul class="pagination pagination-sm">
+			<c:if test="${ startPage > pageBlock }">
+				<li class="prev"><a href="<c:url value="sendMsgList.do?pageNum=${ startPage - pageBlock }" />">&lt;&lt;</a></li>
+			</c:if>
+			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+		  	<li><a href="<c:url value="sendMsgList.do?pageNum=${ i }" />" class="page${ i }">${ i }</a></li>
+		  </c:forEach>
+		  <c:if test="${ endPage < pageCount }">
+		  	<li class="next"><a href="<c:url value="sendMsgList.do?pageNum=${ startPage + pageBlock }" />">&gt;&gt;</a></li>
+		  </c:if>
+		</ul> 
+	</div>
+	</c:if>
+	

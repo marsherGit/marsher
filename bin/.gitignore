@@ -1,4 +1,9 @@
+/db.properties
+/delivery/
+/factory/
 /log4j.properties
+/login/
+/messages/
 /mj/
 /spring/
-/delivery/
+/sql/

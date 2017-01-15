@@ -4,22 +4,27 @@ import java.util.List;
 
 
 public interface MsgService {
-	/*¹ÞÀºÂÊÁö ¸®½ºÆ®*/
-	public List<ReceiveMsg> receiveMsg_list();
-	public int receiveMsg_count();
-	/*º¸³½ÂÊÁö ¸®½ºÆ®*/
-	public List<SendMsg> sendMsg_list();
-	public int sendMsg_count();
-	/*ÂÊÁö ¾²±â*/
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®*/
+	public List<Object> receiveMsg_list(int startRow,int endRow);
+	public int receiveMsg_count(String memId);
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®*/
+	public List<Object> sendMsg_list(int startRow,int endRow);
+	public int sendMsg_count(String memId);
+	/*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	public int inputSeMsg(SendMsg seMessage);
 	public int inputReMsg(ReceiveMsg reMessage);
-	/*¹ÞÀºÂÊÁö º¸±â*/
-	public ReceiveMsg getReceiveMsg(int re_num) throws Exception;
-	/*º¸³½ÂÊÁö º¸±â*/
-	public SendMsg getSendMsg(int se_num) throws Exception;
-	/*¹ÞÀºÂÊÁö »èÁ¦*/
-	public int deleteReceive(int re_num);
-	/*º¸³½ÂÊÁö »èÁ¦*/
-	public int deleteSend(int se_num);
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public ReceiveMsg getReceiveMsg(int num) throws Exception;
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public SendMsg getSendMsg(int num) throws Exception;
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public int deleteReceive(int num);
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public int deleteSend(int num);
+	
+	public int updateSeCheckDate(int num);
+	public int updateReCheckDate(int num);
+	
+	public int newMsg_count();
 
 }

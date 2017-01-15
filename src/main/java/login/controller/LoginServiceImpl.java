@@ -13,6 +13,7 @@ import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
 import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
+import spring.message.ReceiveMsg;
 
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
@@ -169,6 +170,11 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		return list;
+	}
+	
+	@Override
+	public int newMsg_count(String memId){
+		return dao.newMsg_count(memId);
 	}
 
 }
