@@ -10,6 +10,16 @@ request.setCharacterEncoding("UTF-8");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script>
+$(document).ready(function() {
+	$(".nav-tabs>li:first-child").addClass("active");
+	$(".tab-content>div:first-child").addClass("in active");
+
+	var main_nav = $(".main_nav>li").eq(1);
+	main_nav.addClass("on");
+	main_nav.find(".sub_nav>li").eq(3).addClass("on");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(3).addClass("on");
+})
+
 $(document).ready(function(){
 	$("#select1").change(function(){
 		var data = $("#select1 option:selected").val();

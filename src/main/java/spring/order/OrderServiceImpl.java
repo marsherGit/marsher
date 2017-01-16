@@ -38,29 +38,34 @@ public class OrderServiceImpl implements OrderService {
 		return list;
 	}
 
-	// ���ּ� ���
-	public List<OrderDataBean> getOrderList() {
-		List<OrderDataBean> orderList = dao.getOrderList();
-		return orderList;
+	public List<OrderDataBean> getOrderList(String o_sender) {
+		List<OrderDataBean> list = new ArrayList<OrderDataBean>();
+		list = dao.getOrderList(o_sender);
+		return list;
+	}
+	public List<OrderDataBean> getAllOrders(){
+		List<OrderDataBean> list = new ArrayList<OrderDataBean>();
+		list = dao.getAllOrders();
+		return list;
+	}
+	public List<OrderDataBean> getSaengSanList() {
+		List<OrderDataBean> list = dao.getSaengSanList();
+		return list;
 	}
 
-	// ���ּ� ��
 	public int getOrderCount() {
 		return dao.getOrderCount();
 	}
 
-	// ordering ���̺� �ִ� ����(ModelAndView)
 	public OrderDataBean getOrder(int o_ref) throws Exception {
 		return dao.getOrder(o_ref);
 	}
 
-	// orderingPro ���̺� �ִ� ����
 	public List<OrderProducts> getOrderProducts(int o_ref) {
 		List<OrderProducts> proList = dao.getOrderProducts(o_ref);
 		return proList;
 	}
 
-	// ������ǰ ��
 	public int getProCount() {
 		return dao.getProCount();
 	}

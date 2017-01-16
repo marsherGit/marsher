@@ -32,9 +32,21 @@ public class OrderDAO extends SqlSessionDaoSupport {
 		return list;
 	}
 
-	public List<OrderDataBean> getOrderList() {
-		List<OrderDataBean> orderList = getSqlSession().selectList("order.getOrderList");
-		return orderList;
+	public List<OrderDataBean> getOrderList(String o_sender) {
+		List<OrderDataBean> list = new ArrayList<OrderDataBean>();
+		list = getSqlSession().selectList("order.getOrderList", o_sender);
+		return list;
+	}
+	
+	public List<OrderDataBean> getAllOrders() {
+		List<OrderDataBean> list = new ArrayList<OrderDataBean>();
+		list = getSqlSession().selectList("order.getAllOrders");
+		return list;
+	}
+	
+	public List<OrderDataBean> getSaengSanList() {
+		List<OrderDataBean> list = getSqlSession().selectList("order.getSaengSanList");
+		return list;
 	}
 
 	public int getOrderCount() {

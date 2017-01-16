@@ -59,18 +59,18 @@
 						<li>
 							<a href="#">생 산</a>
 							<ul class="sub_nav">
-								<li><c:if test="${ memId ne 'admin' }">
-								<li><a href="<c:url value='/order/saengSanWriteForm' />" onClick="return checkPass()">생산의뢰서등록</a></li>
-							</c:if>
-							<c:if test="${ memId eq 'admin' }">
+								<c:if test="${ memId ne 'admin' }">
+								<li><a href="<c:url value="/login/main"/>" onClick="return checkPass()">생산의뢰서등록</a></li>
+								</c:if>
+								<c:if test="${ memId eq 'admin' }">
 								<li><a href="<c:url value="/order/saengSanWriteForm" />" onClick="return checkPass()">생산의뢰서등록</a></li>
-							</c:if></li>
-								<li><c:if test="${ memId ne 'admin' }">
-								<li><a href="<c:url value='/order/saengSanList?st_id=${memId}'/>" onClick="return checkPass()">생산의뢰서조회</a></li>
-							</c:if>
-							<c:if test="${ memId eq 'admin' }">
-								<li><a href="<c:url value="/login/adminpage" />" onClick="return checkPass()">생산의뢰서조회</a></li>
-							</c:if></li>
+								</c:if>
+								<c:if test="${ memId ne 'admin' }">
+								<li><a href="<c:url value="/login/main"/>" onClick="return checkPass()">생산의뢰서조회</a></li>
+								</c:if>
+								<c:if test="${ memId eq 'admin' }">
+								<li><a href="<c:url value="/order/saengSanList" />" onClick="return checkPass()">생산의뢰서조회</a></li>
+								</c:if>
 								<li><a href="<c:url value="/factory/factoryInfo" />">공장정보</a></li>
 								<li><a href="<c:url value="/factory/factoryInputForm" />">공장등록</a></li>
 							</ul>
@@ -82,7 +82,12 @@
 								<li><a href="<c:url value="/chowonheeView/changgoCGList" />">창고출고</a></li>
 								<li><a href="<c:url value="/chowonheeView/jegoJH" />">재고조회</a></li>
 								<li><a href="<c:url value="/chowonheeView/jegoJJ" />">재고조정</a></li>
-								<li><a href="<c:url value="/order/orderList" />">발주서조회</a></li>
+								<c:if test="${ memId ne 'admin' }">
+								<li><a href="<c:url value="/order/orderList?o_sender=${memId}"/>">발주서조회</a></li>
+								</c:if>
+								<c:if test="${ memId eq 'admin' }">
+								<li><a href="<c:url value="/order/allOrders" />">발주서조회</a></li>
+								</c:if>
 							</ul>
 						</li>
 						<li>

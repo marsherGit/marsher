@@ -31,8 +31,12 @@
 
 <div class="col-sm-6">
 		<div>
-			<button type="button" class="btn btn-outline btn-primary">PDF 출력</button>
-			<a href="<c:url value="/order/orderList" />" class="btn btn-default">목록보기</a>
+				<c:if test="${ memId ne 'admin' }">
+					<a href="<c:url value="/order/orderList?o_sender=${memId}" />" class="btn btn-default">목록보기</a>
+				</c:if>
+				<c:if test="${ memId eq 'admin' }">
+					<a href="<c:url value="/order/allOrders" />"class="btn btn-default">목록보기</a>
+				</c:if>
 		</div>
 		<br>
 

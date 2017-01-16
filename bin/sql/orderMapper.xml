@@ -5,25 +5,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="order"> <!-- 발주서 -->
 
 	<select id="getOrderCount" resultType="int">
-		select count(*) from
-		ordering
+		select count(*) from ordering
 	</select>
 
 	<select id="getOrderList" resultType="spring.order.OrderDataBean">
-		select o_ref, o_title,
-		o_sender, o_regdate, o_deadline, deliveryState from ordering
+		select o_ref, o_title, o_sender, o_regdate, o_deadline, deliveryState
+		from ordering where o_sender=#{o_sender}  order by o_regdate desc
+	</select>
+	
+	<select id="getAllOrders" resultType="spring.order.OrderDataBean">
+	select o_ref, o_title, o_sender, o_regdate, o_deadline, deliveryState from ordering 
+	where o_sender != 'admin' order by o_deadline asc
+	</select>
+	
+	<select id="getSaengSanList" resultType="spring.order.OrderDataBean">
+		select o_ref, o_title, o_sender, o_regdate, o_deadline, deliveryState from ordering
+		where o_sender='admin' order by o_regdate desc
 	</select>
 
-	<select id="getOrder" resultType="spring.order.OrderDataBean"
-		parameterType="int">
-		select o_ref, o_title, o_deadline, o_regdate,
-		o_sendDate, o_receiver, o_sender, o_note, senderSign, receiverSign,
-		deliveryState
+	<select id="getOrder" resultType="spring.order.OrderDataBean" parameterType="int">
+		select o_ref, o_title, o_deadline, o_regdate, o_sendDate, o_receiver, o_sender, 
+		o_note, senderSign, receiverSign, deliveryState
 		from ordering where o_ref = #{o_ref}
 	</select>
 
 	<select id="getOrderProducts" resultType="spring.order.OrderProducts">
-		select o_reStep, pro_name, pro_container, pro_volume, o_count from
+		select o_reStep, pro_name, pro_container, pro_volume, pro_count from
 		orderingPro where o_ref = #{o_ref}
 	</select>
 

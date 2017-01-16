@@ -17,6 +17,16 @@ function facNameCheck(){
 			return false;
 		}
 }
+
+$(document).ready(function() {
+	$(".nav-tabs>li:first-child").addClass("active");
+	$(".tab-content>div:first-child").addClass("in active");
+
+	var main_nav = $(".main_nav>li").eq(1);
+	main_nav.addClass("on");
+	main_nav.find(".sub_nav>li").eq(0).addClass("on");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(0).addClass("on");
+})
 </script>
 <style>
 form {
