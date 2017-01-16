@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import factory.controller.FactoryCommand;
 import mj.Product.controller.ProductDataBean;
 
 public class OrderDAO extends SqlSessionDaoSupport {
@@ -23,6 +24,11 @@ public class OrderDAO extends SqlSessionDaoSupport {
 	public List<ProductDataBean> getProductList() {
 		List<ProductDataBean> list = new ArrayList<ProductDataBean>();
 		list = getSqlSession().selectList("delivery.allProduct");
+		return list;
+	}
+	public List<FactoryCommand> getFactoryList() {
+		List<FactoryCommand> list = new ArrayList<FactoryCommand>();
+		list = getSqlSession().selectList("factory.allFactory");
 		return list;
 	}
 
@@ -56,6 +62,21 @@ public class OrderDAO extends SqlSessionDaoSupport {
 		int check = -1;
 		check = getSqlSession().insert("order.insertOrder", ordering);
 		return check;
+	}
+	
+	public int insertProList(OrderProducts proList) {
+		int check = -1;
+		check = getSqlSession().insert("order.insertProList", proList);
+		return check;
+	}
+	
+	public ProductDataBean getProduct(String pro_num) {
+		ProductDataBean pro = getSqlSession().selectOne("order.getProduct", pro_num);
+		return pro;
+	}
+	public int maxOrder() {
+		int max = getSqlSession().selectOne("order.maxOrder");
+		return max;
 	}
 
 }

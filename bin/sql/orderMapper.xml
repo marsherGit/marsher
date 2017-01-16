@@ -34,20 +34,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- insertOrder -->
 	<insert id="insertOrder" parameterType="spring.order.OrderDataBean">
-		insert into
-		ordering(o_ref, o_title, o_deadline,o_regdate, o_sender, o_receiver,
-		o_note, senderSign)
-		values(Ordering_o_ref.NEXTVAL,#{o_title},#{o_deadline},
-		SYSDATE,#{o_sender},#{o_receiver},#{o_note},#{senderSign})
+		insert into ordering(o_ref, o_title, o_deadline, o_regdate, o_sender, o_receiver, o_note, deliveryState, o_count)
+		values(Ordering_o_ref.NEXTVAL, #{o_title}, #{o_deadline}, SYSDATE, #{o_sender}, #{o_receiver},#{o_note},'배송준비중', #{o_count})
 	</insert>
-
-	<insert id="insertProList">
-		INSERT INTO orderingPro( o_reStep, pro_name, pro_container, pro_volume, o_count ) 
-		VALUES
-		<foreach item="item" collection="proList" separator=",">
-			( OrderingPro_o_reStep.NEXTVAL,#{item.pro_name}, #{item.pro_container}, #{item.pro_volume},
-			#{item.o_count}) </foreach>
+	
+	<insert id="insertProList" parameterType="spring.order.OrderProducts">
+	insert into orderingPro(o_ref, o_reStep, pro_name, pro_container, pro_volume, pro_count)
+	values(#{o_ref}, #{o_reStep}, #{pro_name}, #{pro_container}, #{pro_volume}, #{pro_count})
 	</insert>
+	
+	<select id="getProduct" resultType="mj.Product.controller.ProductDataBean" parameterType="String">
+		select * from product where pro_num=#{pro_num}
+	</select>
+	
+	<select id="maxOrder" resultType="int">
+		select max(o_ref) from ordering
+	</select>
 
 
 	<!-- delete -->

@@ -11,6 +11,7 @@ public class OrderDataBean {
 	private String o_receiver;
 	private String o_sender;
 	private String o_note;
+	private int o_count;
 	private String senderSign;
 	private String receiverSign;
 	private String deliveryState;
@@ -34,8 +35,12 @@ public class OrderDataBean {
 	public void setO_note(String o_note) {
 		this.o_note = o_note;
 	}
-	
-	
+	public int getO_count() {
+		return o_count;
+	}
+	public void setO_count(int o_count) {
+		this.o_count = o_count;
+	}
 	public String getO_title() {
 		return o_title;
 	}
@@ -91,7 +96,7 @@ public class OrderDataBean {
 	public String toString() {
 		return "OrderDataBean [o_ref=" + o_ref + ", o_title=" + o_title + ", o_deadline=" + o_deadline + ", o_regdate="
 				+ o_regdate + ", o_sendDate=" + o_sendDate + ", o_receiver=" + o_receiver + ", o_sender=" + o_sender
-				+ ", o_note=" + o_note + ", senderSign=" + senderSign + ", receiverSign=" + receiverSign
+				+ ", o_note=" + o_note + ", o_count=" + o_count + ", senderSign=" + senderSign + ", receiverSign=" + receiverSign
 				+ ", deliveryState=" + deliveryState + "]";
 	}
 	

@@ -6,7 +6,7 @@ public class OrderProducts {
 	private String pro_name;
 	private String pro_container;
 	private int pro_volume;
-	private int o_count;
+	private int pro_count;
 
 	public int getO_ref() {
 		return o_ref;
@@ -38,16 +38,16 @@ public class OrderProducts {
 	public void setPro_volume(int pro_volume) {
 		this.pro_volume = pro_volume;
 	}
-	public int getO_count() {
-		return o_count;
+	public int getPro_count() {
+		return pro_count;
 	}
-	public void setO_count(int o_count) {
-		this.o_count = o_count;
+	public void setPro_count(int pro_count) {
+		this.pro_count = pro_count;
 	}
 	@Override
 	public String toString() {
 		return "OrderProducts [o_ref=" + o_ref + ", o_reStep=" + o_reStep + ", pro_name=" + pro_name
-				+ ", pro_container=" + pro_container + ", pro_volume=" + pro_volume + ", o_count=" + o_count + "]";
+				+ ", pro_container=" + pro_container + ", pro_volume=" + pro_volume + ", pro_count=" + pro_count + "]";
 	}
 	
 	
