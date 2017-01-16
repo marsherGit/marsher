@@ -33,12 +33,16 @@
 		values(sendMsg_se_num.NEXTVAL,#{se_title},#{se_content},#{se_receiver},#{se_sender},SYSDATE, #{st_id})
 	</insert>
 	
-	<insert id="insertRe" parameterType="spring.message.ReceiveMsg">
+	<insert id="insertRe" parameterType="int">
 		insert into receiveMsg(num, re_title, re_content, re_receiver, re_sender, re_regdate, st_id)
-		select num, se_title, se_content, se_receiver, se_sender, se_regdate, st_id from sendMsg S
-		where not exists(select * from receiveMsg where num=S.num) 
+		select num, se_title, se_content, se_receiver, se_sender, se_regdate, st_id from sendMsg 
+		where num=#{num}
 		 
 	</insert>
+	
+	<select id="getMaxNum" resultType="int">
+		select max(num) from sendMsg
+	</select> 
 	 
 	
 	<!-- getReceiveMsg content-->

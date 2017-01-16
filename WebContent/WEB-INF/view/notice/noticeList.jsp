@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jstl/fmt_rt" %>
+<%@ page isELIgnored="false" %>
 
 <style>
 	.noticeList {padding:0 20%; align:center;}
@@ -37,10 +41,11 @@ $(document).ready(function(){
 		<c:if test="${ noticeList ne null }">
 		<c:forEach var="list" items="${ noticeList }">
 			<tr>
-				<td>${ list.no_num }</td>
+				<td><c:out value="${number}"/> 
+ 				<c:set var="number" value="${number - 1}"/></td> 
 				<td><a href="<c:url value="/notice/noticeContent?no_num=${ list.no_num }&calDate=${ list.calendar_date }&pageNum=${ currentPage }"/>">${ list.no_title }</a></td>
 				<td>${ list.calendar_date }</td>				
-				<td>${ list.no_date }</td>				
+				<td>${ list.no_date }</td>				 
 			</tr>
 		</c:forEach>
 		</c:if>

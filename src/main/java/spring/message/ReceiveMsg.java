@@ -59,6 +59,13 @@ public class ReceiveMsg {
 	public void setSt_id(String st_id) {
 		this.st_id = st_id;
 	}
-
+	@Override
+	public String toString() {
+		return "ReceiveMsg [num=" + num + ", re_title=" + re_title + ", re_content=" + re_content + ", re_receiver="
+				+ re_receiver + ", re_sender=" + re_sender + ", re_regdate=" + re_regdate + ", re_checkDate="
+				+ re_checkDate + ", st_id=" + st_id + "]";
+	}
+	
+	 
 
 }

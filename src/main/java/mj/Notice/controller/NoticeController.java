@@ -38,6 +38,7 @@ public class NoticeController {
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
 		int count = 0;
+		int number=0;
 
 		List<Object> noticeList = null;
 
@@ -48,12 +49,15 @@ public class NoticeController {
 		} else {
 			noticeList = Collections.EMPTY_LIST;
 		}
-
+		
+		number=count-(currentPage-1)*pageSize;//글목록에 표시할 글번호
+		
 		request.setAttribute("currentPage", new Integer(currentPage));
 		request.setAttribute("startRow", new Integer(startRow));
 		request.setAttribute("endRow", new Integer(endRow));
 		request.setAttribute("count", new Integer(count));
 		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("number", new Integer(number));
 		request.setAttribute("noticeList", noticeList);
 
 		System.out.println(noticeList);

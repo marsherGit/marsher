@@ -46,9 +46,9 @@ public class MsgDAO extends SqlSessionDaoSupport {
 	}
 
 	// inputReMsg
-	public int inputReMsg(ReceiveMsg message) {
+	public int inputReMsg(int num) {
 		int check = -1;
-		check = getSqlSession().insert("message.insertRe", message);
+		check = getSqlSession().insert("message.insertRe", num);
 		return check;
 	}
 
@@ -93,6 +93,11 @@ public class MsgDAO extends SqlSessionDaoSupport {
 	public int newMsg_count() {
 		int count = getSqlSession().selectOne("message.getNewMsgCount", Integer.class);
 		return count;
+	}
+
+	public int maxNum() {
+		int maxNum = getSqlSession().selectOne("message.getMaxNum");
+		return maxNum;
 	}
 
 }
