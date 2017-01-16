@@ -60,13 +60,13 @@
 							<a href="#">생 산</a>
 							<ul class="sub_nav">
 								<c:if test="${ memId ne 'admin' }">
-								<li><a href="<c:url value="/login/main"/>" onClick="return checkPass()">생산의뢰서등록</a></li>
+								<li><a  href="void(0);" onclick="alert('접근 권한이 없습니다'); return false;">생산의뢰서등록</a></li>
 								</c:if>
 								<c:if test="${ memId eq 'admin' }">
 								<li><a href="<c:url value="/order/saengSanWriteForm" />" onClick="return checkPass()">생산의뢰서등록</a></li>
 								</c:if>
 								<c:if test="${ memId ne 'admin' }">
-								<li><a href="<c:url value="/login/main"/>" onClick="return checkPass()">생산의뢰서조회</a></li>
+								<li><a href="void(0);" onclick="alert('접근 권한이 없습니다'); return false;">생산의뢰서조회</a></li>
 								</c:if>
 								<c:if test="${ memId eq 'admin' }">
 								<li><a href="<c:url value="/order/saengSanList" />" onClick="return checkPass()">생산의뢰서조회</a></li>
