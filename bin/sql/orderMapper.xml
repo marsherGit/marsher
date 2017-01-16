@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="order">
-	<select id="selectLogin" parameterType="String" resultType="spring.controller.LoginCommand">
-		select memberId,password from member where memberid=#{userId}
-	</select>
-</mapper>

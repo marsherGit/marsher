@@ -6,8 +6,8 @@
 	<aside class="aside-wrapper">
 		<div class="list-group">
 			<a class="list-group-item" href="<c:url value="/member/info.do" />">매장찾기</a>
-			<a class="list-group-item" href="<c:url value="/" />">재고조회</a>
-			<a class="list-group-item" href="<c:url value="/" />">재고조정</a>
+<a class="list-group-item" href="<c:url value="/chowonheeView/StjegoJH" />">재고조회</a>
+			<a class="list-group-item" href="<c:url value="/chowonheeView/StjegoJJ" />">재고조정</a>
 			<a class="list-group-item" href="<c:url value="/member/register.do" />">매장등록</a>
 		</div>
 	</aside>

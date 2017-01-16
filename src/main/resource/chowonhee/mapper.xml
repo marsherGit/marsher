@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cho">
+	<!-- 입고 -->
+	<select id="getArticles" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+	select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoard order by inout_num desc)) where r&gt;= #{startRow} and r&lt;= #{endRow} 
+	</select>
+	
+	<select id="getArticlesDate" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+	select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoard where inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999 order by inout_num desc)) 
+            where r&gt;= #{startRow} and r&lt;= #{endRow}      
+	</select>
+	
+	<select id="getArticlesFacName" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+  	select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoard where inout_sender=#{inout_sender} order by inout_num desc)) where r&gt;= #{startRow} and r&lt;= #{endRow} 
+	</select>
+	
+	<select id="getArticlesDateFacName" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+             select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoard where inout_sender=#{inout_sender} and inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999 order by inout_num desc)) 
+            where r&gt;= #{startRow} and r&lt;= #{endRow} 
+	</select>
+	
+	<select id="getArticlelist" resultType="chowonhee.DTO.Jego" parameterType="int" >
+	select inout.PRO_NUM,product.PRO_NAME,product.PRO_CONTAINER,product.PRO_VOLUME,inout.PRO_COUNT,inout.INOUT_SENDER,inout.INOUT_RECEIVER 
+		from inout,product
+		where inout.PRO_NUM=product.PRO_NUM and inout.inout_num=#{inout_num}
+	</select>
+	
+	<select id="getArticlelistCount" resultType="int" parameterType="int">
+	 select count(*)
+		from inout,product
+		where inout.PRO_NUM=product.PRO_NUM and inout.inout_num=#{inout_num}
+	</select>
+
+	<select id="getArticleboard" resultType="chowonhee.DTO.inoutBoard" parameterType="int" >
+	select total,inout_note,inout_sender,inout_receiver,inout_deadline
+		from inoutboard
+		where inout_num=#{inout_num}
+	</select>
+
+
+	<select id="getArticleCount" resultType="int">
+	 select count(*) from inoutboard
+	</select>
+	
+	<select id="getArticlesDateCount" resultType="int" parameterType="Map">
+	 select count(*) from inoutboard where inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999
+	</select>
+	
+	<select id="getArticleFacNameCount" resultType="int">
+	 select count(*) from inoutboard where inout_sender = #{inout_sender} 
+	</select>	
+	
+	<select id="getArticleDateFacNameCount" resultType="int">
+	 select count(*) from inoutboard where inout_sender = #{inout_sender} and inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999
+	</select>	
+	
+	
+	<select id="jegoDRProductGetArticle" resultType="chowonhee.DTO.Product">
+	 select pro_num,pro_name,pro_container from product
+	</select> 
+	
+	
+	<select id="jegoDRProductGetArticles" resultType="chowonhee.DTO.Product" parameterType="String">
+	 select pro_num,pro_volume,pro_container,pro_name from product where pro_name=#{pro_name}
+	</select>
+	
+	<select id="facList" resultType="chowonhee.DTO.Factory">
+	 select * from factory
+	</select>
+	
+	<select id="findNumberIG" resultType="int">
+	select max(distinct inout_num) from inout
+	</select>
+	
+    <insert id="changoIGBoard" parameterType="chowonhee.DTO.changoIGBoard">
+	insert into inout(inout_num,inout_name,pro_num,pro_count,inout_sender,inout_receiver,inout_note)
+	values(inout_inout_num.NEXTVAL,#{inout_name},#{pro_num},#{pro_count},#{inout_sender},#{inout_receiver},#{inout_note})
+	</insert>
+	 
+	<insert id="changoIGBoard1" parameterType="chowonhee.DTO.changoIGBoard">
+	insert into inout(inout_num,inout_name,pro_num,pro_count,inout_sender,inout_receiver,inout_note)
+	values(#{inout_num},#{inout_name},#{pro_num},#{pro_count},#{inout_sender},#{inout_receiver},#{inout_note})
+	</insert>
+
+	<insert id="changoIGBoard2" parameterType="chowonhee.DTO.inoutBoard">
+	insert into inoutBoard(inout_num,inout_name,inout_sender,inout_receiver,inout_note,total)
+	values(#{inout_num},#{inout_name},#{inout_sender},#{inout_receiver},#{inout_note},#{total})
+	</insert>
+	
+	<select id="changoIGBoardSequence" parameterType="chowonhee.DTO.changoIGBoard">
+	insert into inout(inout_num)
+	values(inout_inout_num.NEXTVAL)
+	</select>
+	 
+	 <select id="getStoreNames" resultType="chowonhee.DTO.store">
+	 	select st_name from store
+	 </select>
+	 
+	 <select id="facNameList" resultType="chowonhee.DTO.Factory">
+	  select fac_name from factory
+	 </select>
+	 
+	 <select id="productSetTotal" parameterType="Map">
+	 UPDATE Product SET totalStockAmount = #{totalStockAmount} WHERE pro_num = #{pro_num}
+	 </select>
+	 
+	 <select id="productSetTotalplus" parameterType="Map">
+	 UPDATE Product SET totalStockAmount = totalStockAmount + #{totalStockAmount} WHERE pro_num = #{pro_num}
+	 </select>
+	 <!-- 출고 -->
+	<select id="getArticlesCG" resultType="chowonhee.DTO.changoCGBoard" parameterType="Map">
+	select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoardCG order by inout_num desc)) where r&gt;= #{startRow} and r&lt;= #{endRow} 
+	</select>	 
+	 
+	<select id="getArticlesDateCG" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+	select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoardCG where inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999 order by inout_num desc)) 
+            where r&gt;= #{startRow} and r&lt;= #{endRow}      
+	</select>
+	 
+	<select id="getArticlesFacNameCG" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+  	select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoardCG where inout_receiver=#{inout_receiver} order by inout_num desc)) where r&gt;= #{startRow} and r&lt;= #{endRow} 
+	</select>
+	 
+	<select id="getArticlesDateFacNameCG" resultType="chowonhee.DTO.changoIGBoard" parameterType="Map">
+    select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline,rownum r
+            from (select inout_num,inout_name,inout_sender,inout_receiver,inout_deadline
+            from inoutBoardCG where inout_receiver=#{inout_receiver} and inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999 order by inout_num desc)) 
+            where r&gt;= #{startRow} and r&lt;= #{endRow} 
+	</select>
+	 
+	 <select id="getArticleCountCG" resultType="int">
+	 select count(*) from inoutboardCG
+	</select>	
+	 
+	 <select id="getArticlesDateCountCG" resultType="int" parameterType="Map">
+	 select count(*) from inoutboardCG where inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999
+	</select>
+	
+	<select id="getArticleFacNameCountCG" resultType="int">
+	 select count(*) from inoutboardCG where inout_receiver = #{inout_receiver} 
+	</select>
+	
+	<select id="getArticleDateFacNameCountCG" resultType="int">
+	 select count(*) from inoutboardCG where inout_receiver = #{inout_receiver} and inout_deadline &gt;= to_date(#{inout_deadline},'yy/mm/dd') and inout_deadline &lt; to_date(#{inout_deadline},'yy/mm/dd') + 0.99999
+	</select>	
+	
+	<select id="storeList" resultType="chowonhee.DTO.store">
+	   select * from store where st_id NOT IN(select st_id from store where st_id='admin')
+	</select>	 
+	 
+	<select id="findNumberCG" resultType="int">
+	select max(distinct inout_num) from inoutCG
+	</select>
+
+	<insert id="changoCGBoard" parameterType="chowonhee.DTO.changoCGBoard">
+	insert into inoutCG(inout_num,inout_name,pro_num,pro_count,inout_sender,inout_receiver,inout_note)
+	values(inoutCG_inout_num.NEXTVAL,#{inout_name},#{pro_num},#{pro_count},#{inout_sender},#{inout_receiver},#{inout_note})
+	</insert>
+	 
+	<insert id="changoCGBoard1" parameterType="chowonhee.DTO.changoCGBoard">
+	insert into inoutCG(inout_num,inout_name,pro_num,pro_count,inout_sender,inout_receiver,inout_note)
+	values(#{inout_num},#{inout_name},#{pro_num},#{pro_count},#{inout_sender},#{inout_receiver},#{inout_note})
+	</insert>
+
+	<insert id="changoCGBoard2" parameterType="chowonhee.DTO.inoutBoard">
+	insert into inoutBoardCG(inout_num,inout_name,inout_sender,inout_receiver,inout_note,total)
+	values(#{inout_num},#{inout_name},#{inout_sender},#{inout_receiver},#{inout_note},#{total})
+	</insert>
+	 
+	 
+	<select id="getArticlelistCG" resultType="chowonhee.DTO.Jego" parameterType="int" >
+	select inoutCG.PRO_NUM,product.PRO_NAME,product.PRO_CONTAINER,product.PRO_VOLUME,inoutCG.PRO_COUNT,inoutCG.INOUT_SENDER,inoutCG.INOUT_RECEIVER 
+		from inoutCG,product
+		where inoutCG.PRO_NUM=product.PRO_NUM and inoutCG.inout_num=#{inout_num}
+	</select>
+	
+	<select id="getArticlelistCountCG" resultType="int" parameterType="int">
+	 select count(*)
+		from inoutCG,product
+		where inoutCG.PRO_NUM=product.PRO_NUM and inoutCG.inout_num=#{inout_num}
+	</select>	 
+	 
+	<select id="getArticleboardCG" resultType="chowonhee.DTO.inoutBoard" parameterType="int" >
+	select total,inout_note,inout_sender,inout_receiver,inout_deadline
+		from inoutboardCG
+		where inout_num=#{inout_num}
+	</select>	 
+	
+	 <select id="stNameList" resultType="chowonhee.DTO.store">
+	  select st_name from store where st_id NOT IN(select st_id from store where st_id='admin')
+	 </select>
+	<!-- 재고조회,재고조정 -->
+	<select id="selectListItems" resultType="chowonhee.DTO.Product" >
+	select distinct pro_bcategory from product
+	</select>	 
+	
+	<select id="selectListStores" resultType="chowonhee.DTO.store" >
+	select st_name from store where st_id NOT IN(SELECT st_id FROM stock where st_id='admin') order by st_name
+	</select>	 
+	
+	<select id="selectListItemsProNames" resultType="String" parameterType="String">
+	select pro_name from product where pro_bcategory=#{pro_bcategory} 
+	</select>	 
+	
+	<select id="JHandJJList" resultType="chowonhee.DTO.ProductPlusRemark">
+	SELECT distinct product.pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_cprice,pro_uprice,pro_properstock,stock.PRO_REMARK,totalStockAmount,totalStockAmountStore
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num 
+	</select>	
+	
+	<select id="JHandJJListSearch" resultType="chowonhee.DTO.ProductPlusRemark" parameterType="String">
+	SELECT distinct product.pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_cprice,pro_uprice,pro_properstock,stock.PRO_REMARK,totalStockAmount,totalStockAmountStore
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_name like '%'||#{pro_name}||'%' and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListSearchCount" resultType="int" parameterType="String">
+	SELECT count(*)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_name like '%'||#{pro_name}||'%' and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListSearchTotalproperstock" resultType="int" parameterType="String">
+	SELECT sum(pro_properstock)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_name like '%'||#{pro_name}||'%' and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListSearchTotalStockAmount" resultType="int" parameterType="String">
+	SELECT sum(totalStockAmount)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_name like '%'||#{pro_name}||'%' and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListSearchTotalStockAmountStore" resultType="int" parameterType="String">
+	SELECT sum(totalStockAmountStore)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_name like '%'||#{pro_name}||'%' and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListfummok" resultType="chowonhee.DTO.ProductPlusRemark" parameterType="String">
+	SELECT distinct product.pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_cprice,pro_uprice,pro_properstock,stock.PRO_REMARK,totalStockAmount,totalStockAmountStore
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_bcategory=#{pro_bcategory} and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+		
+	<select id="JHandJJListfummokTotalproperstock" resultType="int" parameterType="String">
+	SELECT sum(pro_properstock)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_bcategory=#{pro_bcategory} and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListfummokTotalStockAmount" resultType="int" parameterType="String">
+	SELECT sum(totalStockAmount)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_bcategory=#{pro_bcategory} and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>
+	
+	<select id="JHandJJListfummokTotalStockAmountStore" resultType="int" parameterType="String">
+	SELECT sum(totalStockAmountStore)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_bcategory=#{pro_bcategory} and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select>
+	
+	<select id="JHandJJListFindOneSelect2" resultType="chowonhee.DTO.ProductPlusRemark" parameterType="String">
+  	SELECT distinct product.pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_cprice,pro_uprice,pro_properstock,stock.PRO_REMARK,totalStockAmount,totalStockAmountStore
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where pro_name=#{pro_name} and PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num 
+	</select>	
+	
+	<select id="JHandJJListStore" resultType="chowonhee.DTO.ProductPlusRemark">
+	SELECT distinct product.pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_cprice,pro_uprice,pro_properstock,stock.PRO_REMARK,totalStockAmount,totalStockAmountStore
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num and product.pro_num NOT IN ( SELECT pro_num FROM stock where st_id='admin') order by product.pro_num
+	</select>	
+	
+	<select id="JHandJJListCount" resultType="int">
+	SELECT count(distinct product.pro_num)
+	FROM product left OUTER JOIN stock ON product.pro_num=stock.pro_num where PRO_REMARK NOT IN(select PRO_REMARK from stock where PRO_REMARK='zxcvbnmMNBVCXZ') order by product.pro_num
+	</select> 
+	
+	<select id="JHandJJStockAmount" resultType="String" parameterType="String">
+	select sum(PRO_STOCKAMOUNT) from stock where st_id='admin' and pro_num=#{pro_num} 
+	</select>
+	
+	<select id="JHandJJStockAmountStore" resultType="String" parameterType="String">
+	select sum(pro_stockamount) from stock where pro_num=#{pro_num} and st_id NOT IN(SELECT st_id FROM stock where st_id='admin')
+	</select>
+	
+	<select id="JHandJJStockProNum" resultType="String">
+	select pro_num from product
+	</select>
+	
+	<update id="updateTotalStockAmount" parameterType="Map">
+	UPDATE Product SET totalStockAmount = #{totalStockAmount} WHERE pro_num = #{pro_num}
+	</update>	
+	
+	<update id="updateTotalStockAmountStore" parameterType="Map">
+	UPDATE Product SET totalStockAmountStore = #{totalStockAmountStore} WHERE pro_num = #{pro_num}
+	</update>
+	
+	<select id="totalAppropriate" resultType="int">
+	 select sum(pro_properstock) from product
+	</select>
+	
+	<select id="countProdcut" resultType="int">
+	select count(*) from product
+	</select>
+	
+	<select id="findAdminPronum" resultType="int">
+	select count(*) from product
+	</select>
+	
+	<select id="productPronumList" resultType="String">
+	select pro_num from product
+	</select>
+	
+	<select id="checkStockPronum" resultType="int" parameterType="String">
+	select count(*) from product,stock where product.pro_num = stock.pro_num and stock.ST_ID='admin' and stock.pro_num=#{pro_num} 
+	</select>
+	
+	<select id="findtotalstockamount" resultType="int" parameterType="String">
+	select totalstockamount from product where pro_num=#{pr_num}
+	</select>
+	<!-- 재고조회 -->
+	<select id="getStockPronums" resultType="String" parameterType="String">
+	select pro_num from stock where st_id=#{st_id}
+	</select>
+	
+	<select id="getStockProstockamounts" resultType="int" parameterType="String">
+	select pro_stockamount from stock where st_id=#{st_id}
+	</select>
+	
+	<select id="getStIdCount" resultType="int" parameterType="String">
+	select count(*) from stock where st_id=#{st_id}
+	</select> 
+	
+	<select id="notInProNums" resultType="String" parameterType="String">
+	SELECT pro_num FROM product where product.pro_num NOT IN ( SELECT pro_num FROM stock where st_id=#{st_id})
+	</select>
+	
+	<!-- 재고조정 -->
+	<insert id="insertStockModify" parameterType="Map">
+	insert into StockModify(mod_number,pro_num,real_stockAmount,old_stockAmount)
+	values(StockModify_mod_number.NEXTVAL,#{pro_num},#{real_stockAmount},#{old_stockAmount})
+	</insert>
+	
+	<insert id="insertStockModify2" parameterType="Map">
+	insert into StockModify(mod_number,pro_num,real_stockAmount,old_stockAmount)
+	values(#{mod_number},#{pro_num},#{real_stockAmount},#{old_stockAmount})
+	</insert>
+	
+	<select id="maxModnumber" resultType="int">
+	select max(distinct mod_number) from StockModify 
+	</select>
+	
+	<insert id="ModifyBoard" parameterType="Map">
+	insert into StockModifyBoard(mod_number,title)
+	values(#{mod_number},#{title})
+	</insert>
+	
+	<select id="findProName" resultType="String" parameterType="String">
+	select pro_name from product where pro_num=#{pro_num}
+	</select>
+	
+	<select id="JJListCount" resultType="int">
+	select count(*) from StockModifyBoard
+	</select>
+	
+	<select id="JJListNameCount" resultType="int" parameterType="String">
+	select count(*) from StockModifyBoard where title like '%'||#{pro_name}||'%'
+	</select>
+	
+	<select id="JJListDateCount" resultType="int" parameterType="String">
+	select count(*) from StockModifyBoard where title like '%'||#{pro_name}||'%' and mod_regdate &gt;= to_date(#{mod_regdate},'yy/mm/dd') and mod_regdate &lt; to_date(#{mod_regdate},'yy/mm/dd') + 0.99999 
+	</select>
+	
+	<select id="JJListNDCount" resultType="int" parameterType="String">
+	select count(*) from StockModifyBoard where title like '%'||#{pro_name}||'%' and mod_regdate &gt;= to_date(#{mod_regdate},'yy/mm/dd') and mod_regdate &lt; to_date(#{mod_regdate},'yy/mm/dd') + 0.99999 
+	</select>
+	
+	<select id="JJListgetArticles" resultType="chowonhee.DTO.StockModifyBoard" parameterType="Map">
+	select mod_number,title,mod_regdate,r
+         from (select mod_number,title,mod_regdate,rownum r
+         from (select mod_number,title,mod_regdate
+         from StockModifyBoard order by mod_number desc)) where r&gt;= #{startRow} and r&lt;= #{endRow}  
+	</select>
+	
+	<select id="JJNameArticles" resultType="chowonhee.DTO.StockModifyBoard" parameterType="Map">
+	select mod_number,title,mod_regdate,r
+         from (select mod_number,title,mod_regdate,rownum r
+         from (select mod_number,title,mod_regdate
+         from StockModifyBoard where title like '%'||#{pro_name}||'%' order by mod_number desc)) where r&gt;= #{startRow} and r&lt;= #{endRow}  
+	</select>
+	
+	<select id="JJDateArticles" resultType="chowonhee.DTO.StockModifyBoard" parameterType="Map">
+	select mod_number,title,mod_regdate,r
+         from (select mod_number,title,mod_regdate,rownum r
+         from (select mod_number,title,mod_regdate
+         from StockModifyBoard where mod_regdate &gt;= to_date(#{mod_regdate},'yy/mm/dd') and mod_regdate &lt; to_date(#{mod_regdate},'yy/mm/dd') + 0.99999 order by mod_number desc)) where r&gt;= #{startRow} and r&lt;= #{endRow}  
+	</select>
+	
+	<select id="JJNDArticles" resultType="chowonhee.DTO.StockModifyBoard" parameterType="Map">
+	select mod_number,title,mod_regdate,r
+         from (select mod_number,title,mod_regdate,rownum r
+         from (select mod_number,title,mod_regdate
+         from StockModifyBoard where title like '%'||#{pro_name}||'%' and mod_regdate &gt;= to_date(#{mod_regdate},'yy/mm/dd') and mod_regdate &lt; to_date(#{mod_regdate},'yy/mm/dd') + 0.99999 order by mod_number desc)) where r&gt;= #{startRow} and r&lt;= #{endRow}  
+	</select>
+	
+	<select id="JJListgetContents" resultType="chowonhee.DTO.StockModify" parameterType="int">
+	select pro_num,real_stockAmount,old_stockAmount,mod_regdate from StockModify where mod_number=#{mod_number}
+	</select>
+	
+	<select id="ContentsCount" resultType="int" parameterType="int">
+	select count(*) from StockModify where mod_number=#{mod_number}
+	</select>
+	
+	<!-- jegoDR,CGjegoDR 후에, 재고테이블 insert 혹은 재고테이블 update -->
+	<select id="findPronum" resultType="int" parameterType="String">
+	select count(distinct pro_num) from stock where pro_num=#{pro_num}
+	</select>
+	
+	<select id="checkCountStidIG" resultType="int" parameterType="String">
+    select count(pro_num) from stock where st_id=#{st_id} and pro_num=#{pro_num}
+	</select>
+	
+	<select id="findPronumCG" resultType="int" parameterType="String">
+    select count(distinct pro_num) from stock where pro_num=#{pro_num} and st_id NOT IN (SELECT st_id FROM stock where st_id='admin')
+	</select>
+	
+	<select id="findst_IdCG" resultType="String" parameterType="String">
+     select st_id from store where st_name=#{st_name}
+	</select>
+	
+	<select id="checkCountStid" resultType="int" parameterType="String">
+     select count(pro_num) from stock where st_id=#{st_id} and pro_num=#{pro_num}
+	</select>
+	
+	
+	<insert id="insertStock" parameterType="Map">
+	insert into stock
+	values(#{st_id},#{pro_num},#{pro_stockamount},#{pro_remark})
+	</insert>
+	
+	<!-- CGjegoDR에서 store name비교하는 메서드 -->
+	<select id="findstId" resultType="int">
+	select count(stock.st_id) from stock,store where store.st_name=#{st_name} and store.ST_ID = stock.ST_ID
+	</select>
+	
+	<!-- 입고 재고조회 값더하기 -->
+	<update id="updateStockIG" parameterType="Map">
+	update stock set pro_stockamount = pro_stockamount + #{pro_stockamount},pro_remark=#{pro_remark} where st_id = #{st_id} and pro_num = #{pro_num}
+	</update>
+	
+	<!-- 출고 재고조회 값뺴기 -->
+	<update id="updateStockCG" parameterType="Map">
+	update stock set pro_stockamount = pro_stockamount + #{pro_stockamount} where st_id = #{st_id} and pro_num = #{pro_num}
+	</update>
+	
+	<!-- jegoJJListJHPro  -->
+	<update id="revertJHList" parameterType="Map">
+	update product set totalstockamount = #{totalstockamount} where pro_num=#{pro_num}
+	</update>
+	
+	<delete id="deleteStock" parameterType="int">
+	delete from stockmodify where mod_number=#{mod_number}
+	</delete>
+
+	<delete id="deleteStockboard" parameterType="int">
+	delete from stockmodifyboard where mod_number=#{mod_number}
+	</delete>	
+	
+	<!-- 매장재고조회 -->
+	<select id="StfindName" parameterType="String" resultType="chowonhee.DTO.store">
+	select st_name,st_id from store where st_id=#{st_id}
+	</select>
+	
+	<!-- 매장재고조정 -->
+	<select id="findNotInsert" parameterType="String" resultType="String">
+	select product.pro_num from product where product.pro_num NOT IN(select product.pro_num from stock,product where stock.st_id=#{st_id} and stock.pro_num=product.pro_num)
+	</select>
+	
+	<select id="insertSetZero" parameterType="Map">
+	insert into stock values(#{st_id},#{pro_num},0,'zxcvbnmMNBVCXZ')
+	</select>
+	
+	<update id="updateStockamount" parameterType="Map">
+	update stock set pro_stockamount=#{pro_stockamount} where st_id=#{st_id} and pro_num=#{pro_num}
+	</update>
+	
+	<update id="updateChangoAmount" parameterType="Map">
+	update product set TOTALSTOCKAMOUNT = TOTALSTOCKAMOUNT+#{totalStockAmountStore}-#{actuality} where pro_num=#{pro_num}
+	</update>
+	
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	       http://www.springframework.org/schema/context
+	       http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+<context:component-scan base-package="excelchowonhee"/> 
+<!-- <context:component-scan base-package="spring.view"/>  -->
+
+	<bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tilesdef/tilesdef.xml</value>
+			</list>
+		</property>
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory" />
+	</bean>
+
+<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" p:alwaysUseFullPath="true"/>
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" p:alwaysUseFullPath="true"/>
+
+
+
+<!--  <bean id="downloadController" class="spring.controller.DownloadController" />	 -->
+<bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+
+ 
+<!-- <bean id="pageRanksController" class="spring.controller.PageRanksController" /> -->
+	<bean id="pageRanks" class="excelchowonhee.PageRanksView" />
+ 
+
+	<bean id="pageXmlReport"
+		class="org.springframework.web.servlet.view.xml.MarshallingView">
+		<property name="marshaller" ref="marshaller" />
+		<property name="modelKey" value="report" />
+	</bean>
+
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>excelchowonhee.PageRankReport</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+</beans>
