@@ -1,22 +1,11 @@
+/chowonhee/
 /db.properties
 /delivery/
+/excelchowonhee/
 /factory/
 /log4j.properties
 /login/
 /messages/
 /mj/
 /spring/
-<<<<<<< HEAD
-/delivery/
-/login/
-=======
->>>>>>> branch 'master' of https://github.com/marsherGit/marsher.git
 /sql/
-/chowonhee/
-/DTO/
-/PageRank.class
-/PageRankReport.class
-/PageRanksController.class
-/PageRanksView.class
-/controller/
-/excelchowonhee/

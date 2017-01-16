@@ -60,7 +60,7 @@
 							<a href="#">생 산</a>
 							<ul class="sub_nav">
 								<li><c:if test="${ memId ne 'admin' }">
-								<li><a href="<c:url value='/order/saengSanWriteForm?st_id=${memId}'/>" onClick="return checkPass()">생산의뢰서등록</a></li>
+								<li><a href="<c:url value='/order/saengSanWriteForm' />" onClick="return checkPass()">생산의뢰서등록</a></li>
 							</c:if>
 							<c:if test="${ memId eq 'admin' }">
 								<li><a href="<c:url value="/order/saengSanWriteForm" />" onClick="return checkPass()">생산의뢰서등록</a></li>

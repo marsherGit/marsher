@@ -102,7 +102,7 @@
 										<td align="center">${proList.pro_name}</td>
 										<td align="center">${proList.pro_container}</td>
 										<td align="center">${proList.pro_volume}</td>
-										<td align="center">${proList.o_count}</td>
+										<td align="center">${proList.pro_count}</td>
 									</tr>
 
 								</c:forEach>

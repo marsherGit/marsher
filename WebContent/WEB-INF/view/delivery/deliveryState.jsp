@@ -136,7 +136,7 @@
 					<c:forEach var="item" items="${ articleList }">
 					<tr>
 						<td>${ item.o_ref }</td>
-						<td class="text-left"><a href="<c:url value="/delivery/deliveryState?num=${ item.o_ref }" />">${ item.o_title }</a></td>
+						<td class="text-left"><a href="a href="<c:url value="/order/orderContent?o_ref=${ item.o_ref }" />">${ item.o_title }</a></td>
 						<td>${ item.o_receiver }</td>
 						<td><fmt:formatDate value="${ item.o_regdate }" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ item.o_deadline }" pattern="yyyy/MM/dd"/></td>

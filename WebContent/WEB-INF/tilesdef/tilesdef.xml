@@ -203,6 +203,7 @@
 	
 	<definition name="orderWriteForm" extends="base_layout">
 		<put-attribute name="title" value="Marsher :: 발주서 등록" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_delivery.jsp" />
 		<put-attribute name="body_title" value="발 주 서 등 록" />
 		<put-attribute name="body_title_desc" value="(발주서 등록 페이지 입니다.)" />
 		<put-attribute name="body" value="/WEB-INF/view/order/orderWriteForm.jsp" />

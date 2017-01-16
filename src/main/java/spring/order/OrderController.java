@@ -1,6 +1,8 @@
 package spring.order;
 
+import java.beans.PropertyEditorSupport;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import factory.controller.FactoryCommand;
 import mj.Product.controller.ProductDataBean;
 import spring.message.MsgService;
 import spring.message.ReceiveMsg;
@@ -47,6 +50,13 @@ public class OrderController {
 		pro = service.getProductList();
 		
 		return pro;
+	}
+	@ModelAttribute("factorys")
+	public List<FactoryCommand> getFactoryList() {
+		List<FactoryCommand> factory = new ArrayList<FactoryCommand>();
+		factory = service.getFactoryList();
+
+		return factory;
 	}
 
 	@RequestMapping(value = "/order/orderList")
@@ -73,21 +83,19 @@ public class OrderController {
 		return "orderContent";
 	}
 
-	// orderWriteForm
-	@RequestMapping("/order/orderWriteForm")
-	public String orderWriteForm(@ModelAttribute("ordering") OrderDataBean ordering, @ModelAttribute("proList") OrderProducts proList) {
+	/* orderWriteForm.jsp */
+	@RequestMapping(value="/order/orderWriteForm" , method = RequestMethod.GET)
+	public String orderWriteForm() {
 		return "orderWriteForm";
 	}
 
-	// orderWritePro
-	@RequestMapping(value = "/order/orderWritePro")
-	public String orderWritePro(OrderDataBean ordering, List<OrderProducts> proList, HttpServletRequest request) throws Throwable {
+	/* orderWritePro.jsp */
+	@RequestMapping(value="/order/orderWritePro")
+	public String orderWritePro(OrderDataBean ordering, String[] pro_name, int[] pro_count) {
+		service.insertOrder(ordering, pro_name, pro_count);
 		
-		service.insertOrder(ordering);
-	
-		return "/orderWritePro";
+		return "orderWriteForm";
 	}
-	
 	
 	/* saengSan */
 	@RequestMapping(value = "/order/saengSanList")
@@ -115,20 +123,33 @@ public class OrderController {
 	}
 
 	
-	@RequestMapping("/order/saengSanWriteForm")
-	public String saengSanWriteForm(@ModelAttribute("ordering") OrderDataBean ordering, @ModelAttribute("proList") OrderProducts proList) {
+	/* saengSanWriteForm.jsp */
+	@RequestMapping(value="/order/saengSanWriteForm" , method = RequestMethod.GET)
+	public String saengSanWriteForm() {
 		return "saengSanWriteForm";
 	}
 
-
-	@RequestMapping(value = "/order/saengSanWritePro")
-	public String saengSanWritePro(OrderDataBean ordering, OrderProducts proList, HttpServletRequest request) throws Throwable {
-		service.insertOrder(ordering);
-		return "/saengSanWritePro";
+	/* saengSanWritePro */
+	@RequestMapping(value="/order/saengSanWritePro")
+	public String saengSanWritePro(OrderDataBean ordering, String[] pro_name, int[] pro_count) {
+		service.insertOrder(ordering, pro_name, pro_count);
+		
+		return "saengSanWriteForm";
 	}
 	
-	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) throws Exception {
+	    binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
 
+	        public void setAsText(String o_deadline) throws IllegalArgumentException {
+	            try {
+	                setValue(new SimpleDateFormat("yyyy-MM-dd").parse(o_deadline));
+	            } catch (ParseException e) {
+	                setValue(null);
+	            }
+	        }
+	    });
+	}
 
 
 	
