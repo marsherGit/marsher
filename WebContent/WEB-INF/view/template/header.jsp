@@ -78,10 +78,10 @@
 						<li>
 							<a href="#">재 고</a>
 							<ul class="sub_nav">
-								<li><a href="<c:url value="/" />">창고입고</a></li>
-								<li><a href="<c:url value="/" />">창고출고</a></li>
-								<li><a href="<c:url value="/" />">재고조회</a></li>
-								<li><a href="<c:url value="/" />">재고조정</a></li>
+								<li><a href="<c:url value="/chowonheeView/changgoIGList" />">창고입고</a></li>
+								<li><a href="<c:url value="/chowonheeView/changgoCGList" />">창고출고</a></li>
+								<li><a href="<c:url value="/chowonheeView/jegoJH" />">재고조회</a></li>
+								<li><a href="<c:url value="/chowonheeView/jegoJJ" />">재고조정</a></li>
 								<li><a href="<c:url value="/order/orderList" />">발주서조회</a></li>
 							</ul>
 						</li>
@@ -108,8 +108,8 @@
 							<a href="#">매 장</a>
 							<ul class="sub_nav">
 								<li><a href="<c:url value="/member/info.do?st_id=manager1" />">매장찾기</a></li>
-								<li><a href="<c:url value="/" />">재고조회</a></li>
-								<li><a href="<c:url value="/" />">재고조정</a></li>
+								<li><a href="<c:url value="/chowonheeView/StjegoJH" />">재고조회</a></li>
+								<li><a href="<c:url value="/chowonheeView/StjegoJJ" />">재고조정</a></li>
 								<li><a href="<c:url value="/member/register.do" />">매장등록</a></li>
 							</ul>
 						</li>

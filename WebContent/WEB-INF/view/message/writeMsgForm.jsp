@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>쪽지쓰기</title>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jstl/fmt_rt" %>
+<%@ page isELIgnored="false" %>
+ 
 <style>
 .writeMsg_form {
 	padding: 0 3em;
@@ -36,15 +36,11 @@
 			return true;
 	}
 </script>
-</head>
 
-
-<body>
-	<br>
 	<div class="writeMsg_form">
 		<form name="writeMsgForm" method="post"
 			action="<c:url value="/message/writeMsgPro" />"
-			onsubmit="return checkIt();">
+			onsubmit="return checkIt()">
 			
 			<input type="hidden" name="se_sender" value="${memId}">
 			<input type="hidden" name="st_id" value="${memId}">
@@ -69,11 +65,11 @@
 				</tr>
 				<tr>
 					<td width="70" align="center">제 목</td>
-					<td width="330"><input type="text" size="100" maxlength="30"
+					<td width="330"><input type="text" size="100" maxlength="30" id="se_title"
 						name="se_title"></td>
 				</tr>
 				<tr>
-					<td colspan=2><textarea name="se_content" rows="13" cols="100"></textarea></td>
+					<td colspan=2><textarea name="se_content" id="se_content" rows="13" cols="100"></textarea></td>
 				</tr>
 			</table>
 			<br>
@@ -85,5 +81,3 @@
 
 		</form>
 	</div>
-</body>
-</html>

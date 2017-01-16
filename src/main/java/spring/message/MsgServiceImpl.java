@@ -37,8 +37,8 @@ public class MsgServiceImpl implements MsgService {
 		int check = dao.inputSeMsg(seMessage);
 		return 0;
 	}
-	public int inputReMsg(ReceiveMsg reMessage){
-		int check = dao.inputReMsg(reMessage);
+	public int inputReMsg(int num){
+		int check = dao.inputReMsg(num);
 		return 0;
 	}
 	//���� ���� ���� 
@@ -72,5 +72,13 @@ public class MsgServiceImpl implements MsgService {
 	public int newMsg_count(){
 		return dao.newMsg_count();
 	}
+
+	@Override
+	public int maxNum() {
+		int maxNum = dao.maxNum();
+		return maxNum;
+	}
+	
+	
 
 }

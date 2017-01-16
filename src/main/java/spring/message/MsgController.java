@@ -111,10 +111,13 @@ public class MsgController {
 
 	// writeMsgPro
 	@RequestMapping(value = "/message/writeMsgPro")
-	public String writeMsgPro(SendMsg seMessage, ReceiveMsg reMessage, HttpServletRequest request) throws Throwable {
+	public String writeMsgPro(SendMsg seMessage, HttpServletRequest request) throws Throwable {
 		service.inputSeMsg(seMessage);
-		service.inputReMsg(reMessage);
-		return "/writeMsgPro";
+		int num = service.maxNum();
+		System.out.println(num);
+		System.out.println(seMessage);
+		service.inputReMsg(num);
+		return "/writeMsgPro"; 
 	}
 
 	// receiveMsgContent

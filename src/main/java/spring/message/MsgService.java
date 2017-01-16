@@ -12,7 +12,7 @@ public interface MsgService {
 	public int sendMsg_count(String memId);
 	/*���� ����*/
 	public int inputSeMsg(SendMsg seMessage);
-	public int inputReMsg(ReceiveMsg reMessage);
+	public int inputReMsg(int num);
 	/*�������� ����*/
 	public ReceiveMsg getReceiveMsg(int num) throws Exception;
 	/*�������� ����*/
@@ -26,5 +26,7 @@ public interface MsgService {
 	public int updateReCheckDate(int num);
 	
 	public int newMsg_count();
+	public int maxNum();
+	
 
 }

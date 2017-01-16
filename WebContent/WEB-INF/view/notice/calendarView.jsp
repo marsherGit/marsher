@@ -42,12 +42,12 @@
 		<div style="text-align:left" >　
 				<a href="<c:url value="/notice/noticeDeletePro?no_num=${ notice.no_num }" />" class="btn btn-danger" onclick="return deleteCheck();">삭제</a>	　　　　　　　　　　　　　
 				<input type="button" class="btn btn-warning" value="수정하기" OnClick="window.location='<c:url value="/notice/noticeUpdateForm?no_num=${ notice.no_num }" />'">
-		  		<input type="button" class="btn btn-default" value="목록보기" OnClick="window.location='<c:url value="/notice/noticeList?pageNum=${pageNum}" />'">
+		  		<input type="button" class="btn btn-default" value="목록보기" OnClick="window.location='<c:url value="/notice/noticeList" />'">
 		</div>
 		</c:if> 
 		<c:if test="${ memId ne 'admin'  }"> 
 		<div style="text-align:center" >　 
-		<input type="button" class="btn btn-default" value="목록보기" OnClick="window.location='<c:url value="/notice/noticeList?pageNum=${pageNum}" />'">　
+		<input type="button" class="btn btn-default" value="목록보기" OnClick="window.location='<c:url value="/notice/noticeList" />'">　 
 		</div>
 		</c:if>
    </div>

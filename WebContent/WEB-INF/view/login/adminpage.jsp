@@ -177,8 +177,7 @@ function previewImage(targetObj, View_area) {
 			</ul>
 			<div class="row text-center btns">
 				<input type="submit" value="수정하기" class="btn btn-warning"> <input
-					type="button" value="취소" class="btn btn-default"
-					onclick="javascript:history.back()">
+					type="reset" value="취소" class="btn btn-default"> 
 			</div>
 		</div>
   </form>

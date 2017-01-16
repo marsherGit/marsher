@@ -64,7 +64,7 @@ List <ReceiveMsg> msg = (List <ReceiveMsg>)request.getAttribute("receiveMsgList"
 	
 	.ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 	
-	.delivery_panel .panel-body {background:url('../images/delivery_bar_bg.png') no-repeat 0 0; padding:2.5em 2em;}
+	.delivery_panel .panel-body {background:url('../images/delivery_bar_bg.png') no-repeat 0 0; background-size:100% 100%; padding:2.5em 2em;}
 	.progress {height:10px; overflow:visible; margin:2em 0; background:url('../images/bar_bg.png') repeat-y 100% 100%; background-size:contain; background-position-x:-1px;}
 	.progress-bar {position:relative; border-radius:4px 0 0 4px; background-color:#366886;}
 	.delivery_tag {display:block; position:absolute; top:-2.2em; right:-2.5em; width:4em; height:2.5em; font-size:0.8em; background:url('../images/icon_truck.png') no-repeat; background-size:contain; background-position:0 0; overflow:hidden; text-indent:-1em;}
