@@ -92,11 +92,9 @@
   	});
   	$(".o_count").val(o_count);
   });
-  
+  /* 
   $(document).on("change",".o_receiver",function(){
-	  
-	  
-  	var itemTag = "";
+	  var itemTag = "";
   	itemTag += '<tr><td class="no"></td>';
   	itemTag += '<td class="pro_num"></td>';
   	itemTag += '<td><select name="pro_name" class="form-control input-sm pro_name">';
@@ -112,7 +110,7 @@
       
   	$('#my-tbody').html(itemTag);
   });
-      
+    */   
  }); //end ready
 
  function delete_row() {
