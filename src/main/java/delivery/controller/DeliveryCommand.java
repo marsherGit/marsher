@@ -1,5 +1,7 @@
 package delivery.controller;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class DeliveryCommand {
 	private int delivery_num;
 	private String delivery_name;
@@ -7,6 +9,7 @@ public class DeliveryCommand {
 	private String delivery_img;
 	private String delivery_day;
 	private String fac_id;
+	private MultipartFile delivery_file;
 	
 	public int getDelivery_num() {
 		return delivery_num;
@@ -43,6 +46,12 @@ public class DeliveryCommand {
 	}
 	public void setFac_id(String fac_id) {
 		this.fac_id = fac_id;
+	}
+	public MultipartFile getDelivery_file() {
+		return delivery_file;
+	}
+	public void setDelivery_file(MultipartFile delivery_file) {
+		this.delivery_file = delivery_file;
 	}
 	
 	@Override

@@ -11,6 +11,7 @@ import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
 import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
+import spring.message.ReceiveMsg;
 
 public class LoginDao extends SqlSessionDaoSupport {
 	// login
@@ -53,6 +54,11 @@ public class LoginDao extends SqlSessionDaoSupport {
 		return deliveryList;
 	}
 	
+	// delivery_num
+	public int maxDelivery() {
+		return getSqlSession().selectOne("delivery.maxDelivery_num");
+	}
+
 	// deliveryUpdate
 	public int updateDelivery(DeliveryCommand command) {
 		int check = -1;
@@ -125,6 +131,15 @@ public class LoginDao extends SqlSessionDaoSupport {
 		
 		NoticeDataBean getNotice2 = getSqlSession().selectOne("notice.getNotice3", map);
 		return getNotice2;
+	}
+	
+	public int newMsg_count(String memId) {
+		int count = getSqlSession().selectOne("message.getNewMsgCount", memId);
+		return count; 
+	}
+	public List<ReceiveMsg> receiveMsg_list() {
+		List<ReceiveMsg> receiveMsg_list = getSqlSession().selectList("message.getReceiveMsgList");
+		return receiveMsg_list;
 	}
 
 }

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.Calendar"%>
 <%@page import="mj.Notice.controller.NoticeDataBean"%>
+<%@page import="spring.message.ReceiveMsg"%>
 <%@page import="java.util.List"%>
 
 <!-- calendar -->
@@ -33,6 +34,7 @@ year = cal.get(Calendar.YEAR);    //변화된 년, 월
 month = cal.get(Calendar.MONTH) + 1;
 
 List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNoticeList");
+List <ReceiveMsg> msg = (List <ReceiveMsg>)request.getAttribute("receiveMsgList");
 %>
 <!-- calendar -->
 <style>
@@ -43,7 +45,6 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 	.btn-more {display:inline-block; position:absolute; top:0.7em; right:0.7em; color:#31708f;}
 	.btn-more>a, .btn-more>a:hover, .btn-more>a:active, .btn-more>a:visited, .btn-more>a:active {color:#31708f; font-size:0.9em;}
 	.info_area>div {padding:0 0.5em;}
-	.panel-info .panel-footer {background-color:#fff; border-top:1px solid #bce8f1;}
 	.panel-primary a {color:#337ab7;}
 	.panel-primary a:hover {color:#23527c;}
 	
@@ -289,13 +290,15 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 							<div class="col-xs-6 btn_icon">
 								<i class="fa fa-comments fa-3x"></i>
 							</div>
+							
 							<div class="col-xs-6 text-right">
-								<div class="new_num">3</div>
+								<div id="mgsNewNum" class="new_num"><span>${ count }</span></div>
 								<div class="text-right">New!</div>
 							</div>
+							
 						</div>
 					</div>
-					<a href="<c:url value="/" />">
+					<a href="<c:url value="/message/receiveMsgList" />"> 
 						<div class="panel-footer">
 							<span class="pull-left">쪽지보기</span>
 							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -398,8 +401,8 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">탄산</div>
 							</div>
-						</div id="drink">
-						<div class="progress">
+						</div>
+						<div id="drink" class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 							    <div class="delivery_tag">주류</div>
 							</div>
@@ -497,12 +500,12 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 				<div class="panel-heading">
 					<i class="fa fa-check-square-o"></i>
 					<span>공지사항</span>
-					<span class="btn-more"><a href="<c:url value="/" />">더보기 ▶</a></span>
+					<span class="btn-more"><a href="<c:url value="/notice/noticeList" />">더보기 ▶</a></span>
 				</div>
 				<div class="panel-body row">
 					<ul class="notice_list col-sm-10 ellipsis">
 						<c:forEach var="list" items="${calNoticeList}">
-						<li><a href="<c:url value="/" />">[이벤트]${list.no_title}</a></li>
+						<li><a href="<c:url value="/login/calendarView?calendar_date=${list.calendar_date}" />">[이벤트]${list.no_title}</a></li>
 						</c:forEach>
 					</ul>
 					<div class="btns col-sm-2">
@@ -519,7 +522,7 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 				<div class="panel-heading">
 					<i class="fa fa-calendar"></i>
 					<span>이벤트 확인하기</span>
-					<span class="btn-more"><a href="<c:url value="/" />">더보기 ▶</a></span>
+					<span class="btn-more"><a href="<c:url value="/notice/noticeList" />">더보기 ▶</a></span>
 				</div>
 				<div class="panel-body">
 					<div class="container calendar_container">
@@ -630,10 +633,7 @@ List <NoticeDataBean> list = (List <NoticeDataBean>)request.getAttribute("calNot
 							</tr>
 						</table>
 					</div>
-				</div>
-				<div class="panel-footer">
-					글 내용
-				</div>
+				</div> 
 			</div>
 		</div>
 		<!-- // calendar -->

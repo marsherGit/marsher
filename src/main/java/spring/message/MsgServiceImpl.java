@@ -14,25 +14,25 @@ public class MsgServiceImpl implements MsgService {
 		this.dao = dao;
 	}
 	
-	//¹ÞÀº ÂÊÁö ¸®½ºÆ®
-	public List<ReceiveMsg> receiveMsg_list(){
-		List<ReceiveMsg> receiveMsg_list =dao.receiveMsg_list();
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	public List<Object> receiveMsg_list(int startRow,int endRow){
+		List<Object> receiveMsg_list =dao.receiveMsg_list(startRow, endRow);
 		return receiveMsg_list;
 	}
-	//¹ÞÀº ÂÊÁö Ä«¿îÆ® 
-	public int receiveMsg_count(){
-		return dao.receiveMsg_count();
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ® 
+	public int receiveMsg_count(String memId){
+		return dao.receiveMsg_count(memId);
 	}
-	//º¸³½ ÂÊÁö ¸®½ºÆ®
-	public List<SendMsg> sendMsg_list(){
-		List<SendMsg> sendMsg_list =dao.sendMsg_list();
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	public List<Object> sendMsg_list(int startRow,int endRow){
+		List<Object> sendMsg_list =dao.sendMsg_list(startRow, endRow);
 		return sendMsg_list;
 	}
-	//º¸³½ ÂÊÁö Ä«¿îÆ® 
-	public int sendMsg_count(){
-		return dao.sendMsg_count();
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ® 
+	public int sendMsg_count(String memId){
+		return dao.sendMsg_count(memId);
 	}
-	//ÂÊÁö º¸³»±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int inputSeMsg(SendMsg seMessage){
 		int check = dao.inputSeMsg(seMessage);
 		return 0;
@@ -41,23 +41,36 @@ public class MsgServiceImpl implements MsgService {
 		int check = dao.inputReMsg(reMessage);
 		return 0;
 	}
-	//¹ÞÀº ÂÊÁö º¸±â 
-	public ReceiveMsg getReceiveMsg(int re_num) throws Exception{
-		return dao.getReceiveMsg(re_num);
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+	public ReceiveMsg getReceiveMsg(int num) throws Exception{
+		return dao.getReceiveMsg(num);
 	}
-	//º¸³½ ÂÊÁö º¸±â
-	public SendMsg getSendMsg(int se_num) throws Exception{
-		return dao.getSendMsg(se_num);
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	public SendMsg getSendMsg(int num) throws Exception{
+		return dao.getSendMsg(num);
 	}
-	//¹ÞÀº ÂÊÁö »èÁ¦
-	public int deleteReceive(int re_num){
-		int check = dao.deleteReceive(re_num);
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	public int deleteReceive(int num){
+		int check = dao.deleteReceive(num);
 		return check;
 	}
-	//º¸³½ ÂÊÁö »èÁ¦
-	public int deleteSend(int se_num){
-		int check = dao.deleteSend(se_num);
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	public int deleteSend(int num){
+		int check = dao.deleteSend(num);
 		return check;
+	}
+	
+	public int updateSeCheckDate(int num){
+		int check = dao.updateSeCheckDate(num);
+		return 0;
+	}
+	public int updateReCheckDate(int num){
+		int check = dao.updateReCheckDate(num);
+		return 0;
+	}
+	
+	public int newMsg_count(){
+		return dao.newMsg_count();
 	}
 
 }

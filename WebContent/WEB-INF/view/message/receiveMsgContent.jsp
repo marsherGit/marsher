@@ -47,7 +47,9 @@ $(document).ready(function(){
 						<td align="center" width="70">받는이</td>
 						<td align="center" width="165" align="center">${msg.re_receiver}</td>
 						<td align="center" width="70">수신확인</td>
-						<td align="center" width="165" align="center">${msg.re_checkDate}</td>
+						<td align="center" width="165" align="center">
+						<fmt:formatDate value="${ msg.re_checkDate }" pattern="yyyy/MM/dd HH:mm:ss"/>
+						</td>
 					</tr>
 					<tr>
 						<td align="center" width="70">제 목</td>
@@ -60,9 +62,9 @@ $(document).ready(function(){
 			<br>
 			<div class="row text-center btns">
 			<a
-				href="<c:url value="/message/deleteReceive?re_num=${msg.re_num}&pageNum=${pageNum}" />"
+				href="<c:url value="/message/deleteReceive?num=${msg.num}&pageNum=${pageNum}" />"
 				class="btn btn-outline btn-primary" onclick="return deleteCheck();" > 삭제하기</a>&nbsp;<a
-				href="<c:url value="/message/writeMsgForm.do?num=${msg.re_num}" />"
+				href="<c:url value="/message/writeMsgForm.do?num=${msg.num}" />"
 				class="btn btn-outline btn-primary"> 답장하기</a>&nbsp;<a
 				href="<c:url value="/message/receiveMsgList.do?pageNum=${pageNum}" />"
 				class="btn btn-outline btn-primary"> 목록으로</a>

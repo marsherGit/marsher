@@ -1,8 +1,10 @@
 package spring.message;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,19 +24,83 @@ public class MsgController {
 	}
 
 	// receiveMsgList
+	@SuppressWarnings("unchecked")  
 	@RequestMapping(value = "/message/receiveMsgList")
-	public ModelAndView receiveMsgList() {
-		List<ReceiveMsg> receiveMsgList = service.receiveMsg_list();
-		ModelAndView mav = new ModelAndView("receiveMsgList", "receiveMsgList", receiveMsgList);
-		return mav;
+	public String receiveMsgList(HttpServletRequest request) {
+		String pageNum = request.getParameter("pageNum");
+		HttpSession session = request.getSession();
+		String memId = (String) session.getAttribute("memId");
+
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		int pageSize = 10;
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		int count = 0;
+		int number=0;
+		
+		List<Object> receiveMsgList = null;
+		
+		count = service.receiveMsg_count(memId);
+		
+		if (count > 0) {
+			receiveMsgList = service.receiveMsg_list(startRow, endRow);
+		} else {
+			receiveMsgList = Collections.EMPTY_LIST;			
+		}
+		number=count-(currentPage-1)*pageSize;//글목록에 표시할 글번호
+		
+		request.setAttribute("currentPage", new Integer(currentPage));
+		request.setAttribute("startRow", new Integer(startRow));
+		request.setAttribute("endRow", new Integer(endRow));
+		request.setAttribute("count", new Integer(count));
+		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("number", new Integer(number));
+		request.setAttribute("memId", memId);
+		request.setAttribute("receiveMsgList", receiveMsgList);
+		
+		return "receiveMsgList"; 
 	}
 
 	// sendMsgList
+	@SuppressWarnings("unchecked") 
 	@RequestMapping(value = "/message/sendMsgList")
-	public ModelAndView sendMsgList() {
-		List<SendMsg> sendMsgList = service.sendMsg_list();
-		ModelAndView mav = new ModelAndView("sendMsgList", "sendMsgList", sendMsgList);
-		return mav;
+	public String sendMsgList(HttpSession session, HttpServletRequest request) {
+		String memId = (String) session.getAttribute("memId");
+		String pageNum = request.getParameter("pageNum");
+ 
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		int pageSize = 10;
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		int count = 0;
+		int number=0;
+
+	
+		List<Object> sendMsgList = null;
+		count = service.sendMsg_count(memId);
+		
+		if (count > 0) {
+			sendMsgList = service.sendMsg_list(startRow, endRow);
+		} else {
+			sendMsgList = Collections.EMPTY_LIST;			
+		}	
+		number=count-(currentPage-1)*pageSize;//글목록에 표시할 글번호
+		
+		request.setAttribute("currentPage", new Integer(currentPage));
+		request.setAttribute("startRow", new Integer(startRow));
+		request.setAttribute("endRow", new Integer(endRow));
+		request.setAttribute("count", new Integer(count));
+		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("number", new Integer(number));
+		request.setAttribute("sendMsgList", sendMsgList);
+		request.setAttribute("memId",memId);
+		return "sendMsgList";
 	}
 
 	// writeMsgForm
@@ -53,35 +119,43 @@ public class MsgController {
 
 	// receiveMsgContent
 	@RequestMapping(value = "/message/receiveMsgContent", method = RequestMethod.GET)
-	public ModelAndView reContents(@RequestParam("re_num") int re_num) throws Exception {
+	public ModelAndView reContents(@RequestParam("num") int num, int pageNum) throws Exception {
+		service.updateReCheckDate(num);
+		service.updateSeCheckDate(num);
+		
 		ModelAndView mav = new ModelAndView("receiveMsgContent");
 		ReceiveMsg msg = new ReceiveMsg();
-		msg = service.getReceiveMsg(re_num);
+		msg = service.getReceiveMsg(num);
+		
+		mav.addObject("pageNum", new Integer(pageNum));
 		mav.addObject("msg", msg);
 		return mav;
 	}
+	
+	
 
 	// sendMsgContent
 	@RequestMapping(value = "/message/sendMsgContent", method = RequestMethod.GET)
-	public ModelAndView seContents(@RequestParam("se_num") int se_num) throws Exception {
+	public ModelAndView seContents(@RequestParam("num") int num, int pageNum) throws Exception {
 		ModelAndView mav = new ModelAndView("sendMsgContent");
 		SendMsg msg = new SendMsg();
-		msg = service.getSendMsg(se_num);
+		msg = service.getSendMsg(num);
+		mav.addObject("pageNum", new Integer(pageNum));
 		mav.addObject("msg", msg);
 		return mav;
 	}
 
 	// deleteReceive
 	@RequestMapping("/message/deleteReceive")
-	public String deleteReceive(int re_num) {
-		int check = service.deleteReceive(re_num);
+	public String deleteReceive(int num) {
+		int check = service.deleteReceive(num);
 		return "redirect:/message/receiveMsgList";
 	}
 
 	// deleteSend
 	@RequestMapping("/message/deleteSend")
-	public String deleteSend(int se_num) {
-		int check = service.deleteSend(se_num);
+	public String deleteSend(int num) {
+		int check = service.deleteSend(num);
 		return "redirect:/message/sendMsgList";
 	}
 

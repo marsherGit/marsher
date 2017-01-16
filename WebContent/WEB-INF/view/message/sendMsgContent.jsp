@@ -47,7 +47,9 @@ $(document).ready(function(){
 						<td align="center" width="70">받는이</td>
 						<td align="center" width="165" align="center">${msg.se_receiver}</td>
 						<td align="center" width="70">수신확인</td>
-						<td align="center" width="165" align="center">${msg.se_checkDate}</td>
+						<td align="center" width="165" align="center">
+						<fmt:formatDate value="${msg.se_checkDate}" pattern="yyyy/MM/dd HH:mm:ss"/>
+						</td>
 					</tr>
 					<tr>
 						<td align="center" width="70">제 목</td>
@@ -60,7 +62,7 @@ $(document).ready(function(){
 			<br>
 			<div class="row text-center btns">
 			<a
-				href="<c:url value="/message/deleteSend?se_num=${msg.se_num}&pageNum=${pageNum}" />"
+				href="<c:url value="/message/deleteSend?num=${msg.num}&pageNum=${pageNum}" />"
 				class="btn btn-outline btn-primary" onclick="return deleteCheck();" > 삭제하기</a>&nbsp;<a
 				href="<c:url value="/message/sendMsgList.do?pageNum=${pageNum}" />"
 				class="btn btn-outline btn-primary"> 목록으로</a>

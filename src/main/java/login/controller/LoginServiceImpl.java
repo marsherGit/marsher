@@ -1,5 +1,7 @@
 package login.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,12 +9,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import delivery.controller.DeliveryCommand;
 import delivery.controller.DeliveryInfo;
 import factory.controller.FactoryCommand;
 import mj.Notice.controller.NoticeDataBean;
 import mj.Store.service.memberDataBean;
+import spring.message.ReceiveMsg;
 
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
@@ -94,7 +98,31 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public int updateDelivery(DeliveryCommand command) {
+	public int updateDelivery(DeliveryCommand command, String contextRoot) {
+		int delivery_num = command.getDelivery_num();
+		MultipartFile delivery_file = command.getDelivery_file();
+		if(delivery_file != null) {
+			String original_file_name = delivery_file.getOriginalFilename();
+			int pos = original_file_name.lastIndexOf(".");
+			String original_extention = original_file_name.substring(pos);
+			
+			String stored_file_path = contextRoot + "saveFile\\";
+			String stored_file_name = "delivery" + delivery_num;
+			if(pos > 0) stored_file_name += original_extention;
+			
+			File stored_file = new File(stored_file_path + stored_file_name);
+			try {
+				delivery_file.transferTo(stored_file);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.out.println("파일이름 : "+stored_file_name);
+			command.setDelivery_img(stored_file_name);
+		}
+		System.out.println("update : "+command);			//test code
+		
 		int check = dao.updateDelivery(command);
 		return check;
 	}
@@ -106,7 +134,35 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public int inputDelivery(DeliveryCommand command) {
+	public int inputDelivery(DeliveryCommand command, String contextRoot) {
+		int delivery_num = 0;
+		delivery_num = dao.maxDelivery() + 1;
+		
+		MultipartFile delivery_file = command.getDelivery_file();
+		if(delivery_file != null){
+			String original_file_name = delivery_file.getOriginalFilename();
+			int pos = original_file_name.lastIndexOf(".");
+			String original_extention = original_file_name.substring(pos);
+			
+			String stored_file_path = contextRoot + "saveFile\\";
+			String stored_file_name = "delivery" + delivery_num;
+			if(pos > 0) stored_file_name += original_extention;
+			
+			File stored_file = new File(stored_file_path + stored_file_name);
+			try {
+				delivery_file.transferTo(stored_file);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			command.setDelivery_img(stored_file_name);
+		}
+		command.setDelivery_num(delivery_num);
+		
+		System.out.println(command);			//test code
+		
 		int check = dao.inputDelivery(command);
 		return 0;
 	}
@@ -118,7 +174,13 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public int deleteDelivery(int delivery_num) {
+	public int deleteDelivery(int delivery_num, String contextRoot) {
+		DeliveryCommand command = dao.getDelivery(delivery_num);
+		String delivery_img = command.getDelivery_img();
+		String stored_file_name = contextRoot + "saveFile\\" + delivery_img;
+		File stored_file = new File(stored_file_name);
+		if(stored_file.isFile()) stored_file.delete();
+		
 		int check = dao.deleteDelivery(delivery_num);
 		return check;
 	}
@@ -131,7 +193,31 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public int updateFactory(FactoryCommand command) {
+	public int updateFactory(FactoryCommand command, String contextRoot) {
+		int fac_id = command.getFac_id();
+		MultipartFile fac_file = command.getFac_file();
+		if(fac_file != null) {
+			String original_file_name = fac_file.getOriginalFilename();
+			int pos = original_file_name.lastIndexOf(".");
+			String original_extention = original_file_name.substring(pos);
+			
+			String stored_file_path = contextRoot + "saveFile\\";
+			String stored_file_name = "factory" + fac_id;
+			if(pos > 0) stored_file_name += original_extention;
+			
+			File stored_file = new File(stored_file_path + stored_file_name);
+			try {
+				fac_file.transferTo(stored_file);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			command.setFac_image(stored_file_name);
+		}
+		System.out.println("update : "+command);			//test code
+		
 		int check = dao.updateFactory(command);
 		return check;
 	}
@@ -143,7 +229,13 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public int deleteFactory(int fac_id) {
+	public int deleteFactory(int fac_id, String contextRoot) {
+		FactoryCommand command = dao.getFactory(fac_id);
+		String fac_image = command.getFac_image();
+		String stored_file_name = contextRoot + "saveFile\\" + fac_image;
+		File stored_file = new File(stored_file_name);
+		if(stored_file.isFile()) stored_file.delete();
+		
 		int check = dao.deleteFactory(fac_id);
 		return check;
 	}
@@ -169,6 +261,11 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		return list;
+	}
+	
+	@Override
+	public int newMsg_count(String memId){
+		return dao.newMsg_count(memId);
 	}
 
 }
