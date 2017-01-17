@@ -13,7 +13,7 @@
 <div class="table table-bordered" style="margin:0 auto;align:center; text-align:center; width:530px; height:180px; padding:50px">
 <table>
 <h5><strong>접근할 수 있는 권한이 없습니다.</strong></h5></br>
-<input class="btn btn-info btn-sm" type="button" onclick="javascript:history.go(-1);" value="뒤로가기"> 
+<input class="btn btn-info btn-sm" type="button" onclick="document.location.href='/Marsher/login/main'" value="뒤로가기"> 
 </table>
 </div>
 
