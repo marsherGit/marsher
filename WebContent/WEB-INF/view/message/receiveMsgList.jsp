@@ -15,6 +15,8 @@
 		$(".user_nav>li:eq(0)>a").addClass("active");
 		$(".aside-wrapper>.list-group>.list-group-item").eq(4).addClass("on");
 	})
+	
+	
 </script>
 <div class="receiveMsg_list">
 	<div class="row text-right">
