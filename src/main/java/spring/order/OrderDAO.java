@@ -90,5 +90,17 @@ public class OrderDAO extends SqlSessionDaoSupport {
 		int max = getSqlSession().selectOne("order.maxOrder");
 		return max;
 	}
+	
+	public int checkDelivery(int o_ref) {
+		int check = -1;
+		check = getSqlSession().update("order.checkDelivery", o_ref);
+		return check;
+	}
+	
+	public int getNewOrderCount() {
+		int count = getSqlSession().selectOne("order.getNewOrderCount", Integer.class);
+		return count;
+	}
+	
 
 }

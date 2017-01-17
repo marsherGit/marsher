@@ -25,4 +25,7 @@ public interface OrderService {
 	
 	public int insertOrder(OrderDataBean ordering, String[] pro_name, int[] pro_count);
 	/*public void insertProList(Integer o_reStep, List<OrderProducts> proList);*/
+	
+	public int checkDelivery(int o_ref);
+	public int getNewOrderCount();
 }
