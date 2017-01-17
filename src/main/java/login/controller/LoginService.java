@@ -13,6 +13,7 @@ public interface LoginService {
 	
 	public String getLogintype(String st_id);							// login - type check
 	public String getPasswd(String st_id);								// login - passwd check
+	public String getName(String st_id);								// login - name
 	
 	public memberDataBean getMember2(String st_id);				    	// storeUpdateForm
 	public int updateMember(memberDataBean member, String st_id);   	// storeUpdatePro

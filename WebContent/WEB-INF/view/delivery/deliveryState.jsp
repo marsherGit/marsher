@@ -33,7 +33,7 @@
 					"productSelect":productSelect,
 					"storeSelect":storeSelect,
 					"daySelect":daySelect,
-					"searchText":searchText,
+					"searchText":searchText
 			},
 			datatype:"json",
 			success:function(data) {
@@ -74,6 +74,7 @@
 	<div class="row searchArea">
 		<div class="col-sm-3"></div>
 		<form name="stateSearchForm" action="<c:url value="/delivery/deliveryState" />" method="post">
+			<input type="hidden" name="st_id" value="${ memId }" />
 			<div class="form-group searchForm col-sm-9">
 				<div class="col-sm-8">
 					<div class="col-sm-4">
@@ -88,7 +89,7 @@
 						<select name="storeSelect" class="form-control input-sm">
 							<option value="">- 요청매장검색 -</option>
 							<c:forEach var="st" items="${stores}">
-								<option value="${ st.st_name }" <c:if test="${ st.st_name eq storeSelect }">selected</c:if>>${ st.st_name }</option>
+								<option value="${ st.st_id }" <c:if test="${ st.st_id eq storeSelect }">selected</c:if>>${ st.st_name }</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -136,8 +137,8 @@
 					<c:forEach var="item" items="${ articleList }">
 					<tr>
 						<td>${ item.o_ref }</td>
-						<td class="text-left"><a href="a href="<c:url value="/order/orderContent?o_ref=${ item.o_ref }" />">${ item.o_title }</a></td>
-						<td>${ item.o_receiver }</td>
+						<td class="text-left"><a href="<c:url value="/order/orderContent?o_ref=${ item.o_ref }" />">${ item.o_title }</a></td>
+						<td>${ item.o_sender }</td>
 						<td><fmt:formatDate value="${ item.o_regdate }" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ item.o_deadline }" pattern="yyyy/MM/dd"/></td>
 						<td>${ item.deliverystate }</td>

@@ -53,7 +53,7 @@ public class DeliveryCommand {
 	public void setDelivery_file(MultipartFile delivery_file) {
 		this.delivery_file = delivery_file;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "DeliveryCommand [delivery_num=" + delivery_num + ", delivery_name=" + delivery_name + ", delivery_tel="

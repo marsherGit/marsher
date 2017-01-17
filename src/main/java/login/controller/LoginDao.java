@@ -21,6 +21,9 @@ public class LoginDao extends SqlSessionDaoSupport {
 	public String getLogintype(String st_id) {
 		return (String) getSqlSession().selectOne("loginMem.checkLogintype", st_id);
 	}
+	public String getName(String st_id) {
+		return (String) getSqlSession().selectOne("loginMem.getName", st_id);
+	}
 
 	// �������� �ҷ����� (�Ŵ���/������)
 	public memberDataBean getMember2(String st_id) {

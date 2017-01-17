@@ -94,9 +94,9 @@
 							<a href="#">유 통</a>
 							<ul class="sub_nav">
 								<li><a href="<c:url value="/delivery/deliveryInfo" />">배송정보</a></li>
-								<li><a href="<c:url value="/delivery/deliveryState" />">배송현황</a></li>
+								<li><a href="<c:url value="/delivery/deliveryState?st_id=${memId }" />">배송현황</a></li>
 								<li><a href="<c:url value="/order/orderWriteForm" />">발주서등록</a></li>
-								<li><a href="<c:url value="/delivery/deliveryUnsolved" />">미입고현황</a></li>
+								<li><a href="<c:url value="/delivery/deliveryUnsolved?st_id=${memId }" />">미입고현황</a></li>
 							</ul>
 						</li>
 						<li>

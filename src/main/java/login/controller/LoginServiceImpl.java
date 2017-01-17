@@ -37,6 +37,10 @@ public class LoginServiceImpl implements LoginService {
 		String passwd = dao.getPasswd(st_id);
 		return passwd;
 	}
+	public String getName(String st_id) {
+		String name = dao.getName(st_id);
+		return name;
+	}
 	
 	// ���� ���� form (�Ŵ���/������)
 	public memberDataBean getMember2(String st_id) {

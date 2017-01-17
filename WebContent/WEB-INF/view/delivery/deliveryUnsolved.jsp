@@ -74,13 +74,14 @@
 	<div class="row searchArea">
 		<div class="col-sm-3"></div>
 		<form name="stateSearchForm" action="<c:url value="/delivery/deliveryUnsolved" />" method="post">
+			<input type="hidden" name="st_id" value="${ memId }" />
 			<div class="form-group searchForm col-sm-9">
 				<div class="col-sm-8">
 					<div class="col-sm-4">
 						<select name="productSelect" class="form-control input-sm">
 							<option value="">- 품목검색 -</option>
 							<c:forEach var="pro" items="${products}">
-								<option value="${ pro.pro_name }" <c:if test="${ pro.pro_name eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
+								<option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -88,7 +89,7 @@
 						<select name="storeSelect" class="form-control input-sm">
 							<option value="">- 요청매장검색 -</option>
 							<c:forEach var="st" items="${stores}">
-								<option value="${ st.st_name }" <c:if test="${ st.st_name eq storeSelect }">selected</c:if>>${ st.st_name }</option>
+								<option value="${ st.st_id }" <c:if test="${ st.st_id eq storeSelect }">selected</c:if>>${ st.st_name }</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -103,7 +104,7 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="col-sm-10">
-						<input type="text" id="search_input" name="searchText" class="form-control input-sm" <c:if test="${ searchText ne '' }">value="${ searchText }"</c:if> placeholder="검색어를 입력해 주세요." />
+						<input type="text" id="search_input" name="searchText" class="form-control input-sm" placeholder="검색어를 입력해 주세요." />
 					</div>
 					<div class="col-sm-2">
 						<a id="search_btn" href="#" class="btn btn-info btn-sm">검색</a>
@@ -137,7 +138,7 @@
 					<tr>
 						<td>${ item.o_ref }</td>
 						<td class="text-left"><a href="<c:url value="/order/orderContent?o_ref=${ item.o_ref }" />">${ item.o_title }</a></td>
-						<td>${ item.o_receiver }</td>
+						<td>${ item.o_sender }</td>
 						<td><fmt:formatDate value="${ item.o_regdate }" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ item.o_deadline }" pattern="yyyy/MM/dd"/></td>
 						<td>${ item.deliverystate }</td>
@@ -156,7 +157,7 @@
   <c:set var="startPage" value="${ result * pageBlock + 1 }" />
   <c:set var="endPage" value="${ startPage + pageBlock - 1 }"/>
   <c:if test="${ endPage > pageCount }">
-       <c:set var="endPage" value="${ pageCount }"/>
+    <c:set var="endPage" value="${ pageCount }"/>
   </c:if>
 	<div class="row pagingArea text-center">
 		<ul class="pagination pagination-sm">

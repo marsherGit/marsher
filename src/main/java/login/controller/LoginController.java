@@ -76,6 +76,7 @@ public class LoginController {
 		int check = -1;
 		String dbpasswd = "";
 		String dbtype = "";
+		String name = "";
 		ModelAndView mav = new ModelAndView("loginForm");
 		
 		dbpasswd = service.getPasswd(st_id); //id가 없다면 'null'저장됨.
@@ -88,12 +89,14 @@ public class LoginController {
 				check = 1;
 				// type비교
 				dbtype = service.getLogintype(st_id);
+				name = service.getName(st_id);
 				// id,비번,type 일치
 				if(logintype.equals(dbtype)) {
 					session.setAttribute("passwd", dbpasswd);
 					session.setAttribute("memId", st_id);
 					session.setAttribute("logintype", logintype);
 					count = service.newMsg_count(st_id);
+					session.setAttribute("name", name);
 					check = 2;
 					mav.setViewName("main");
 				

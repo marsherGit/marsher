@@ -25,46 +25,76 @@ public class DeliveryServiceImpl implements DeliveryService {
 	} //end allMem()
 	
 	/* deliveryState.jsp */
-	public int getArticleCount(String searchText, String productSelect, String storeSelect, int daySelect) {
+	public int getArticleCount(String st_id) {
+		int count = 0;
+		count = dao.getArticleCount(st_id);
+		
+		return count;
+	}
+
+	public List<StateCommand> getArticles(String st_id, int startRow, int endRow) {
+		List<StateCommand> list = null;
+		list = dao.getArticles(st_id, startRow, endRow);
+		
+		return list;
+	}
+	
+	public int getArticleCount(String st_id, String searchText, String productSelect, String storeSelect, int daySelect) {
 		int count = 0;
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
-			count = dao.getArticleCount();
+			count = dao.getArticleCount(st_id);
 		else
-			count = dao.getArticleCount(searchText, productSelect, storeSelect, daySelect);
+			count = dao.getArticleCount(st_id, searchText, productSelect, storeSelect, daySelect);
 		
 		return count;
 	}
 	
-	public List<StateCommand> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
+	public List<StateCommand> getArticles(String st_id, int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
 		List<StateCommand> list = null;
 		
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
-			list = dao.getArticles(startRow, endRow);
+			list = dao.getArticles(st_id, startRow, endRow);
 		else
-			list = dao.getArticles(startRow, endRow, searchText, productSelect, storeSelect, daySelect);
+			list = dao.getArticles(st_id, startRow, endRow, searchText, productSelect, storeSelect, daySelect);
+	
 
 		return list;
 	}
 	
 	
 	/* deliveryUnsolved.jsp */
-	public int getArticleCountUnsolved(String searchText, String productSelect, String storeSelect, int daySelect) {
+	public int getArticleCountUnsolved(String st_id) {
+		int count = 0;
+		count = dao.getArticleCountUnsolved(st_id);
+		
+		return count;
+	}
+
+	public List<StateCommand> getArticlesUnsolved(String st_id, int startRow, int endRow) {
+		List<StateCommand> list = null;
+		list = dao.getArticlesUnsolved(st_id, startRow, endRow);
+		
+		return list;
+	}
+	
+	public int getArticleCountUnsolved(String st_id, String searchText, String productSelect, String storeSelect, int daySelect) {
 		int count = 0;
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
-			count = dao.getArticleCountUnsolved();
+			count = dao.getArticleCountUnsolved(st_id);
 		else
-			count = dao.getArticleCountUnsolved(searchText, productSelect, storeSelect, daySelect);
+			count = dao.getArticleCountUnsolved(st_id, searchText, productSelect, storeSelect, daySelect);
 		
 		return count;
 	}
 	
-	public List<StateCommand> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
+	public List<StateCommand> getArticlesUnsolved(String st_id, int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect) {
 		List<StateCommand> list = null;
 		
 		if((searchText == null || "".equals(searchText)) && "0".equals(productSelect) && "0".equals(storeSelect) && daySelect == 0)
-			list = dao.getArticlesUnsolved(startRow, endRow);
+			list = dao.getArticlesUnsolved(st_id, startRow, endRow);
 		else
-			list = dao.getArticlesUnsolved(startRow, endRow, searchText, productSelect, storeSelect, daySelect);
+			list = dao.getArticlesUnsolved(st_id, startRow, endRow, searchText, productSelect, storeSelect, daySelect);
+	
 
 		return list;
 	}

@@ -92,9 +92,11 @@
   	});
   	$(".o_count").val(o_count);
   });
-  /* 
+  
   $(document).on("change",".o_receiver",function(){
-	  var itemTag = "";
+	  
+	  
+  	var itemTag = "";
   	itemTag += '<tr><td class="no"></td>';
   	itemTag += '<td class="pro_num"></td>';
   	itemTag += '<td><select name="pro_name" class="form-control input-sm pro_name">';
@@ -110,7 +112,7 @@
       
   	$('#my-tbody').html(itemTag);
   });
-    */   
+      
  }); //end ready
 
  function delete_row() {
@@ -169,9 +171,23 @@
 
 </script>
 
+<!-- 접근제한 -->
+<c:if test="${ logintype ne 'admin' }">
+	<div class="warning_wrap" style="width:500px; height:200px; border:1px dashed #ccc; margin:30px auto; text-align:center; padding-top:30px; border-radius:20px;">
+		<div class="col-sm-6 text-danger text-right" style="font-size:550%; padding-right:0.5em;"><i class="fa fa-warning"></i></div>
+		<div class="col-sm-6" style="margin-left:-5em;">
+			<p class="text-center" style="font-size:1.2em; padding-top:1.8em;">접근 권한이 없습니다.<br/>관리자에게 문의하세요.</p>
+		</div>
+		<div class="col-sm-12">
+			<p calss="text-center"><button type="button" class="btn btn-sm btn-default" onclick="window.location='<c:url value='/login/main' />">메인으로 돌아가기</button></p>
+		</div>
+	</div>
+</c:if>
+<!-- 관리자 화면 -->
+<c:if test="${ logintype eq 'admin' }">
 <div class="orderWrite_form">
 	<form name="orderWriteForm" method="post" action="<c:url value="/order/saengSanWritePro" />" onsubmit="return checkIt();">
-		<input type="hidden" name="o_sender" value="${memId}">
+		<input type="hidden" name="o_sender" value="${name}">
 		
 		<table id="mytable" class="table table-striped table-bordered text-center delivery_table row">
 			<thead>
@@ -246,3 +262,4 @@
 	</div>
 	</form>
 </div>
+</c:if>

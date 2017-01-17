@@ -23,31 +23,33 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 	}
 	
 	/* deliveryState.jsp */
-	public int getArticleCount() {
-		int count = getSqlSession().selectOne("delivery.getArticleCount", Integer.class);
+	public int getArticleCount(String st_id) {
+		int count = getSqlSession().selectOne("delivery.getArticleCount", st_id);
 		return count;
 	}
 	
-	public List<StateCommand> getArticles(int startRow, int endRow) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public List<StateCommand> getArticles(String st_id, int startRow, int endRow) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		map.put("st_id", st_id);
 		List<StateCommand> getArticles = getSqlSession().selectList("delivery.getArticles", map);
 		return getArticles;
 	}
 	
-	public int getArticleCount(String searchText, String productSelect, String storeSelect, int daySelect){
+	public int getArticleCount(String st_id, String searchText, String productSelect, String storeSelect, int daySelect){
 		int x = 0;
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("productSelect", productSelect);
 		map.put("searchText", searchText);
 		map.put("storeSelect", storeSelect);
 		map.put("daySelect", daySelect);
+		map.put("st_id", st_id);
 		x = getSqlSession().selectOne("delivery.searchgetArticleCount",map);
 		return x;
 	}
 
-	public List<StateCommand> getArticles(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
+	public List<StateCommand> getArticles(String st_id, int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
@@ -55,6 +57,7 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		map.put("searchText", searchText);
 		map.put("storeSelect", storeSelect);
 		map.put("daySelect", daySelect);
+		map.put("st_id", st_id);
 		
 		List<StateCommand> list = getSqlSession().selectList("delivery.searchgetArticles",map);
 		
@@ -62,31 +65,33 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 	}
 	
 	/* deliveryUnsolved.jsp */
-	public int getArticleCountUnsolved() {
-		int count = getSqlSession().selectOne("delivery.getArticleCountUnsolved", Integer.class);
+	public int getArticleCountUnsolved(String st_id) {
+		int count = getSqlSession().selectOne("delivery.getArticleCountUnsolved", st_id);
 		return count;
 	}
 
-	public List<StateCommand> getArticlesUnsolved(int startRow, int endRow) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public List<StateCommand> getArticlesUnsolved(String st_id,int startRow, int endRow) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		map.put("st_id", st_id);
 		List<StateCommand> getArticles = getSqlSession().selectList("delivery.getArticlesUnsolved", map);
 		return getArticles;
 	}
 	
-	public int getArticleCountUnsolved(String searchText, String productSelect, String storeSelect, int daySelect){
+	public int getArticleCountUnsolved(String st_id, String searchText, String productSelect, String storeSelect, int daySelect){
 		int x = 0;
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("productSelect", productSelect);
 		map.put("searchText", searchText);
 		map.put("storeSelect", storeSelect);
 		map.put("daySelect", daySelect);
+		map.put("st_id", st_id);
 		x = getSqlSession().selectOne("delivery.searchgetArticleCountUnsolved",map);
 		return x;
 	}
 
-	public List<StateCommand> getArticlesUnsolved(int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
+	public List<StateCommand> getArticlesUnsolved(String st_id, int startRow,int endRow, String searchText, String productSelect, String storeSelect, int daySelect){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
@@ -94,6 +99,7 @@ public class DeliveryDao extends SqlSessionDaoSupport {
 		map.put("searchText", searchText);
 		map.put("storeSelect", storeSelect);
 		map.put("daySelect", daySelect);
+		map.put("st_id", st_id);
 		
 		List<StateCommand> list = getSqlSession().selectList("delivery.searchgetArticlesUnsolved",map);
 		

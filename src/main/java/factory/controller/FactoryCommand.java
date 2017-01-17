@@ -9,7 +9,7 @@ public class FactoryCommand {
 	private String fac_tel;
 	private String fac_product;
 	private String fac_image;
-	private MultipartFile fac_file;
+	private MultipartFile fac_file; 
 	
 	public int getFac_id() {
 		return fac_id;
@@ -47,6 +47,7 @@ public class FactoryCommand {
 	public void setFac_image(String fac_image) {
 		this.fac_image = fac_image;
 	}
+	
 	public MultipartFile getFac_file() {
 		return fac_file;
 	}
@@ -59,5 +60,7 @@ public class FactoryCommand {
 		return "FactoryCommand [fac_id=" + fac_id + ", fac_name=" + fac_name + ", fac_location=" + fac_location
 				+ ", fac_tel=" + fac_tel + ", fac_product=" + fac_product + ", fac_image=" + fac_image + "]";
 	}
+	
+	
 	
 }

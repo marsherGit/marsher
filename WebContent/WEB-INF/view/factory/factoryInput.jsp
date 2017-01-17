@@ -190,8 +190,22 @@
 </script>
 <!-- // 이미지 표시 -->
 
+<!-- 접근제한 -->
+<c:if test="${ logintype ne 'admin' }">
+	<div class="warning_wrap" style="width:500px; height:200px; border:1px dashed #ccc; margin:30px auto; text-align:center; padding-top:30px; border-radius:20px;">
+		<div class="col-sm-6 text-danger text-right" style="font-size:550%; padding-right:0.5em;"><i class="fa fa-warning"></i></div>
+		<div class="col-sm-6" style="margin-left:-5em;">
+			<p class="text-center" style="font-size:1.2em; padding-top:1.8em;">접근 권한이 없습니다.<br/>관리자에게 문의하세요.</p>
+		</div>
+		<div class="col-sm-12">
+			<p calss="text-center"><button type="button" class="btn btn-sm btn-default" onclick="window.location='<c:url value='/login/main' />">메인으로 돌아가기</button></p>
+		</div>
+	</div>
+</c:if>
+<!-- 관리자 화면 -->
+<c:if test="${ logintype eq 'admin' }">
 <div class="container text-left row" style='position:relative; width: 900px;'>
-<form id="factoryInputForm" action="<c:url value="/factory/factoryInput" />" onsubmit="return checkIt()"  class="form-horizontal" enctype="multipart/form-data" method="post">
+<form id="factoryInputForm" action="<c:url value="/factory/factoryInput" />" onsubmit="return checkIt()" class="form-horizontal" enctype="multipart/form-data" method="post">
 	<div class="col-sm-6" id='View_area' class="form-group">
 	  <label for="fac_file">사진이미지 업로드</label>
 	  <img id="UploadedImg" src="<c:url value="/images/no-img.png" />" border="0" width="300" height="250" onclick="fncProductFile()">
@@ -211,7 +225,5 @@
 	</div>
 </form >
 </div>
+</c:if>
 
-</body>
-
-</html>

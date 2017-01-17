@@ -47,18 +47,31 @@
 	
 	<select id="getArticleCount" resultType="int">
 	 select count(*) from ordering where not deliverystate='배송준비중'
+	 <where>
+	 	not deliverystate='배송준비중' and o_receiver='제 1 창고'
+	 	<if test="st_id != 'admin'">
+	 		and o_sender=#{st_id}
+	 	</if>
+	 </where>
 	</select>
 	
 	<select id="getArticles" resultType="delivery.controller.StateCommand" parameterType="Map" >	
     select <include refid="deliveryStateColumns" />, r
     from (select <include refid="deliveryStateColumns" />, rownum r
-    from (select <include refid="deliveryStateColumns" /> from ordering where not deliverystate='배송준비중' order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+    from (select <include refid="deliveryStateColumns" /> from ordering 
+    <where>
+    	not deliverystate='배송준비중' and o_receiver='제 1 창고'
+    	<if test="st_id != 'admin'">
+	 		and o_sender=#{st_id}
+	 	</if>
+    </where>  
+    order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<select id="searchgetArticleCount" resultType="int" parameterType="Map">
 	 select count(*) from ordering 
 	 <where> 
-	 		not deliverystate='배송준비중'
+	 		not deliverystate='배송준비중' and o_receiver='제 1 창고'
 			<if test="productSelect != ''">
 				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
@@ -71,6 +84,9 @@
 			<if test="searchText != ''">
 				and (o_title like '%'|| #{searchText} ||'%' or o_note like '%'|| #{searchText} ||'%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%'|| #{searchText} ||'%'))
 			</if>
+			<if test="st_id != 'admin'">
+		 		and o_sender=#{st_id}
+		 	</if>
 		</where>
 	</select>
 	
@@ -79,7 +95,7 @@
     from (select <include refid="deliveryStateColumns" />, rownum r
     from (select * from ordering  
 		<where> 
-	 		not deliverystate='배송준비중'
+	 		not deliverystate='배송준비중' and o_receiver='제 1 창고'
 			<if test="productSelect != ''">
 				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
@@ -92,25 +108,41 @@
 			<if test="searchText != ''">
 				and (o_title like '%' || #{searchText} || '%' or o_note like '%' || #{searchText} || '%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%' || #{searchText} || '%'))
 			</if>
+			<if test="st_id != 'admin'">
+		 		and o_sender=#{st_id}
+		 	</if>
 		</where>
 		 order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<!-- deliveryUnsolved -->
 	<select id="getArticleCountUnsolved" resultType="int">
-	 select count(*) from ordering where deliverystate='배송준비중'
+	 select count(*) from ordering 
+	 <where>
+   	deliverystate='배송준비중' and o_receiver='제 1 창고'
+   	<if test="st_id != 'admin'">
+ 			and o_sender=#{st_id}
+ 		</if>
+   </where>
 	</select>
 	
 	<select id="getArticlesUnsolved" resultType="delivery.controller.StateCommand" parameterType="Map" >	
     select <include refid="deliveryStateColumns" />, r
     from (select <include refid="deliveryStateColumns" />, rownum r
-    from (select * from ordering where deliverystate='배송준비중' order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
+    from (select * from ordering 
+    <where>
+	   	deliverystate='배송준비중' and o_receiver='제 1 창고'
+	   	<if test="st_id != 'admin'">
+	 			and o_sender=#{st_id}
+	 		</if>
+	   </where>
+     order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>
 	
 	<select id="searchgetArticleCountUnsolved" resultType="int" parameterType="Map">
 	 select count(*) from ordering 
 	 <where> 
-	 		deliverystate='배송준비중'
+	 		deliverystate='배송준비중' and o_receiver='제 1 창고'
 			<if test="productSelect != ''">
 				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
@@ -123,6 +155,9 @@
 			<if test="searchText != ''">
 				and (o_title like '%' || #{searchText} || '%' or o_note like '%' || #{searchText} || '%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%' || #{searchText} || '%'))
 			</if>
+	   	<if test="st_id != 'admin'">
+	 			and o_sender=#{st_id}
+	 		</if>
 		</where>
 	</select>
 	
@@ -131,7 +166,7 @@
     from (select <include refid="deliveryStateColumns" />, rownum r
     from (select * from ordering  
 		<where>
-			deliverystate='배송준비중'
+			deliverystate='배송준비중' and o_receiver='제 1 창고'
 			<if test="productSelect != ''">
 				and o_ref in (select distinct o_ref from orderingpro where pro_name=#{productSelect})
 			</if>	
@@ -144,6 +179,9 @@
 			<if test="searchText != ''">
 				and (o_title like '%' || #{searchText} || '%' or o_note like '%' || #{searchText} || '%' or o_ref in (select distinct o_ref from orderingpro where pro_name like '%' || #{searchText} || '%'))
 			</if>
+	   	<if test="st_id != 'admin'">
+	 			and o_sender=#{st_id}
+	 		</if>
 		</where>
 		 order by o_ref desc) order by o_ref desc) where r &gt;= #{startRow} and r &lt;= #{endRow}
 	</select>

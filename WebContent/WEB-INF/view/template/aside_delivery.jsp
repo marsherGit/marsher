@@ -6,9 +6,9 @@
 	<aside class="aside-wrapper">
 		<div class="list-group">
 			<a class="list-group-item" href="<c:url value="/delivery/deliveryInfo" />">배송정보</a>
-			<a class="list-group-item" href="<c:url value="/delivery/deliveryState" />">배송현황</a>
+			<a class="list-group-item" href="<c:url value="/delivery/deliveryState?st_id=${memId }" />">배송현황</a>
 			<a class="list-group-item" href="<c:url value="/order/orderWriteForm" />">발주서등록</a>
-			<a class="list-group-item" href="<c:url value="/delivery/deliveryUnsolved" />">미입고현황</a>
+			<a class="list-group-item" href="<c:url value="/delivery/deliveryUnsolved?st_id=${memId }" />">미입고현황</a>
 		</div>
 	</aside>
 	<!--// aside -->
