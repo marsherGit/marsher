@@ -166,14 +166,6 @@ public class OrderController {
 
 		return "saengSanWriteForm";
 	}
-	
-	@RequestMapping("/order/checkDelivery")
-	public String checkDelivery(@RequestParam("o_ref") int o_ref, Model model) {
-		service.checkDelivery(o_ref);
-		
-		model.addAttribute("o_ref", o_ref);
-		return "redirect:/order/orderContent";
-	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) throws Exception {

@@ -96,12 +96,7 @@ public class OrderServiceImpl implements OrderService {
 		return 0;
 	}
 	
-	public int checkDelivery(int o_ref){
-		int check = dao.checkDelivery(o_ref);
-		return 0;
-	}
-	public int getNewOrderCount(){
-		return dao.getNewOrderCount();
-	}
+
+	
 
 }

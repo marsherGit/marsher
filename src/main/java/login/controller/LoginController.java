@@ -52,11 +52,15 @@ public class LoginController {
 		List<NoticeDataBean> calNoticeList = new ArrayList<NoticeDataBean>();
 		calNoticeList = service.calNoticeList();
 		int count = 0;
+		int order_count =0;
 		HttpSession session = request.getSession();
 		String memId = (String)session.getAttribute("memId");
 		count = service.newMsg_count(memId);
+		order_count = service.getNewOrderCount();
 		model.addAttribute("calNoticeList", calNoticeList);
 		model.addAttribute("count", count);
+		model.addAttribute("order_count", order_count);
+
 		
 		return "main";
 	}
@@ -65,6 +69,7 @@ public class LoginController {
 		List<NoticeDataBean> calNoticeList = new ArrayList<NoticeDataBean>();
 		calNoticeList = service.calNoticeList();	
 		int count = 0;
+		int order_count = 0;
 		
 		
 		/**
@@ -96,6 +101,7 @@ public class LoginController {
 					session.setAttribute("memId", st_id);
 					session.setAttribute("logintype", logintype);
 					count = service.newMsg_count(st_id);
+					order_count = service.getNewOrderCount();
 					session.setAttribute("name", name);
 					check = 2;
 					mav.setViewName("main");
@@ -110,6 +116,7 @@ public class LoginController {
 		mav.addObject("st_id", st_id);
 		mav.addObject("calNoticeList", calNoticeList); 
 		mav.addObject("count", count);
+		mav.addObject("order_count", order_count);
 		return mav;
 	}
 	

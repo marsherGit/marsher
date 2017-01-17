@@ -42,5 +42,7 @@ public interface LoginService {
 	public List<NoticeDataBean> calNoticeList();						// main - calendar
 	public NoticeDataBean getNotice3(String calendar_date);				// main - calendarView
 	public int newMsg_count(String memId);								// nowMessageCount
+	
+	public int getNewOrderCount();
 
 }

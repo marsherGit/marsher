@@ -97,10 +97,7 @@ public class OrderDAO extends SqlSessionDaoSupport {
 		return check;
 	}
 	
-	public int getNewOrderCount() {
-		int count = getSqlSession().selectOne("order.getNewOrderCount", Integer.class);
-		return count;
-	}
+	
 	
 
 }

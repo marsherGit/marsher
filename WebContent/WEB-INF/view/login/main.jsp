@@ -343,18 +343,29 @@ List <ReceiveMsg> msg = (List <ReceiveMsg>)request.getAttribute("receiveMsgList"
 								<i class="fa fa-shopping-cart fa-3x"></i>
 							</div>
 							<div class="col-xs-6 text-right">
-								<div class="new_num">3</div>
+								<div class="new_num"><span>${ order_count }</span></div>
 								<div class="text-right">New!</div>
 							</div>
 						</div>
 					</div>
-					<a href="<c:url value="/" />">
+					<c:if test="${ memId ne 'admin' }">
+					<a href="<c:url value="/order/orderList?o_sender=${memId}"/>">
+					<div class="panel-footer">
+							<span class="pull-left">발주서조회</span>
+							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+					</c:if>
+					<c:if test="${ memId eq 'admin' }">
+					<a href="<c:url value="/order/allOrders" />"> 
 						<div class="panel-footer">
 							<span class="pull-left">발주서조회</span>
 							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 							<div class="clearfix"></div>
 						</div>
 					</a>
+					</c:if>
 				</div>
 			</div>
 			<!-- // btn_block -->

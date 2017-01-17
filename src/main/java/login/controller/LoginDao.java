@@ -144,5 +144,12 @@ public class LoginDao extends SqlSessionDaoSupport {
 		List<ReceiveMsg> receiveMsg_list = getSqlSession().selectList("message.getReceiveMsgList");
 		return receiveMsg_list;
 	}
+	
+	public int getNewOrderCount() {
+		int count = getSqlSession().selectOne("order.getNewOrderCount", Integer.class);
+		return count;
+	}
+	
+	
 
 }

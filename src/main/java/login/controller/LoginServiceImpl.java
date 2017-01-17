@@ -271,5 +271,9 @@ public class LoginServiceImpl implements LoginService {
 	public int newMsg_count(String memId){
 		return dao.newMsg_count(memId);
 	}
+	
+	public int getNewOrderCount(){
+		return dao.getNewOrderCount();
+	}
 
 }
