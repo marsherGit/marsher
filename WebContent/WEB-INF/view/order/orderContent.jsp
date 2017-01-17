@@ -66,7 +66,16 @@
 					<tr>
 						<td><img src="../images/${ordering.senderSign}" width="40"
 							height="40" /></td>
-						<td><button type="button" class="btn btn-primary btn-xs">check</button></td>
+						<td>
+						<c:if test="${ memId eq 'admin' }">
+						<a href="<c:url value="/order/checkDelivery?o_ref=${ordering.o_ref}" />"
+						class="btn btn-primary btn-xs">check</a>
+						</c:if>
+						<c:if test="${ memId ne 'admin' }">
+						<a href="" class="btn btn-primary btn-xs disabled">check</a>
+						</c:if>
+						</td>
+							
 						<td></td>
 					</tr>
 				</tbody>

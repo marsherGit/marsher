@@ -64,6 +64,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from ordering
 		where o_ref=#{o_ref}
 	</delete>
+	
+	<update id="checkDelivery" parameterType="int"> 
+		update ordering set deliveryState='배송중' where o_ref=#{o_ref} 
+	</update>
+	
+	<!-- getNewOrderCount -->
+	<select id="getNewOrderCount" resultType="int" parameterType="String"> 
+		select count(*) from ordering where to_char( o_regdate, 'yyyymmdd' ) = to_char( sysdate, 'yyyymmdd')
+		and o_sender !='admin'
+	</select>
 
 
 </mapper>
