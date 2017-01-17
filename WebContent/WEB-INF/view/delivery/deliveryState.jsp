@@ -95,7 +95,7 @@
 					</div>
 					<div class="col-sm-4">
 						<select name="daySelect" class="form-control input-sm">
-							<option value="0">- 요일선택 -</option>
+							<option value="0">- 등록요일선택 -</option>
 							<option value="7">일주일이내</option>
 							<option value="3">3일이내</option>
 							<option value="1">1일이내</option>
