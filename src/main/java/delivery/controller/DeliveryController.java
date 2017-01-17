@@ -43,41 +43,7 @@ public class DeliveryController {
 		return new ModelAndView("deliveryInfo", "deliveryList", service.allMem());
 	}
 	
-	/* deliveryState.jsp 
-	@RequestMapping(value="/delivery/deliveryState", method=RequestMethod.GET)
-	public String stateList(String pageNum, Model model) throws Throwable {
-		if (pageNum == null) {
-			pageNum = "1";
-		}
-		int pageSize = 10;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		int count = 0;
-		int number = 0;
-
-		List<StateCommand> articleList = null;
-
-		count = service.getArticleCount();
-
-		if (count > 0) {
-			articleList = service.getArticles(startRow, endRow);
-		} else {
-			articleList = Collections.emptyList();
-		}
-		number = count - (currentPage - 1) * pageSize;
-		
-		model.addAttribute("currentPage", new Integer(currentPage));
-		model.addAttribute("startRow", new Integer(startRow));
-		model.addAttribute("endRow", new Integer(endRow));
-		model.addAttribute("count", new Integer(count));
-		model.addAttribute("pageSize", new Integer(pageSize));
-		model.addAttribute("number", new Integer(number));
-		model.addAttribute("articleList", articleList);
-		
-		return "deliveryState";
-	}
-	*/
+	/* deliveryState.jsp */
 	@RequestMapping(value="/delivery/deliveryState")
 	public String stateList(String st_id, String pageNum, String searchText, String productSelect, String storeSelect, @RequestParam(defaultValue="0") int daySelect, Model model) throws Throwable {
 		
@@ -128,41 +94,7 @@ public class DeliveryController {
 	}
 	
 	
-	/* deliveryUnsolved.jsp
-	@RequestMapping(value="/delivery/deliveryUnsolved", method=RequestMethod.GET)
-	public String unsolvedList(String pageNum, Model model) throws Throwable {
-		if (pageNum == null) {
-			pageNum = "1";
-		}
-		int pageSize = 10;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		int count = 0;
-		int number = 0;
-
-		List<StateCommand> articleList = null;
-
-		count = service.getArticleCountUnsolved();
-
-		if (count > 0) {
-			articleList = service.getArticlesUnsolved(startRow, endRow);
-		} else {
-			articleList = Collections.emptyList();
-		}
-		number = count - (currentPage - 1) * pageSize;
-		
-		model.addAttribute("currentPage", new Integer(currentPage));
-		model.addAttribute("startRow", new Integer(startRow));
-		model.addAttribute("endRow", new Integer(endRow));
-		model.addAttribute("count", new Integer(count));
-		model.addAttribute("pageSize", new Integer(pageSize));
-		model.addAttribute("number", new Integer(number));
-		model.addAttribute("articleList", articleList);
-		
-		return "deliveryUnsolved";
-	}
-	*/
+	/* deliveryUnsolved.jsp */
 	@RequestMapping(value="/delivery/deliveryUnsolved")
 	public String unsolvedList(String st_id, String pageNum, String searchText, String productSelect, String storeSelect, @RequestParam(defaultValue="0") int daySelect, Model model) throws Throwable {
 		
@@ -170,6 +102,8 @@ public class DeliveryController {
 		if (searchText == null) searchText = "";
 		if (productSelect == null) productSelect = "";
 		if (storeSelect == null) storeSelect = "";
+		
+		System.out.println("pageNum="+pageNum+", searchText="+searchText+", productSelect="+productSelect+", storeSelect="+storeSelect+", daySelect="+daySelect);
 		
 		int pageSize = 10;
 		int currentPage = Integer.parseInt(pageNum);

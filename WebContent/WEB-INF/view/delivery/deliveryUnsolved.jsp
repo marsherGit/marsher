@@ -81,7 +81,7 @@
 						<select name="productSelect" class="form-control input-sm">
 							<option value="">- 품목검색 -</option>
 							<c:forEach var="pro" items="${products}">
-								<option value="${ pro.pro_num }" <c:if test="${ pro.pro_num eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
+								<option value="${ pro.pro_name }" <c:if test="${ pro.pro_name eq productSelect }">selected</c:if>>${ pro.pro_name }</option>
 							</c:forEach>
 						</select>
 					</div>
