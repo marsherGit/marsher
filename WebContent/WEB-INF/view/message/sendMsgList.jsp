@@ -10,11 +10,11 @@
 	.delivery_table {margin-top:1em;}
 </style>
 <script>
-	$(document).ready(function(){
-		/* 서브메뉴 활성화 */
-		$(".user_nav>li:eq(1)>a").addClass("active");
-		$(".aside-wrapper>.list-group>.list-group-item").eq(5).addClass("on");
-	})
+$(document).ready(function(){
+	/* 서브메뉴 활성화 */
+	$(".user_nav>li:eq(0)>a").addClass("active");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(2).addClass("on");
+})
 </script>
 <div class="sendMsg_list">
 	<div class="row text-right">
