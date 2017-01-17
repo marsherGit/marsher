@@ -317,9 +317,9 @@ List <ReceiveMsg> msg = (List <ReceiveMsg>)request.getAttribute("receiveMsgList"
 							<div class="col-xs-6 btn_icon">
 								<i class="fa fa-truck fa-3x"></i>
 							</div>
-							<div class="col-xs-6 text-right">
-								<div class="new_num">3</div>
-								<div class="text-right">New!</div>
+							<div class="col-xs-6 text-right" style="min-height:3.3em;">
+								<div class="new_num"></div>
+								<div class="text-right"></div>
 							</div>
 						</div>
 					</div>
@@ -378,9 +378,9 @@ List <ReceiveMsg> msg = (List <ReceiveMsg>)request.getAttribute("receiveMsgList"
 							<div class="col-xs-6 btn_icon">
 								<i class="fa fa-tasks fa-3x"></i>
 							</div>
-							<div class="col-xs-6 btn_text text-right">
-								<div class="new_num">3</div>
-								<div class="text-right">New!</div>
+							<div class="col-xs-6 text-right" style="min-height:3.3em;">
+								<div class="new_num"></div>
+								<div class="text-right"></div>
 							</div>
 						</div>
 					</div>
