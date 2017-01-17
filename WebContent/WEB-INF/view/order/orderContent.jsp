@@ -127,7 +127,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td class="o_total"></td>
+							<td class="o_count">${ordering.o_count}</td>
 						</tr>
 
 						<tr class="order" role="textarea">

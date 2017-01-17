@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>생산의뢰서조회</title>
+<title>생산의뢰서 조회</title>
 </head>
 <style>
 .pull-right {
@@ -16,23 +16,19 @@
 }
 </style>
 <script>
-	$(document).ready(function() {
-		$(".nav-tabs>li:first-child").addClass("active");
-		$(".tab-content>div:first-child").addClass("in active");
-
-		var main_nav = $(".main_nav>li").eq(0);
-		main_nav.addClass("on");
-		main_nav.find(".sub_nav>li").eq(1).addClass("on");
-		$(".aside-wrapper>.list-group>.list-group-item").eq(1).addClass("on");
-	})
+$(document).ready(function(){
+	var main_nav = $(".main_nav>li").eq(0);
+	main_nav.addClass("on");
+	main_nav.find(".sub_nav>li").eq(1).addClass("on");
+	$(".aside-wrapper>.list-group>.list-group-item").eq(1).addClass("on");
+})
 </script>
 <body>
 	<form:form commandName="order">
 
 <div class="col-sm-6">
 		<div>
-			<button type="button" class="btn btn-outline btn-primary">PDF 출력</button>
-			<a href="<c:url value="/order/orderList" />" class="btn btn-default">목록보기</a>
+			<a href="<c:url value="/order/saengSanList" />"class="btn btn-default">목록보기</a>			
 		</div>
 		<br>
 
@@ -62,7 +58,8 @@
 					<tr>
 						<td><img src="../images/${ordering.senderSign}" width="40"
 							height="40" /></td>
-						<td><button type="button" class="btn btn-primary btn-xs">check</button></td>
+						<td></td>
+							
 						<td></td>
 					</tr>
 				</tbody>
@@ -114,7 +111,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td class="o_total"></td>
+							<td class="o_count">${ordering.o_count}</td>
 						</tr>
 
 						<tr class="order" role="textarea">

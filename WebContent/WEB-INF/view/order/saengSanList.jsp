@@ -43,7 +43,7 @@
 				<c:forEach var="ordering" items="${saengSanList}">
 					<tr>
 						<td>${ordering.o_ref}</td>
-						<td><a href="<c:url value="/order/orderContent?o_ref=${ordering.o_ref}"/>">${ordering.o_title}</a></td>
+						<td><a href="<c:url value="/order/saengSanContent?o_ref=${ordering.o_ref}"/>">${ordering.o_title}</a></td>
 						<td>${ordering.o_sender}</td>
 						<td><fmt:formatDate value="${ ordering.o_regdate}" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ ordering.o_deadline }" pattern="yyyy/MM/dd"/></td>
