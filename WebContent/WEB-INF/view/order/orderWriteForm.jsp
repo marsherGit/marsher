@@ -146,7 +146,7 @@
 
 <div class="orderWrite_form">
 	<form name="orderWriteForm" method="post" action="<c:url value="/order/orderWritePro" />" onsubmit="return checkIt();">
-		<input type="hidden" name="o_sender" value="${name}">
+		<input type="hidden" name="o_sender" value="${memId}">
 		
 		<table id="mytable" class="table table-striped table-bordered text-center delivery_table row">
 			<thead>
