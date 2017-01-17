@@ -28,15 +28,14 @@
 				<tr>
 					<th class="text-center">#</th>
 					<th class="text-center">제 목</th>
-					<th class="text-center">입고장소</th>
+					<th class="text-center">의뢰인</th>
 					<th class="text-center">등록일</th>
 					<th class="text-center">납기일</th>
-					<th class="text-center">배송상태</th>
 				</tr>
 			</thead>
 			<c:if test="${ saengSanList eq null }">
 				<tr>
-					<td colspan="6">요청한 생산의뢰서가 없습니다.</td>
+					<td colspan="5">요청한 생산의뢰서가 없습니다.</td>
 				<tr>
 			</c:if>
 			<c:if test="${ saengSanList ne null }">
@@ -47,7 +46,6 @@
 						<td>${ordering.o_sender}</td>
 						<td><fmt:formatDate value="${ ordering.o_regdate}" pattern="yyyy/MM/dd"/></td>
 						<td><fmt:formatDate value="${ ordering.o_deadline }" pattern="yyyy/MM/dd"/></td>
-						<td>${ordering.deliveryState}</td>
 					</tr>
 				</c:forEach>
 			</c:if>

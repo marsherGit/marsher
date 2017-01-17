@@ -56,7 +56,7 @@ $(document).ready(function(){
 				</thead>
 				<tbody>
 					<tr>
-						<td><img src="../images/${ordering.senderSign}" width="40"
+						<td><img src="../images/sign.png" width="40"
 							height="40" /></td>
 						<td></td>
 							

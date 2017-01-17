@@ -121,7 +121,7 @@
 				<tr>
 					<th>#</th>
 					<th>제&nbsp;&nbsp;&nbsp;&nbsp;목</th>
-					<th>입고장소</th>
+					<th>의뢰인</th>
 					<th>등록일</th>
 					<th>납기일</th>
 					<th>배송상태</th>
