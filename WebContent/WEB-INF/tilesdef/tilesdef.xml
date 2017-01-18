@@ -341,4 +341,137 @@
 		<put-attribute name="body" value="/WEB-INF/view/message/sendMsgContent.jsp" />
 	</definition>
 	
+	
+		<!-- 재고 관리자--> 
+	<definition name="changgoIGList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고 입고 게시판" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="창고 입고 게시판" />
+		<put-attribute name="body_title_desc" value="(공장에서 창고로 이동된 재고의 리스트를 확인하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/changgoIGList.jsp" />
+	</definition>
+	
+	<definition name="jegoDR" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고 입고" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="창고 입고" />
+		<put-attribute name="body_title_desc" value="(공장에서 생산 된 제품을 창고의 재고로 입력하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/jegoDR.jsp" />
+	</definition>
+	
+	<definition name="IGjegoJH" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고 입고 게시판 조회" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="창고 입고 게시판 조회" />
+		<put-attribute name="body_title_desc" value="(게시판의  해당 리스트의 입고된 재고를 조회하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/IGjegoJH.jsp" />
+	</definition>
+	
+	<definition name="changgoCGList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고  출고 게시판" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="창고 출고 게시판" />
+		<put-attribute name="body_title_desc" value="(창고에서 매장으로 이동된 재고의 리스트를 확인하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/changgoCGList.jsp" />
+	</definition>
+	
+	<definition name="CGjegoDR" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고  출고" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="창고 출고" />
+		<put-attribute name="body_title_desc" value="(창고에 있는 제품을 매장의 재고로 입력하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/CGjegoDR.jsp" />
+	</definition>
+	
+	<definition name="CGjegoJH" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고 출고  게시판 조회" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="창고 출고  게시판 조회" />
+		<put-attribute name="body_title_desc" value="(게시판의 해당 리스트의 출고된 재고를 조회하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/CGjegoJH.jsp" />
+	</definition>
+	
+		<definition name="jegoJH" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 재고 조회" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="재고 조회" />
+		<put-attribute name="body_title_desc" value="(창고와 매장의 재고나 품목별 재고를 검색할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/jegoJH.jsp" />
+	</definition>
+	
+		<definition name="jegoJJ" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 재고 조정" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="재고 조정" />
+		<put-attribute name="body_title_desc" value="(창고의 재고수량과 실사재고가 다를 경우 수량을 수정할 수 있는 페이지입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/jegoJJ.jsp" />
+	</definition>
+	
+	<definition name="jegoJJList" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 실 사 재 고 조 정" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="실 사 재 고 조 정" />
+		<put-attribute name="body_title_desc" value="(창고의 변경된 사항을 조회하는 페이지입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/jegoJJList.jsp" />
+	</definition>
+	
+	<definition name="jegoJJListJH" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 변 경 사 항 조 회" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_stock.jsp" />
+		<put-attribute name="body_title" value="변 경 사 항 조 회" />
+		<put-attribute name="body_title_desc" value="(변경된 창고의 재고를 조회하는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/jegoJJListJH.jsp" />
+	</definition>
+	<!-- 재고 매장 -->
+	<definition name="StjegoJH" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 재고 조회" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_store.jsp" />
+		<put-attribute name="body_title" value="재고 조회" />
+		<put-attribute name="body_title_desc" value="(본인 매장의 품목별 재고를 검색할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/StjegoJH.jsp" />
+	</definition>
+	
+	<definition name="StjegoJJ" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 재고 조정" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_store.jsp" />
+		<put-attribute name="body_title" value="재고 조정" />
+		<put-attribute name="body_title_desc" value="(본인 매장의 실사재고가 다를 경우 수량을 수정할 수 있는 페이지입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/chowonheeView/StjegoJJ.jsp" />
+	</definition>
+	
+	
+	
+	<!-- 매장이 재고페이지 접근 시, 예외처리 -->
+	<definition name="AccessError" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고 입고 게시판" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="창고 입고 게시판" />
+		<put-attribute name="body_title_desc" value="(공장에서 창고로 이동된 재고의 리스트를 확인하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/authorityCheck.jsp" />
+	</definition>
+	
+	<definition name="AccessError1" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 창고  출고 게시판" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="창고 출고 게시판" />
+		<put-attribute name="body_title_desc" value="(창고에서 매장으로 이동된 재고의 리스트를 확인하는 양식페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/authorityCheck.jsp" />
+	</definition>
+	
+	<definition name="AccessError2" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 재고 조회" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="재고 조회" />
+		<put-attribute name="body_title_desc" value="(창고와 매장의 재고나 품목별 재고를 검색할 수 있는 페이지 입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/authorityCheck.jsp" />
+	</definition>
+	
+	<definition name="AccessError3" extends="base_layout">
+		<put-attribute name="title" value="Marsher :: 재고 조정" />
+		<put-attribute name="aside" value="/WEB-INF/view/template/aside_product.jsp" />
+		<put-attribute name="body_title" value="재고 조정" />
+		<put-attribute name="body_title_desc" value="(창고의 재고수량과 실사재고가 다를 경우 수량을 수정할 수 있는 페이지입니다.)" />
+		<put-attribute name="body" value="/WEB-INF/view/product/authorityCheck.jsp" />
+	</definition>
+	
 </tiles-definitions>
