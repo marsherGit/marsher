@@ -52,9 +52,9 @@
 							data-target="#${sodaList.pro_num}">
 							<tr>
 								<td><img src="/Marsher/images/${sodaList.pro_image}"
-									style="width: 200px; height: 210px;" /><br /> <strong>${sodaList.pro_name}</strong><br />
-									(${sodaList.pro_container} - ${sodaList.pro_volume}ml)<br />
-									${sodaList.pro_calorie} kcal</td>
+									style="width: 200px; height: 180px;" /><br /> <strong>${sodaList.pro_name}</strong><br />
+									(${sodaList.pro_container} - ${sodaList.pro_volume}ml)<br />  
+									${sodaList.pro_calorie} kcal</td> 
 							</tr>
 
 						</table>

@@ -99,7 +99,7 @@
 			</div>
 			<!-- //Modal -->
 			</c:forEach>
-		</div>
+		</div> 
 	
 
 

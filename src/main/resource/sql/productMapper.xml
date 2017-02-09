@@ -3,9 +3,9 @@
 
 <mapper namespace="product">
 	
-	<insert id="addMember" parameterType="mj.Product.controller.ProductDataBean">
-		insert into Product values ((#{pro_bcategory} ||(SUBSTR(#{pro_name},2,2)) || 'a' || (DECODE(#{pro_container},'알류미늄캔','1','페트병','2','유리병','3','종이팩','4')) || #{pro_volume}),#{pro_bcategory},(#{pro_name}||#{pro_volume}),#{pro_volume},#{pro_container},#{pro_calorie},#{pro_cPrice},#{pro_uPrice},#{pro_properStock},#{pro_image})
-	</insert>
+	<insert id="addMember" parameterType="mj.Product.controller.ProductDataBean"> 
+		insert into Product(pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_cPrice, pro_uPrice, pro_properStock, pro_image) values ((#{pro_bcategory} ||(SUBSTR(#{pro_name},2,2)) || 'a' || (DECODE(#{pro_container},'알류미늄캔','1','페트병','2','유리병','3','종이팩','4')) || #{pro_volume}),#{pro_bcategory},(#{pro_name}||#{pro_volume}),#{pro_volume},#{pro_container},#{pro_calorie},#{pro_cPrice},#{pro_uPrice},#{pro_properStock},#{pro_image})
+	</insert> 
 	
 	<select id="sodaList" resultType="mj.Product.controller.ProductDataBean" parameterType="Map" >	
             select pro_num,pro_bcategory,pro_name,pro_volume,pro_container,pro_calorie,pro_image,r   
